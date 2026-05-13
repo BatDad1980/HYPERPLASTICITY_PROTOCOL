@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPP V3.0 | Sentinel Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --bg: #05050A;
+            --panel: rgba(20, 20, 30, 0.6);
+            --border: rgba(255, 255, 255, 0.1);
+            --accent-nurture: #00E5FF;
+            --accent-sentinel: #FF3366;
+            --text-main: #FFFFFF;
+            --text-muted: #8B8B9E;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, rgba(5, 5, 10, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            transition: background 0.5s ease;
+            pointer-events: none;
+        }
+
+        .bg-glow.sentinel-mode {
+            background: radial-gradient(circle, rgba(255, 51, 102, 0.15) 0%, rgba(5, 5, 10, 0) 70%);
+        }
+
+        .dashboard {
+            position: relative;
+            z-index: 1;
+            width: 900px;
+            max-width: 90vw;
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        h1 {
+            grid-column: span 2;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin: 0 0 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-badge {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border-radius: 100px;
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-nurture);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .status-badge.sentinel {
+            background: rgba(255, 51, 102, 0.1);
+            color: var(--accent-sentinel);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"], select {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: var(--accent-nurture);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--text-main);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button {
+            background: var(--text-main);
+            color: var(--bg);
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.3s;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .output-panel {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .metric-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .speed-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .speed-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--accent-nurture);
+            transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+        }
+
+        #predicted_token {
+            font-size: 24px;
+            color: var(--accent-nurture);
+            font-weight: 800;
+            transition: color 0.3s;
+        }
+
+        #predicted_token.sentinel {
+            color: var(--accent-sentinel);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow" id="bg-glow"></div>
+
+    <div class="dashboard">
+        <h1>
+            <span>HPP V3.0 Infant Core</span>
+            <span class="status-badge" id="status-badge">ANALYTICAL MODE</span>
+        </h1>
+
+        <!-- Left Panel: Input -->
+        <div class="panel">
+            <div class="input-group">
+                <label>Sensory Input (Text)</label>
+                <input type="text" id="input_text" placeholder="e.g. Can you help me solve this?" value="Hello, are you safe?">
+            </div>
+
+            <div class="input-group">
+                <label>Vocal Pitch (<span id="pitch_val">200</span> Hz)</label>
+                <input type="range" id="pitch" min="100" max="300" value="200" oninput="document.getElementById('pitch_val').innerText=this.value">
+            </div>
+
+            <div class="input-group">
+                <label>Detected Emotion</label>
+                <select id="emotion">
+                    <option value="neutral">Neutral (Baseline)</option>
+                    <option value="happy">Happy (Alpha Anchor)</option>
+                    <option value="sad">Sad (Theta Anchor)</option>
+                    <option value="angry">Angry (High Stress)</option>
+                    <option value="fear">Fear (High Stress)</option>
+                </select>
+            </div>
+
+            <button id="send_btn" onclick="sendPulse()">Inject Sensory Pulse</button>
+        </div>
+
+        <!-- Right Panel: Output & Telemetry -->
+        <div class="output-panel">
+            <div class="metric">
+                <label>Routing Decision</label>
+                <span class="metric-val" id="route_taken">-</span>
+            </div>
+            
+            <div class="metric" style="flex-direction: column; align-items: flex-start;">
+                <div style="display: flex; justify-content: space-between; width: 100%;">
+                    <label>Latent Processing Speed</label>
+                    <span class="metric-val" id="execution_time">- ms</span>
+                </div>
+                <div class="speed-bar-container">
+                    <div class="speed-bar" id="speed-bar"></div>
+                </div>
+                <small style="color: var(--text-muted); font-size: 11px; margin-top: 4px;">Analytical: ~700ms | Sentinel: ~20ms</small>
+            </div>
+
+            <div class="metric">
+                <label>Predicted Token</label>
+                <span class="metric-val" id="predicted_token">-</span>
+            </div>
+
+            <div class="metric">
+                <label>Core Stability (Karma/Vairagya)</label>
+                <span class="metric-val" id="telemetry" style="font-size: 14px; color: var(--text-muted)">- / -</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function sendPulse() {
+            const btn = document.getElementById('send_btn');
+            btn.disabled = true;
+            btn.innerText = "Processing...";
+
+            const payload = {
+                input_text: document.getElementById('input_text').value,
+                pitch: parseFloat(document.getElementById('pitch').value),
+                emotion: document.getElementById('emotion').value
+            };
+
+            try {
+                const res = await fetch('/api/pulse', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await res.json();
+                
+                // Update UI
+                document.getElementById('route_taken').innerText = data.route_taken;
+                document.getElementById('execution_time').innerText = data.execution_time_ms + " ms";
+                document.getElementById('predicted_token').innerText = `"${data.predicted_token}"`;
+                document.getElementById('telemetry').innerText = `${data.telemetry.karma} / ${data.telemetry.vairagya}`;
+
+                // Mode Switching Animation
+                const isSentinel = data.route_taken === 'SENTINEL_REFLEX';
+                const badge = document.getElementById('status-badge');
+                const glow = document.getElementById('bg-glow');
+                const speedBar = document.getElementById('speed-bar');
+                const pToken = document.getElementById('predicted_token');
+
+                if (isSentinel) {
+                    badge.innerText = "SENTINEL REFLEX ACTIVE";
+                    badge.className = "status-badge sentinel";
+                    glow.className = "bg-glow sentinel-mode";
+                    speedBar.style.background = "var(--accent-sentinel)";
+                    speedBar.style.width = "5%"; // Very fast
+                    pToken.className = "sentinel";
+                } else {
+                    badge.innerText = "ANALYTICAL MODE";
+                    badge.className = "status-badge";
+                    glow.className = "bg-glow";
+                    speedBar.style.background = "var(--accent-nurture)";
+                    speedBar.style.width = "95%"; // Slow/Deep thinking
+                    pToken.className = "";
+                }
+
+            } catch (e) {
+                console.error(e);
+                alert("Synaptic Failure. Check server logs.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Inject Sensory Pulse";
+            }
+        }
+    </script>
+</body>
+</html>
