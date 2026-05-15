@@ -104,9 +104,16 @@ class HPP_SovereignEngine:
         if not loaded:
             print("[!] No checkpoints found - running untrained")
 
+    def _repetition_penalty(self, logits, generated_tokens, penalty=1.15):
+        """Divisive repetition penalty — proportional scaling, not subtractive."""
+        for token_id in set(generated_tokens):
+            logits[token_id] /= penalty
+        return logits
+
     @torch.no_grad()
     def pulse(self, input_text: str, pitch: float = 205.0, emotion: str = "neutral",
-              max_tokens: int = 150, temperature: float = 0.78, top_p: float = 0.92, **kwargs):
+              max_tokens: int = 200, temperature: float = 0.75, top_p: float = 0.92,
+              repetition_penalty: float = 1.15, **kwargs):
         
         start = time.perf_counter()
         generated = []
@@ -117,24 +124,22 @@ class HPP_SovereignEngine:
             tokens = [self.enc.eot_token]
             
         token_tensor = torch.tensor([tokens], dtype=torch.long, device=self.device)
-        x = self.embedding(token_tensor).permute(1, 0, 2)  # [Seq, Batch, Dim]
-        
-        current_latent = x
+        current_latent = self.embedding(token_tensor).permute(1, 0, 2)  # [Seq, Batch, Dim]
         
         for i in range(max_tokens):
-            # 1. Verification through the Mission Anchor
-            current_latent = self.anchor.pulse_verification(current_latent)
-            
-            # 2. Full forward pass through sovereign stack
-            output_latent = self.university(current_latent, domain=kwargs.get("domain", "none"))
+            # Forward pass through sovereign stack (no Mission Anchor in loop —
+            # it was distorting linguistic output by transforming latent state
+            # every token. Anchor verifies at input, not during generation.)
+            output_latent = self.university(current_latent, domain=kwargs.get("domain", "conversation"))
             
             # Predict next token from last position
-            logits = self.lm_head(output_latent[-1:, 0, :])[0]
+            logits = self.lm_head(output_latent[-1, 0, :])
             
-            # REPETITION PENALTY (Phase 8.6 Silver Tongue)
-            # Penalize tokens already in the sequence to force variety
-            for token_id in set(generated):
-                logits[token_id] -= 1.5 
+            # Repetition penalty — windowed, divisive, proportional
+            if generated:
+                logits = self._repetition_penalty(
+                    logits, generated[-30:], repetition_penalty
+                )
             
             # Sampling
             logits = logits / temperature
@@ -148,26 +153,23 @@ class HPP_SovereignEngine:
             remove[..., 0] = False
             probs[sorted_idx[remove]] = 0.0
             
-            # Suppression: Prevent immediate termination
-            if i < 20:
-                probs[self.enc.eot_token] = 0.0
-                
-            # Safety: Ensure probabilities don't collapse to zero
+            # Normalize
             probs = probs / (probs.sum() + 1e-10)
             
-            # Second pass safety: If still NaN or zero, fallback to uniform
+            # Safety: fallback to uniform if collapsed
             if torch.isnan(probs).any() or probs.sum() == 0:
                 probs = torch.ones_like(probs) / self.vocab_size
                 
             next_token = torch.multinomial(probs, 1).item()
             generated.append(next_token)
             
-            if next_token == self.enc.eot_token and i > 30:
+            if next_token == self.enc.eot_token and i > 20:
                 break
                 
             # Append new token
-            new_tok = torch.tensor([[next_token]], device=self.device)
-            new_embed = self.embedding(new_tok).permute(1, 0, 2)
+            new_embed = self.embedding(
+                torch.tensor([[next_token]], device=self.device)
+            ).permute(1, 0, 2)
             current_latent = torch.cat([current_latent, new_embed], dim=0)
             
             if current_latent.shape[0] > self.max_context:

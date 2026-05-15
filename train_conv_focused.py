@@ -1,8 +1,9 @@
 """
-HPP Phase 17 v3: Clean focused conversational training.
-Memory-safe, frequent saves, simple and reliable.
+HPP Phase 17d: Clean conversational training with fixed engine.
+No Mission Anchor in generation loop. Divisive repetition penalty.
+5000 steps, warmup + cosine decay, OOM protection.
 """
-import os, sys, json, time, random, gc
+import os, sys, json, time, random, gc, math
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -10,20 +11,22 @@ import torch.optim as optim
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from hpp_sovereign_engine import HPP_SovereignEngine
 
-STEPS = 3000
-LR = 8e-5
+STEPS = 2500
+LR = 1.2e-4
 BATCH = 2
 SEQ_LEN = 96
+WARMUP = 300
+SAVE_EVERY = 500
+TEST_EVERY = 1250
 
 def save_checkpoint(engine, step):
     ckpt = {
         'masamune_state_dict': engine.university.state_dict(),
         'lm_head_state_dict': engine.lm_head.state_dict(),
         'embedding_state_dict': engine.embedding.state_dict(),
-        'phase': 'conversational_v17_v3'
+        'phase': 'conversational_v17d'
     }
     torch.save(ckpt, "checkpoints/hpp_linguistic_anchor.pth")
-    torch.save(ckpt, "checkpoints/hpp_conversational_final.pth")
     print(f"  [SAVED] step {step}", flush=True)
 
 
@@ -31,25 +34,33 @@ def test_speech(engine):
     engine.university.eval()
     engine.lm_head.eval()
     engine.embedding.eval()
-    for q in ["Who are you?", "Good morning.", "I need help."]:
+    print("  --- SPEECH TEST ---", flush=True)
+    for q in ["Who are you?", "Good morning.", "I need help.",
+              "Tell me about Masamune.", "I'm not doing well today."]:
         try:
-            r = engine.pulse(q, max_tokens=40, temperature=0.7, top_p=0.9)
+            r = engine.pulse(q, max_tokens=50, temperature=0.7, top_p=0.9)
             print(f"  Q: {q}", flush=True)
-            print(f"  A: {r['response'][:150]}", flush=True)
+            print(f"  A: {r['response'][:180]}", flush=True)
         except Exception as e:
             print(f"  [ERR] {e}", flush=True)
-    print(flush=True)
+    print("  --- END TEST ---\n", flush=True)
     engine.university.train()
     engine.lm_head.train()
     engine.embedding.train()
     gc.collect()
-    torch.cuda.empty_cache()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+
+
+def get_lr(step):
+    if step < WARMUP:
+        return LR * (step / WARMUP)
+    progress = (step - WARMUP) / (STEPS - WARMUP)
+    return LR * 0.5 * (1.0 + math.cos(math.pi * progress))
 
 
 def run():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    # Clear GPU
     gc.collect()
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
@@ -65,12 +76,16 @@ def run():
         for p in m.parameters():
             p.requires_grad = False
 
-    # Unlock speech layers
+    # Unlock speech + compass + domains
     trainable = []
-    for m in [engine.lm_head, engine.embedding, engine.university.compass,
-              engine.university.domain_expertise['conversation'],
-              engine.university.swarm_gate, engine.university.output_norm]:
+    for m in [engine.embedding, engine.lm_head,
+              engine.university.compass, engine.university.output_norm,
+              engine.university.swarm_gate]:
         for p in m.parameters():
+            p.requires_grad = True
+            trainable.append(p)
+    for name, layer in engine.university.domain_expertise.items():
+        for p in layer.parameters():
             p.requires_grad = True
             trainable.append(p)
 
@@ -82,15 +97,20 @@ def run():
         'datasets/hf_local/CONVERSATIONAL_FLUENCY.jsonl', 'r', encoding='utf-8'
     )]
     print(f"[TRAIN] {len(data)} samples | {STEPS} steps | batch {BATCH} | seq {SEQ_LEN}", flush=True)
+    print(f"[TRAIN] LR: {LR} | Warmup: {WARMUP} | Device: {device}", flush=True)
 
     engine.university.train()
     engine.lm_head.train()
     engine.embedding.train()
 
     t0 = time.time()
-    last_loss = 0.0
 
     for step in range(1, STEPS + 1):
+        # LR schedule
+        current_lr = get_lr(step)
+        for pg in optimizer.param_groups:
+            pg['lr'] = current_lr
+
         # Sample batch
         batch = random.choices(data, k=BATCH)
         texts = []
@@ -98,18 +118,14 @@ def run():
             if 'text' in s:
                 texts.append(s['text'])
             else:
-                texts.append(
-                    f"### Instruction:\n{s['instruction']}\n\n"
-                    f"### Response:\n{s['response']}"
-                )
+                texts.append(f"### Instruction:\n{s['instruction']}\n\n### Response:\n{s['response']}")
 
         # Tokenize
         token_batch = []
         for text in texts:
             tokens = engine.enc.encode(text)[:SEQ_LEN]
-            pad_len = SEQ_LEN - len(tokens)
-            if pad_len > 0:
-                tokens = tokens + [engine.enc.eot_token] * pad_len
+            if len(tokens) < SEQ_LEN:
+                tokens = tokens + [engine.enc.eot_token] * (SEQ_LEN - len(tokens))
             token_batch.append(tokens)
 
         ids = torch.tensor(token_batch, dtype=torch.long, device=device)
@@ -121,35 +137,34 @@ def run():
         logits = engine.lm_head(output).permute(1, 2, 0)
         loss = criterion(logits, ids[:, 1:])
 
-        last_loss = loss.item()
+        loss_val = loss.item()
 
         # Backward
         loss.backward()
         torch.nn.utils.clip_grad_norm_(trainable, max_norm=1.0)
         optimizer.step()
 
-        # Log
         if step % 100 == 0 or step == 1:
             elapsed = time.time() - t0
-            print(f"  Step {step:5d}/{STEPS} | Loss: {last_loss:.4f} | {elapsed:.0f}s", flush=True)
+            print(f"  Step {step:5d}/{STEPS} | Loss: {loss_val:.4f} | LR: {current_lr:.2e} | {elapsed:.0f}s", flush=True)
 
-        # Save
-        if step % 500 == 0:
+        if step % SAVE_EVERY == 0:
             save_checkpoint(engine, step)
 
-        # Test
-        if step % 1000 == 0:
+        if step % TEST_EVERY == 0:
             test_speech(engine)
 
-        # Memory cleanup
-        if step % 200 == 0:
+        # OOM protection - aggressive for 6GB VRAM
+        if step % 100 == 0:
             gc.collect()
-            torch.cuda.empty_cache()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        del loss, logits, output, embedded, ids
+        torch.cuda.empty_cache()
 
-    # Final
     save_checkpoint(engine, STEPS)
     elapsed = time.time() - t0
-    print(f"\n[DONE] {elapsed:.0f}s ({elapsed/60:.1f}m) | Final loss: {last_loss:.4f}", flush=True)
+    print(f"\n[DONE] {elapsed:.0f}s ({elapsed/60:.1f}m) | Final loss: {loss_val:.4f}", flush=True)
     test_speech(engine)
 
 
