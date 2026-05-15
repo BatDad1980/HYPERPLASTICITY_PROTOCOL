@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from school_core import PreschoolCortex
+from .school_core import PreschoolCortex
 
 class FrontalLobe(nn.Module):
     """

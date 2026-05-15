@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from hpp_guardian_ecosystem import GuardianEcosystem
+from .hpp_guardian_ecosystem import GuardianEcosystem
 
 class BrocasArea(nn.Module):
     """

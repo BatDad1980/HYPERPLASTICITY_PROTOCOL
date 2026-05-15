@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import time
-from bio_loop_integration import BioLoopResonator
+from utils.bio_loop_integration import BioLoopResonator
 
 class GuardianEcosystem(nn.Module):
     """
@@ -49,14 +49,16 @@ class GuardianEcosystem(nn.Module):
         # Step 3: The Routing Split (Emergent Behavior)
         if threat_level.mean().item() > 0.85 or env_stress == "HIGH":
             # GUARDIAN MODE ENGAGED (Sentinel Reflex)
+            # SELF-HEALING: Increase the bias towards the Mission Anchor logic
+            print("[HPP] TOXIC STRESS DETECTED! Initiating Synaptic Myelination (Self-Healing)...")
+            
             if self.infant_core.is_stabilized:
                 # INSTANT REFLEX: Bypass all recursive loops and scaffolding
                 fast_path_logic = self.infant_core.myelin_sheath(modulated_x)
-                execution_time = time.perf_counter() - start_time
-                # print(f"[HPP] TOXIC STRESS DETECTED! Executing Myelinated Sentinel Reflex (Speed: {execution_time:.6f}s)")
-                return fast_path_logic
+                
+                # Hardening: Apply a defensive shift to the output
+                return torch.tanh(fast_path_logic * 1.5) 
             else:
-                # print("[HPP] WARNING: Infant Core under stress without stabilized habits. Initiating chaotic defense.")
                 core_logic = self.infant_core(modulated_x)
                 return F.dropout(core_logic, p=0.5) 
                 

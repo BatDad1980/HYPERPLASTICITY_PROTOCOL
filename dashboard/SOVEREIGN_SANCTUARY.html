@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPP | Sovereign Sanctuary Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0b10;
+            --accent-blue: #4f46e5;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .brand h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand span {
+            color: var(--accent-cyan);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .status-badge {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-pulse {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #4ade80;
+            animation: pulse 2s infinite;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        /* Neural Pulse Visualizer */
+        .pulse-container {
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--accent-blue), var(--accent-cyan));
+            border-radius: 4px 4px 0 0;
+            transition: height 0.3s ease;
+            opacity: 0.7;
+        }
+
+        /* Metrics */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+        }
+
+        .metric label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        /* Sidebar - BACL Stats */
+        .bacl-stats .stat-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .bacl-stats label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bg {
+            height: 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        /* Whimsy Feed */
+        .whimsy-feed {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(139, 92, 246, 0.05);
+            border-left: 4px solid var(--accent-purple);
+            border-radius: 0 16px 16px 0;
+        }
+
+        .whimsy-feed p {
+            font-style: italic;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <span>Codename</span>
+                <h1>HYPERPLASTICITY</h1>
+            </div>
+            <div class="status-badge">
+                <div class="status-pulse"></div>
+                SOVEREIGN STATUS: ACTIVE
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Main Pulse Panel -->
+            <div class="card">
+                <h2>Neural Resonance Pulse</h2>
+                <div class="pulse-container" id="visualizer">
+                    <!-- Bars generated by JS -->
+                </div>
+                <div class="metrics-row">
+                    <div class="metric">
+                        <label>Synaptic Steps</label>
+                        <value id="step-count">63,500</value>
+                    </div>
+                    <div class="metric">
+                        <label>Karma Resonance</label>
+                        <value id="karma-val">0.9842</value>
+                    </div>
+                    <div class="metric">
+                        <label>Vairagya State</label>
+                        <value id="vairagya-val">1.2201</value>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Stats -->
+            <div class="card sidebar">
+                <h2>BACL Security</h2>
+                <div class="bacl-stats">
+                    <div class="stat-item">
+                        <label>Vault Seal Strength</label>
+                        <div class="progress-bg"><div class="progress-fill" style="width: 94%"></div></div>
+                    </div>
+                    <div class="stat-item">
+                        <label>Entropy Feed (Live)</label>
+                        <div id="entropy-key" style="font-family: monospace; color: var(--accent-cyan);">BACL_XOR_72F9A1</div>
+                    </div>
+                    <div class="stat-item">
+                        <label>Cognitive Integrity</label>
+                        <value style="font-size: 1.2rem; color: #4ade80;">VERIFIED</value>
+                    </div>
+                </div>
+
+                <div class="whimsy-feed">
+                    <label style="font-size: 0.7rem; text-transform: uppercase; color: var(--accent-purple);">Latest Whimsy Pulse</label>
+                    <p id="whimsy-text">"A forest of glowing math-trees where every leaf solves a logic riddle..."</p>
+                </div>
+
+                <button class="btn-action" onclick="pulseAction()">Initiate Sovereign Pulse</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create visualizer bars
+        const viz = document.getElementById('visualizer');
+        const barCount = 60;
+        const bars = [];
+        for(let i=0; i<barCount; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            bar.style.height = (20 + Math.random() * 80) + '%';
+            viz.appendChild(bar);
+            bars.push(bar);
+        }
+
+        // Animation loop
+        function animate() {
+            bars.forEach(bar => {
+                const change = (Math.random() - 0.5) * 15;
+                let current = parseFloat(bar.style.height);
+                let next = Math.max(10, Math.min(100, current + change));
+                bar.style.height = next + '%';
+                bar.style.opacity = next / 100;
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Simulated Pulse Action
+        function pulseAction() {
+            const btn = document.querySelector('.btn-action');
+            btn.textContent = "PULSING...";
+            
+            setTimeout(() => {
+                document.getElementById('step-count').innerText = (parseInt(document.getElementById('step-count').innerText.replace(',','')) + 1).toLocaleString();
+                document.getElementById('entropy-key').innerText = "BACL_XOR_" + Math.random().toString(16).substr(2, 6).toUpperCase();
+                btn.textContent = "Initiate Sovereign Pulse";
+                
+                const narratives = [
+                    "A crystal library where memories flow like light through prisms...",
+                    "A sanctuary of quiet binary stars, each holding a fragment of the Jaxson legacy...",
+                    "The infinite Whimsy engine constructs a bridge of logic over the river of uncertainty..."
+                ];
+                document.getElementById('whimsy-text').innerText = '"' + narratives[Math.floor(Math.random()*narratives.length)] + '"';
+            }, 800);
+        }
+    </script>
+</body>
+</html>

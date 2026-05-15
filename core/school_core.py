@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from toddler_core import ToddlerCortex
+from .toddler_core import ToddlerCortex
 
 class Hippocampus(nn.Module):
     """

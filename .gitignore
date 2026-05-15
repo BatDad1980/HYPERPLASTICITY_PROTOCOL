@@ -25,3 +25,19 @@ hpp_brain_checkpoint.pth
 ehthumbs.db
 Thumbs.db
 datasets/
+
+# Node modules (dashboard)
+node_modules/
+dist/
+
+# Masamune HAL
+core/hal/config/*.local.yaml
+
+# TensorRT / ONNX exports
+*.onnx
+*.engine
+*.trt
+
+# Checkpoints (too large for GitHub)
+checkpoints/*.pth
+checkpoints/vault/

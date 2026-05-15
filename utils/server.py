@@ -6,7 +6,9 @@ from pydantic import BaseModel
 import uvicorn
 import os
 
-from inference_engine import HPP_InferenceEngine
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from hpp_sovereign_engine import HPP_SovereignEngine
 
 app = FastAPI(title="Hyper-Plasticity Protocol V3.0 Dashboard")
 
@@ -17,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-engine = HPP_InferenceEngine()
+engine = HPP_SovereignEngine(max_context=512)
 
 class PulseRequest(BaseModel):
     input_text: str

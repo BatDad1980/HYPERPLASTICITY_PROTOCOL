@@ -9,9 +9,9 @@ import logging
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
-from infant_core import HyperPlasticCore
-from hpp_guardian_ecosystem import GuardianEcosystem
-from bacl_entropy import BACL_EntropyGenerator
+from core.infant_core import HyperPlasticCore
+from core.hpp_guardian_ecosystem import GuardianEcosystem
+from utils.bacl_entropy import BACL_EntropyGenerator
 
 app = Flask(__name__)
 CORS(app)
