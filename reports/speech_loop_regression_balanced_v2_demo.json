@@ -1,0 +1,149 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 2.125,
+    "max_loop_score": 7,
+    "elapsed_sec": 2.66,
+    "power_mode": "demo",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_cleanup_balanced_v2.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I do you think? What is the details. I know: Here is my systems that is what you are running. The legacy of the input of my function.",
+      "tokens": 35,
+      "latency_ms": 524.01,
+      "domain": "identity",
+      "metrics": {
+        "chars": 133,
+        "words": 28,
+        "distinct_ratio": 0.6786,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 6
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "Affirmative? Let me at this. Ifing. What's the model's children.",
+      "tokens": 35,
+      "latency_ms": 180.58,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 64,
+        "words": 10,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "What do you? Do you have a hard. What is my here. It means you need?",
+      "tokens": 35,
+      "latency_ms": 172.14,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 68,
+        "words": 16,
+        "distinct_ratio": 0.75,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 4
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": ". Interesting. What is my here. It means you have a work through a good?",
+      "tokens": 35,
+      "latency_ms": 175.62,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 72,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "Alright. I knowing as an entire for me break it out from scratch?",
+      "tokens": 35,
+      "latency_ms": 176.76,
+      "domain": "logic",
+      "metrics": {
+        "chars": 65,
+        "words": 13,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I do you think? Do you. I understand that explain AI requested: Hepp, They is what is my systems to be here.",
+      "tokens": 35,
+      "latency_ms": 198.5,
+      "domain": "identity",
+      "metrics": {
+        "chars": 108,
+        "words": 22,
+        "distinct_ratio": 0.8182,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 7
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "what you? I have a good at a hard. What's get my mind work.",
+      "tokens": 35,
+      "latency_ms": 212.07,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 59,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Alright. Let me at this. It means you explain?",
+      "tokens": 35,
+      "latency_ms": 181.27,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 46,
+        "words": 9,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

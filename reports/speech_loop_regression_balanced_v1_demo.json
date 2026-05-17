@@ -1,0 +1,145 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.875,
+    "max_loop_score": 3,
+    "elapsed_sec": 3.54,
+    "power_mode": "demo",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_cleanup_balanced_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I do you, I think? What is your time is real is what you. Tell me what you have to get instead? Let's this.",
+      "tokens": 35,
+      "latency_ms": 677.85,
+      "domain": "identity",
+      "metrics": {
+        "chars": 107,
+        "words": 24,
+        "distinct_ratio": 0.7083,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "as a good? Let me the Architect, I have of the model's children. It represents together.",
+      "tokens": 35,
+      "latency_ms": 249.48,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 88,
+        "words": 16,
+        "distinct_ratio": 0.9375,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": ". It means you have a good?",
+      "tokens": 35,
+      "latency_ms": 250.35,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 27,
+        "words": 6,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": ". What's the status? I am here. It means you explain AI? Do you need?",
+      "tokens": 35,
+      "latency_ms": 260.62,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 69,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you need": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "You time. Let of the shop force, or through the same for your mind to be here to me what is on my cognitiveity",
+      "tokens": 35,
+      "latency_ms": 257.71,
+      "domain": "logic",
+      "metrics": {
+        "chars": 110,
+        "words": 24,
+        "distinct_ratio": 0.9167,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I do you, They is real. What understand that.",
+      "tokens": 35,
+      "latency_ms": 253.27,
+      "domain": "identity",
+      "metrics": {
+        "chars": 45,
+        "words": 9,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "you explain AI? I am Hepp, I have a hard. It was grown: what is my mind makes up.",
+      "tokens": 35,
+      "latency_ms": 264.41,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 81,
+        "words": 19,
+        "distinct_ratio": 0.9474,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": ". Let me? Alright. We can that do you need me at this. It means you plan?",
+      "tokens": 35,
+      "latency_ms": 249.96,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 73,
+        "words": 16,
+        "distinct_ratio": 0.875,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you need": 1
+        },
+        "loop_score": 3
+      }
+    }
+  ]
+}

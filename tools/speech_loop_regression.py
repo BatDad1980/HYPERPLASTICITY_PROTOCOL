@@ -13,6 +13,8 @@ import sys
 import time
 from collections import Counter
 
+import torch
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from hpp_sovereign_engine_v2 import HPP_SovereignEngine_V2
 
@@ -81,6 +83,7 @@ def main() -> None:
     parser.add_argument("--ngram-block", type=int, default=3)
     parser.add_argument("--power-mode", choices=["demo", "battery", "plugged"], default="demo")
     parser.add_argument("--context", type=int, default=512)
+    parser.add_argument("--checkpoint", default="")
     parser.add_argument("--phrase-blocking", action="store_true")
     parser.add_argument("--json-out", default="")
     args = parser.parse_args()
@@ -90,6 +93,20 @@ def main() -> None:
 
     started = time.time()
     engine = HPP_SovereignEngine_V2(max_context=args.context)
+    if args.checkpoint:
+        checkpoint = torch.load(args.checkpoint, map_location=engine.device, weights_only=True)
+        state_dict = checkpoint.get("masamune_state_dict", {})
+        engine.university.load_state_dict(state_dict, strict=False)
+        if "lm_head_state_dict" in checkpoint:
+            engine.lm_head.load_state_dict(checkpoint["lm_head_state_dict"])
+        if "embedding_state_dict" in checkpoint:
+            engine.embedding.load_state_dict(checkpoint["embedding_state_dict"])
+        if engine.use_fp16:
+            engine.university.half()
+            engine.lm_head.half()
+            engine.embedding.half()
+        engine.eval_mode()
+        print(f"[CHECKPOINT] override loaded: {args.checkpoint}")
     engine.set_power_mode(args.power_mode)
 
     results = []
@@ -128,6 +145,7 @@ def main() -> None:
         "elapsed_sec": round(time.time() - started, 2),
         "power_mode": args.power_mode,
         "context": args.context,
+        "checkpoint": args.checkpoint or "default",
     }
     print(f"\nSUMMARY: {summary}")
 

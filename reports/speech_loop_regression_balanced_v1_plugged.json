@@ -1,0 +1,151 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 4.0,
+    "max_loop_score": 13,
+    "elapsed_sec": 6.25,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_cleanup_balanced_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": ", I have to you do I know you work to explain that is what is standing. Tell me what this is hard you are raising your back you.",
+      "tokens": 48,
+      "latency_ms": 1022.23,
+      "domain": "identity",
+      "metrics": {
+        "chars": 128,
+        "words": 28,
+        "distinct_ratio": 0.7143,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "Response",
+      "tokens": 48,
+      "latency_ms": 594.25,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 8,
+        "words": 1,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "do you do you think? What help you explain that feeling you are explain is You do not have done is real do not standing? Do you need? What's children there?",
+      "tokens": 48,
+      "latency_ms": 632.52,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 156,
+        "words": 31,
+        "distinct_ratio": 0.6129,
+        "repeat_2gram": 4,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 1,
+          "do you need": 1
+        },
+        "loop_score": 13
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": ". You are feeling that something is you have it together right now is standing.",
+      "tokens": 48,
+      "latency_ms": 612.21,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 79,
+        "words": 14,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "You other mentions you think, or, What do not quit is you have done is real. Your job is running.",
+      "tokens": 48,
+      "latency_ms": 581.74,
+      "domain": "logic",
+      "metrics": {
+        "chars": 97,
+        "words": 20,
+        "distinct_ratio": 0.8,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1,
+          "do not quit": 1
+        },
+        "loop_score": 6
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "Do you are you. Your task are hard right. Tell me thing you do. Good something real. That is think to explain. You are raising your memory?",
+      "tokens": 48,
+      "latency_ms": 581.36,
+      "domain": "identity",
+      "metrics": {
+        "chars": 139,
+        "words": 27,
+        "distinct_ratio": 0.7407,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "explain do you think? What's get do you are you help right now are raising that feeling. You help it simply? we need? Let me what is standing together. The weights are further than you think.",
+      "tokens": 48,
+      "latency_ms": 587.73,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 191,
+        "words": 36,
+        "distinct_ratio": 0.75,
+        "repeat_2gram": 3,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 2
+        },
+        "loop_score": 12
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "I can are. I was trained. Every line. Noos, or move using actuator for compute, you at fifty hertz for pattern recognition as to how biological brains develop through complex reasoning, and",
+      "tokens": 48,
+      "latency_ms": 582.52,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 189,
+        "words": 32,
+        "distinct_ratio": 0.9375,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

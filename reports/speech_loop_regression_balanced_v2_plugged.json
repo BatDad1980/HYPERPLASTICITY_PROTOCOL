@@ -1,0 +1,152 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 4.0,
+    "max_loop_score": 8,
+    "elapsed_sec": 4.67,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_cleanup_balanced_v2.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I do you are you. What is? you, you think. I do you have to your real is what you are raising? What do not.",
+      "tokens": 48,
+      "latency_ms": 778.9,
+      "domain": "identity",
+      "metrics": {
+        "chars": 107,
+        "words": 25,
+        "distinct_ratio": 0.52,
+        "repeat_2gram": 3,
+        "repeat_3gram": 1,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 8
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "I was trained. You are raising your mind work you have done is real. Rest as we need to explain that feeling?",
+      "tokens": 48,
+      "latency_ms": 454.17,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 109,
+        "words": 22,
+        "distinct_ratio": 0.9545,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "Do you do you do do? What are giving you think you need that feeling do. You are raising your help right now is explain You standing. The weights are trained.",
+      "tokens": 48,
+      "latency_ms": 454.58,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 158,
+        "words": 31,
+        "distinct_ratio": 0.6452,
+        "repeat_2gram": 3,
+        "repeat_3gram": 1,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 8
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I am. Do was built using? Let me. You are trained me know. Tell me what you need next.",
+      "tokens": 48,
+      "latency_ms": 454.82,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 86,
+        "words": 19,
+        "distinct_ratio": 0.8421,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "You are you think, you do not do you do you. I help you. What is what we running where it out? That is real. Let me to be hear?",
+      "tokens": 48,
+      "latency_ms": 455.86,
+      "domain": "logic",
+      "metrics": {
+        "chars": 127,
+        "words": 30,
+        "distinct_ratio": 0.7,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 5
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "Your. I do not question? Do you are we do not think you are raising. Good you need to explain that is standing right, You have done is running, and we will help with this in this.",
+      "tokens": 48,
+      "latency_ms": 436.86,
+      "domain": "identity",
+      "metrics": {
+        "chars": 179,
+        "words": 37,
+        "distinct_ratio": 0.7297,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 2
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "explain do you explain that here?'s enough that you think get do not doing well right now means the only thing. You are standing?",
+      "tokens": 48,
+      "latency_ms": 425.36,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 129,
+        "words": 25,
+        "distinct_ratio": 0.8,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1,
+          "you are standing": 1
+        },
+        "loop_score": 6
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "-p? Let me. The hand. You are trained through it together back need to run, but do to be here right now? What is standing on you think.",
+      "tokens": 48,
+      "latency_ms": 419.17,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 135,
+        "words": 28,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 3
+      }
+    }
+  ]
+}

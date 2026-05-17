@@ -44,14 +44,30 @@ The phrase-blocking experiment is available but should not be the default cleanu
 
 ## Next Safe Training Option
 
-Only after checking power/cooling and committing current work:
+Completed on 2026-05-17:
 
 ```powershell
 python tools\train_speech_cleanup_balanced.py --confirm-gpu-training --steps 300
 ```
 
-This writes a separate checkpoint:
+This wrote a separate local checkpoint:
 
 `checkpoints/hpp_speech_cleanup_balanced_v1.pth`
 
-It does not overwrite `checkpoints/hpp_linguistic_anchor.pth`.
+It did not overwrite `checkpoints/hpp_linguistic_anchor.pth`.
+
+A second 1,000-step lower-LR run wrote:
+
+`checkpoints/hpp_speech_cleanup_balanced_v2.pth`
+
+See:
+
+`reports/SPEECH_CLEANUP_BALANCED_RUNS_2026-05-17.md`
+
+Current decision:
+
+Do not promote either cleanup checkpoint to the primary linguistic anchor yet.
+
+Safety update:
+
+`tools/train_speech_cleanup_balanced.py` now catches CUDA OOM and backs down by reducing active batch or sequence length before retrying. This mirrors the older V2 frontier-training behavior where peak memory pressure should trigger a controlled retreat instead of a hard crash.

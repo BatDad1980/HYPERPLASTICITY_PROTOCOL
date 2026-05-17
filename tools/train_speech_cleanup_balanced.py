@@ -59,6 +59,18 @@ def save_checkpoint(engine, path: str, step: int, loss: float, data_path: str) -
     print(f"[SAVE] {path} step={step} loss={loss:.4f}", flush=True)
 
 
+def is_cuda_oom(exc: RuntimeError) -> bool:
+    text = str(exc).lower()
+    return "out of memory" in text or "cuda error: out of memory" in text
+
+
+def clear_cuda_pressure() -> None:
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        torch.cuda.ipc_collect()
+
+
 def train(args: argparse.Namespace) -> None:
     if not args.confirm_gpu_training:
         raise SystemExit(
@@ -104,41 +116,74 @@ def train(args: argparse.Namespace) -> None:
 
     started = time.time()
     loss_val = math.nan
+    active_batch = args.batch
+    active_seq_len = args.seq_len
+    oom_count = 0
     engine.university.train()
     engine.embedding.train()
     engine.lm_head.train()
 
     for step in range(1, args.steps + 1):
-        batch = random.choices(rows, k=args.batch)
-        token_batch = []
-        for row in batch:
-            tokens = engine.enc.encode(row_to_text(row))[: args.seq_len]
-            tokens += [engine.enc.eot_token] * max(0, args.seq_len - len(tokens))
-            token_batch.append(tokens)
+        try:
+            batch = random.choices(rows, k=active_batch)
+            token_batch = []
+            for row in batch:
+                tokens = engine.enc.encode(row_to_text(row))[:active_seq_len]
+                tokens += [engine.enc.eot_token] * max(0, active_seq_len - len(tokens))
+                token_batch.append(tokens)
 
-        ids = torch.tensor(token_batch, dtype=torch.long, device=device)
-        embedded = engine.embedding(ids[:, :-1]).permute(1, 0, 2)
-        output = engine.university(embedded, domain="conversation")
-        logits = engine.lm_head(output).permute(1, 2, 0)
-        loss = criterion(logits, ids[:, 1:])
-        loss_val = float(loss.item())
+            ids = torch.tensor(token_batch, dtype=torch.long, device=device)
+            embedded = engine.embedding(ids[:, :-1]).permute(1, 0, 2)
+            output = engine.university(embedded, domain="conversation")
+            logits = engine.lm_head(output).permute(1, 2, 0)
+            loss = criterion(logits, ids[:, 1:])
+            loss_val = float(loss.item())
 
-        optimizer.zero_grad()
-        loss.backward()
-        torch.nn.utils.clip_grad_norm_(trainable, max_norm=1.0)
-        optimizer.step()
+            optimizer.zero_grad()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(trainable, max_norm=1.0)
+            optimizer.step()
+        except RuntimeError as exc:
+            if not is_cuda_oom(exc):
+                raise
+
+            oom_count += 1
+            optimizer.zero_grad(set_to_none=True)
+            clear_cuda_pressure()
+
+            if active_batch > 1:
+                active_batch = max(1, active_batch // 2)
+                action = f"reduced batch to {active_batch}"
+            elif active_seq_len > args.min_seq_len:
+                active_seq_len = max(args.min_seq_len, active_seq_len - args.oom_seq_step)
+                action = f"reduced seq_len to {active_seq_len}"
+            else:
+                action = "no further automatic reduction available"
+
+            print(
+                f"[OOM] step={step} count={oom_count} action={action}",
+                flush=True,
+            )
+            if oom_count >= args.max_ooms:
+                raise SystemExit(f"Stopping after {oom_count} CUDA OOM events.")
+            if args.oom_cooldown > 0:
+                time.sleep(args.oom_cooldown)
+            continue
 
         if step == 1 or step % args.log_every == 0:
             elapsed = time.time() - started
-            print(f"[STEP] {step}/{args.steps} loss={loss_val:.4f} elapsed_sec={elapsed:.1f}", flush=True)
+            print(
+                f"[STEP] {step}/{args.steps} loss={loss_val:.4f} "
+                f"batch={active_batch} seq_len={active_seq_len} elapsed_sec={elapsed:.1f}",
+                flush=True,
+            )
 
         if step % args.save_every == 0:
             save_checkpoint(engine, args.out, step, loss_val, args.data)
 
         del ids, embedded, output, logits, loss
         if torch.cuda.is_available() and step % args.empty_cache_every == 0:
-            gc.collect()
-            torch.cuda.empty_cache()
+            clear_cuda_pressure()
 
     save_checkpoint(engine, args.out, args.steps, loss_val, args.data)
 
@@ -150,6 +195,10 @@ def main() -> None:
     parser.add_argument("--steps", type=int, default=300)
     parser.add_argument("--batch", type=int, default=2)
     parser.add_argument("--seq-len", type=int, default=96)
+    parser.add_argument("--min-seq-len", type=int, default=48)
+    parser.add_argument("--oom-seq-step", type=int, default=16)
+    parser.add_argument("--oom-cooldown", type=float, default=3.0)
+    parser.add_argument("--max-ooms", type=int, default=6)
     parser.add_argument("--lr", type=float, default=5e-5)
     parser.add_argument("--seed", type=int, default=14)
     parser.add_argument("--log-every", type=int, default=25)
