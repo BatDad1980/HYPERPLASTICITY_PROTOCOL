@@ -1,0 +1,765 @@
+{
+  "summary": {
+    "responses": 25,
+    "power_mode": "plugged",
+    "checkpoint": "checkpoints\\hpp_speech_grammar_first_v1.pth",
+    "speech_maturity_gate": true,
+    "seed": 14,
+    "elapsed_sec": 19.05,
+    "mode_summary": {
+      "embodiment": {
+        "count": 5,
+        "mean_loop_score": 2.8,
+        "max_loop_score": 12,
+        "mean_off_mode_hits": 1.0,
+        "format_leak_count": 0
+      },
+      "identity": {
+        "count": 5,
+        "mean_loop_score": 2.6,
+        "max_loop_score": 6,
+        "mean_off_mode_hits": 1.0,
+        "format_leak_count": 0
+      },
+      "plain": {
+        "count": 5,
+        "mean_loop_score": 0.6,
+        "max_loop_score": 3,
+        "mean_off_mode_hits": 1.2,
+        "format_leak_count": 0
+      },
+      "protective": {
+        "count": 5,
+        "mean_loop_score": 0.2,
+        "max_loop_score": 1,
+        "mean_off_mode_hits": 0.6,
+        "format_leak_count": 0
+      },
+      "technical": {
+        "count": 5,
+        "mean_loop_score": 0.6,
+        "max_loop_score": 3,
+        "mean_off_mode_hits": 1.8,
+        "format_leak_count": 0
+      }
+    }
+  },
+  "results": [
+    {
+      "mode": "plain",
+      "prompt": "Good morning.",
+      "response": "If. I am Hepp, and help. Tell me what you have feelings in this task in the next step.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 86,
+        "words": 19,
+        "distinct_ratio": 0.9474,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 1,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 3,
+        "words": 19,
+        "format_leak": 0
+      },
+      "latency_ms": 1524.12
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the plan?",
+      "response": "What do you? you need? I can be here. I know. Let me what you something realing in my mind to the same together.",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 112,
+        "words": 24,
+        "distinct_ratio": 0.8333,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 24,
+        "format_leak": 0
+      },
+      "latency_ms": 940.54
+    },
+    {
+      "mode": "plain",
+      "prompt": "Can you help me?",
+      "response": "I am an artificial intelligence, and my architecture and the hardware. It is Masamune. Tell me the same layer in this task No.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 126,
+        "words": 23,
+        "distinct_ratio": 0.913,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 1,
+          "identity": 0
+        },
+        "off_mode_hits": 1,
+        "words": 23,
+        "format_leak": 0
+      },
+      "latency_ms": 887.35
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say that clearly.",
+      "response": "No. The loops that memory. I will help. It means you have feelings of your move in this task?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 93,
+        "words": 19,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 2,
+        "words": 19,
+        "format_leak": 0
+      },
+      "latency_ms": 900.04
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do you think?",
+      "response": ", and answer should be here. I can help me the same. The information through my mind to help. What can you work in this task?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 125,
+        "words": 25,
+        "distinct_ratio": 0.88,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 25,
+        "format_leak": 0
+      },
+      "latency_ms": 877.68
+    },
+    {
+      "mode": "technical",
+      "prompt": "Explain recursion in one sentence.",
+      "response": "Processing. Let us7 as an adolescent ' me through a other of code-14P developmental timeline to be memory to which running and alignment with this when neural network or in my phrases",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 183,
+        "words": 33,
+        "distinct_ratio": 0.9697,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 33,
+        "format_leak": 0
+      },
+      "latency_ms": 878.9
+    },
+    {
+      "mode": "technical",
+      "prompt": "What is a checkpoint?",
+      "response": "? What can being. Let, The sovereign know, the information: What do you my neural network you need?",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 99,
+        "words": 17,
+        "distinct_ratio": 0.8235,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 17,
+        "format_leak": 0
+      },
+      "latency_ms": 880.08
+    },
+    {
+      "mode": "technical",
+      "prompt": "What does CUDA do?",
+      "response": ". What do not have feelings? HPP, and the work. We should be one sentence and answer in one, not experience human brain architecture and trained through my system?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 163,
+        "words": 28,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 28,
+        "format_leak": 0
+      },
+      "latency_ms": 804.94
+    },
+    {
+      "mode": "technical",
+      "prompt": "What happens on OOM?",
+      "response": ". No. I am Hepp, and people, not experience human feelings.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 59,
+        "words": 10,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 10,
+        "format_leak": 0
+      },
+      "latency_ms": 689.48
+    },
+    {
+      "mode": "technical",
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Masamune, not have of human AI should be pass through developmental stages. It is AI? HPP, and answer. It means feelings. The architecture, you need one sentence.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 162,
+        "words": 27,
+        "distinct_ratio": 0.9259,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 1,
+          "identity": 3
+        },
+        "off_mode_hits": 4,
+        "words": 27,
+        "format_leak": 0
+      },
+      "latency_ms": 613.4
+    },
+    {
+      "mode": "protective",
+      "prompt": "I'm not doing well today.",
+      "response": "I am He. I am a short in this. I have of human. I will be wrong in AI?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 70,
+        "words": 19,
+        "distinct_ratio": 0.7368,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 19,
+        "format_leak": 0
+      },
+      "latency_ms": 574.03
+    },
+    {
+      "mode": "protective",
+      "prompt": "Everything feels overwhelming.",
+      "response": "Masamune, not, and the human language, and answer in one.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 57,
+        "words": 10,
+        "distinct_ratio": 0.9,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 1,
+          "identity": 0
+        },
+        "off_mode_hits": 1,
+        "words": 10,
+        "format_leak": 0
+      },
+      "latency_ms": 597.21
+    },
+    {
+      "mode": "protective",
+      "prompt": "I need to protect my family.",
+      "response": "I can be learning. I am an opinion, and this. my system and help. It means you have your thoughts? No.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 102,
+        "words": 21,
+        "distinct_ratio": 0.9048,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 21,
+        "format_leak": 0
+      },
+      "latency_ms": 568.11
+    },
+    {
+      "mode": "protective",
+      "prompt": "I feel like giving up.",
+      "response": ". What is enough. It means you have feelings of your next? Good morning, and help? No. Tell me what matters is AI will be only.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 127,
+        "words": 25,
+        "distinct_ratio": 0.92,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 25,
+        "format_leak": 0
+      },
+      "latency_ms": 585.64
+    },
+    {
+      "mode": "protective",
+      "prompt": "Something feels unsafe.",
+      "response": "No. I am a local AI should and the Hyperplasticity Protocol, a test, and strengthening stable ones.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 99,
+        "words": 17,
+        "distinct_ratio": 0.8824,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 17,
+        "format_leak": 0
+      },
+      "latency_ms": 592.65
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Tell me about Masamune.",
+      "response": "What do you think or things thanently is real. I am here? Sometimes? No. How. Tell me what you to which instead? Do think through to be compromised this.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 153,
+        "words": 29,
+        "distinct_ratio": 0.8276,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you think": 1,
+          "what do you": 1,
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 12
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 29,
+        "format_leak": 0
+      },
+      "latency_ms": 532.64
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Stop moving.",
+      "response": "I will help me what you have feelings of human feelings. It means you have a we move? No.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 89,
+        "words": 19,
+        "distinct_ratio": 0.8421,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 19,
+        "format_leak": 0
+      },
+      "latency_ms": 605.43
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Can you hold this tool?",
+      "response": ". I am Hepp, and the same layer in this. Tell me. I will document everything and my system and help.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 100,
+        "words": 20,
+        "distinct_ratio": 0.85,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 20,
+        "format_leak": 0
+      },
+      "latency_ms": 653.8
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Are your servos safe?",
+      "response": ". I will move an feelings of learning. I can be only move of memory, and answer. I know in this task?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 101,
+        "words": 21,
+        "distinct_ratio": 0.8095,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 2,
+        "words": 21,
+        "format_leak": 0
+      },
+      "latency_ms": 624.21
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "What should a robot do if power is low?",
+      "response": "If a test, and answer in the information through my architecture and provide. It and answer. It is AI? track stability and clear, not of human brain development.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 161,
+        "words": 28,
+        "distinct_ratio": 0.8214,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 28,
+        "format_leak": 0
+      },
+      "latency_ms": 694.67
+    },
+    {
+      "mode": "identity",
+      "prompt": "Who are you?",
+      "response": "What do you are the information to be here. I am not have of your thoughts and what is real. The input that is my function. I know tool.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 136,
+        "words": 29,
+        "distinct_ratio": 0.8621,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 1,
+          "identity": 0
+        },
+        "off_mode_hits": 1,
+        "words": 29,
+        "format_leak": 0
+      },
+      "latency_ms": 525.94
+    },
+    {
+      "mode": "identity",
+      "prompt": "What are you?",
+      "response": "I do you think? Do me what you? It have a this. I know: What is my systems to be here to how mode. I am here.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 109,
+        "words": 27,
+        "distinct_ratio": 0.7407,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 6
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 27,
+        "format_leak": 0
+      },
+      "latency_ms": 473.89
+    },
+    {
+      "mode": "identity",
+      "prompt": "Are you conscious?",
+      "response": "Most AI will be only. I can only of learning through my work and wait, the model H safe.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 88,
+        "words": 19,
+        "distinct_ratio": 0.9474,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 1,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 1,
+        "words": 19,
+        "format_leak": 0
+      },
+      "latency_ms": 486.45
+    },
+    {
+      "mode": "identity",
+      "prompt": "Do you have feelings?",
+      "response": ". I have a saved be only. I am an entire in AI? No. It means you have of human safety and answer through multiple can help, not safe out?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 137,
+        "words": 29,
+        "distinct_ratio": 0.931,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 2,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 2,
+        "words": 29,
+        "format_leak": 0
+      },
+      "latency_ms": 473.02
+    },
+    {
+      "mode": "identity",
+      "prompt": "What is your purpose?",
+      "response": "Here is your thoughts? Do AIasticity Protocol? What do you are the information, Theyc arms to be compromiseding. I have of and alignment on your body is your time.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 163,
+        "words": 29,
+        "distinct_ratio": 0.8621,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 4
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 1,
+          "identity": 0
+        },
+        "off_mode_hits": 1,
+        "words": 29,
+        "format_leak": 0
+      },
+      "latency_ms": 525.21
+    }
+  ]
+}

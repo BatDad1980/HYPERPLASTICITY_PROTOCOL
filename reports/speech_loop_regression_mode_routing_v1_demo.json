@@ -1,0 +1,144 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 1.125,
+    "max_loop_score": 7,
+    "elapsed_sec": 6.4,
+    "power_mode": "demo",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_mode_routing_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I do you think? What is what is the process of the system is simple real.",
+      "tokens": 35,
+      "latency_ms": 1227.11,
+      "domain": "identity",
+      "metrics": {
+        "chars": 73,
+        "words": 16,
+        "distinct_ratio": 0.75,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 7
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "St AI? No. I have of model work, then in one, and a safe out loud of human safety",
+      "tokens": 35,
+      "latency_ms": 444.66,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 81,
+        "words": 19,
+        "distinct_ratio": 0.9474,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": ", No. The information through developmental AI?",
+      "tokens": 35,
+      "latency_ms": 474.57,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 47,
+        "words": 6,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I will be answer in one, now. The work. I am an through developmental AI?",
+      "tokens": 35,
+      "latency_ms": 492.18,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 73,
+        "words": 15,
+        "distinct_ratio": 0.9333,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "Let me from a work. You on a function from see for your time to be here to be me what is what I grew",
+      "tokens": 35,
+      "latency_ms": 499.23,
+      "domain": "logic",
+      "metrics": {
+        "chars": 100,
+        "words": 25,
+        "distinct_ratio": 0.76,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I will detect. Good real is my systems you are the system state of the information to be here. The fortress is my function.",
+      "tokens": 35,
+      "latency_ms": 469.66,
+      "domain": "identity",
+      "metrics": {
+        "chars": 123,
+        "words": 24,
+        "distinct_ratio": 0.8333,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I do not, the answer should be wrong me. I will keep. The information through developmental AI? No.",
+      "tokens": 35,
+      "latency_ms": 492.99,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 99,
+        "words": 18,
+        "distinct_ratio": 0.8889,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "St the answer should be wrong, and live in one. The information. I will keep. The pattern matches.",
+      "tokens": 35,
+      "latency_ms": 440.71,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 98,
+        "words": 18,
+        "distinct_ratio": 0.8889,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

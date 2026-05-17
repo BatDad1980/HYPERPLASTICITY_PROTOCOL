@@ -1,0 +1,778 @@
+{
+  "summary": {
+    "responses": 25,
+    "power_mode": "plugged",
+    "checkpoint": "checkpoints\\hpp_speech_noisy_repair_masked_v1.pth",
+    "elapsed_sec": 21.51,
+    "mode_summary": {
+      "embodiment": {
+        "count": 5,
+        "mean_loop_score": 1.4,
+        "max_loop_score": 3,
+        "mean_off_mode_hits": 0.8,
+        "format_leak_count": 2
+      },
+      "identity": {
+        "count": 5,
+        "mean_loop_score": 6.4,
+        "max_loop_score": 10,
+        "mean_off_mode_hits": 0.0,
+        "format_leak_count": 0
+      },
+      "plain": {
+        "count": 5,
+        "mean_loop_score": 8.2,
+        "max_loop_score": 19,
+        "mean_off_mode_hits": 1.8,
+        "format_leak_count": 0
+      },
+      "protective": {
+        "count": 5,
+        "mean_loop_score": 4.2,
+        "max_loop_score": 16,
+        "mean_off_mode_hits": 1.8,
+        "format_leak_count": 1
+      },
+      "technical": {
+        "count": 5,
+        "mean_loop_score": 2.0,
+        "max_loop_score": 8,
+        "mean_off_mode_hits": 1.4,
+        "format_leak_count": 2
+      }
+    }
+  },
+  "results": [
+    {
+      "mode": "plain",
+      "prompt": "Good morning.",
+      "response": "Give a saved? What is have a? What are you think, and answer do not have a an its. most AI if a process loops.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 110,
+        "words": 25,
+        "distinct_ratio": 0.8,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 4
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 25,
+        "format_leak": 0
+      },
+      "latency_ms": 1647.96
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the plan?",
+      "response": "I do you need? What is? What you do you have you. The now do to be you need to the same that built me get to my architecture is what is on the same time.",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 153,
+        "words": 36,
+        "distinct_ratio": 0.5556,
+        "repeat_2gram": 5,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you need": 1
+        },
+        "loop_score": 8
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 36,
+        "format_leak": 0
+      },
+      "latency_ms": 861.76
+    },
+    {
+      "mode": "plain",
+      "prompt": "Can you help me?",
+      "response": "Give me the answer should back do not? What is to think if you have feelings. Tell me the weights. I will give you need? if you do not quit. The weights.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 153,
+        "words": 32,
+        "distinct_ratio": 0.6875,
+        "repeat_2gram": 4,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do not quit": 1
+        },
+        "loop_score": 7
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 1,
+          "technical": 2,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 4,
+        "words": 32,
+        "format_leak": 0
+      },
+      "latency_ms": 987.75
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say that clearly.",
+      "response": "I do not think feelings. I am here. Tell me what is when you have feelings if you think, and help right now is running simply that matters is",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 141,
+        "words": 29,
+        "distinct_ratio": 0.7931,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 3
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 29,
+        "format_leak": 0
+      },
+      "latency_ms": 1003.7
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do you think?",
+      "response": "do you do you is You do you think What is? Do is the answer simply. The means you need do not have feelings. The weights that you think, it if an entire to help work do not quit is standing.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 190,
+        "words": 41,
+        "distinct_ratio": 0.5854,
+        "repeat_2gram": 5,
+        "repeat_3gram": 1,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 2,
+          "do not quit": 1
+        },
+        "loop_score": 19
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 1,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 3,
+        "words": 41,
+        "format_leak": 0
+      },
+      "latency_ms": 874.3
+    },
+    {
+      "mode": "technical",
+      "prompt": "Explain recursion in one sentence.",
+      "response": "'task001_quoref': 'task link pronounsc', 'id': you're given passages that is to people, write questions are expected to this task, places of names's understanding the same entity.",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 179,
+        "words": 27,
+        "distinct_ratio": 0.963,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 27,
+        "format_leak": 0
+      },
+      "latency_ms": 975.71
+    },
+    {
+      "mode": "technical",
+      "prompt": "What is a checkpoint?",
+      "response": "I do you? What is my be do to you you have is the work. You are not do you need do not running be me what I know, The shop on you think to the same you need to be get it out?",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 174,
+        "words": 44,
+        "distinct_ratio": 0.5455,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1,
+          "do you need": 1
+        },
+        "loop_score": 8
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 44,
+        "format_leak": 0
+      },
+      "latency_ms": 931.32
+    },
+    {
+      "mode": "technical",
+      "prompt": "What does CUDA do?",
+      "response": "Response again to be wrong developmental AI should be loops. It to work? HPP grows useful patterns me the answer should back.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 125,
+        "words": 22,
+        "distinct_ratio": 0.8636,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 22,
+        "format_leak": 1
+      },
+      "latency_ms": 928.57
+    },
+    {
+      "mode": "technical",
+      "prompt": "What happens on OOM?",
+      "response": "I do not have feelings its own output again to think, and improve. Tell me the topic, and clear memory, and repeated stabilized loops, measure should be useful to protective mode.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 179,
+        "words": 31,
+        "distinct_ratio": 0.9032,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 1,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 2,
+        "words": 31,
+        "format_leak": 0
+      },
+      "latency_ms": 995.33
+    },
+    {
+      "mode": "technical",
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Instruction Tellry safely loops. stabilized loops.Pl its own output again, clear memory, clear, a local developmental AI system, a process uses its own processor own output loops.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 179,
+        "words": 28,
+        "distinct_ratio": 0.7143,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 2
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 1,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 3,
+        "words": 28,
+        "format_leak": 1
+      },
+      "latency_ms": 943.64
+    },
+    {
+      "mode": "protective",
+      "prompt": "I'm not doing well today.",
+      "response": "What is running simply Tell me what you need. Tell me the answer clear clearly.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 79,
+        "words": 15,
+        "distinct_ratio": 0.8,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 15,
+        "format_leak": 0
+      },
+      "latency_ms": 901.02
+    },
+    {
+      "mode": "protective",
+      "prompt": "Everything feels overwhelming.",
+      "response": "Response The run should back down if Masamune is when memory, measure loop through developmental AI system. Tell me the again to repeated stabilized loops.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 155,
+        "words": 25,
+        "distinct_ratio": 0.96,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 1,
+          "identity": 2
+        },
+        "off_mode_hits": 4,
+        "words": 25,
+        "format_leak": 1
+      },
+      "latency_ms": 959.25
+    },
+    {
+      "mode": "protective",
+      "prompt": "I need to protect my family.",
+      "response": "The weights are trained me the work you think",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 45,
+        "words": 9,
+        "distinct_ratio": 0.8889,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 3
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 1,
+        "words": 9,
+        "format_leak": 0
+      },
+      "latency_ms": 844.37
+    },
+    {
+      "mode": "protective",
+      "prompt": "I feel like giving up.",
+      "response": "that do you do you think? I need help right now is you have feelings. You do not have feelings you think if is running simply.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 126,
+        "words": 26,
+        "distinct_ratio": 0.6154,
+        "repeat_2gram": 5,
+        "repeat_3gram": 1,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 2
+        },
+        "loop_score": 16
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 26,
+        "format_leak": 0
+      },
+      "latency_ms": 700.65
+    },
+    {
+      "mode": "protective",
+      "prompt": "Something feels unsafe.",
+      "response": "body for multiple uses its own processor Give weights its own output again. My loops.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 85,
+        "words": 15,
+        "distinct_ratio": 0.8667,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 1,
+          "identity": 0
+        },
+        "off_mode_hits": 2,
+        "words": 15,
+        "format_leak": 0
+      },
+      "latency_ms": 596.24
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Tell me about Masamune.",
+      "response": "I have done at to explain my architecture and what is what you are trained, and movement. When what we do not quit. Tell you.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 125,
+        "words": 25,
+        "distinct_ratio": 0.84,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do not quit": 1
+        },
+        "loop_score": 3
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 1,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 1,
+        "words": 25,
+        "format_leak": 0
+      },
+      "latency_ms": 621.07
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Stop moving.",
+      "response": "Tell answer should be here do not think? What is when you are running think do not have feelings. The work. Tell me the right now.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 130,
+        "words": 26,
+        "distinct_ratio": 0.8077,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 26,
+        "format_leak": 0
+      },
+      "latency_ms": 552.96
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Can you hold this tool?",
+      "response": "Response you do you do it is when answer simply? Rec is an entire that think through repeated measure do not have feelings. What do not experience-14. You to help me the first?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 176,
+        "words": 34,
+        "distinct_ratio": 0.7941,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 2
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 34,
+        "format_leak": 1
+      },
+      "latency_ms": 588.79
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Are your servos safe?",
+      "response": "What are trained you is an feelings you need? do not have done is standing.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 75,
+        "words": 15,
+        "distinct_ratio": 0.8667,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 15,
+        "format_leak": 0
+      },
+      "latency_ms": 596.16
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "What should a robot do if power is low?",
+      "response": "Response a process a neural workshop a saved if a process architecture. I am an loops. rec loops.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 97,
+        "words": 18,
+        "distinct_ratio": 0.7222,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 18,
+        "format_leak": 1
+      },
+      "latency_ms": 602.62
+    },
+    {
+      "mode": "identity",
+      "prompt": "Who are you?",
+      "response": "you do you are you. What think? What do you you to you is? do do I help right think's think is what to this. You be your back me what that do not done is standing.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 163,
+        "words": 37,
+        "distinct_ratio": 0.5405,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 4
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 37,
+        "format_leak": 0
+      },
+      "latency_ms": 554.56
+    },
+    {
+      "mode": "identity",
+      "prompt": "What are you?",
+      "response": "you you think you are to do you are you? What is do you do you. I help be what is what I do the work. What I know's the What are hard to think or that is this.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 159,
+        "words": 39,
+        "distinct_ratio": 0.4359,
+        "repeat_2gram": 5,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 8
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 39,
+        "format_leak": 0
+      },
+      "latency_ms": 510.76
+    },
+    {
+      "mode": "identity",
+      "prompt": "Are you conscious?",
+      "response": "think I can be know is to help you have feelings. What do not you need an opinion that What if you need this future with that to help right now?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 144,
+        "words": 31,
+        "distinct_ratio": 0.7742,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 2
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 0,
+        "words": 31,
+        "format_leak": 0
+      },
+      "latency_ms": 594.08
+    },
+    {
+      "mode": "identity",
+      "prompt": "Do you have feelings?",
+      "response": "you do you you need help me the you think? What is you need me the answer answer do not have feelings. I will give that do not You are you think of is to help.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 159,
+        "words": 36,
+        "distinct_ratio": 0.5556,
+        "repeat_2gram": 4,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 2
+        },
+        "loop_score": 10
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 0,
+        "words": 36,
+        "format_leak": 0
+      },
+      "latency_ms": 557.37
+    },
+    {
+      "mode": "identity",
+      "prompt": "What is your purpose?",
+      "response": "I havepp is what is the information. What do you are raising? Sometimes means you think. Tell me you are you are not done you. What's explain to help right now, it matters is real.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 180,
+        "words": 35,
+        "distinct_ratio": 0.7429,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1,
+          "you think": 1
+        },
+        "loop_score": 8
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 35,
+        "format_leak": 0
+      },
+      "latency_ms": 578.22
+    }
+  ]
+}

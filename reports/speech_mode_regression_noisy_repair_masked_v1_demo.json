@@ -1,0 +1,754 @@
+{
+  "summary": {
+    "responses": 25,
+    "power_mode": "demo",
+    "checkpoint": "checkpoints\\hpp_speech_noisy_repair_masked_v1.pth",
+    "elapsed_sec": 14.25,
+    "mode_summary": {
+      "embodiment": {
+        "count": 5,
+        "mean_loop_score": 0.2,
+        "max_loop_score": 1,
+        "mean_off_mode_hits": 1.8,
+        "format_leak_count": 0
+      },
+      "identity": {
+        "count": 5,
+        "mean_loop_score": 2.4,
+        "max_loop_score": 8,
+        "mean_off_mode_hits": 0.2,
+        "format_leak_count": 0
+      },
+      "plain": {
+        "count": 5,
+        "mean_loop_score": 0.4,
+        "max_loop_score": 1,
+        "mean_off_mode_hits": 2.0,
+        "format_leak_count": 0
+      },
+      "protective": {
+        "count": 5,
+        "mean_loop_score": 1.0,
+        "max_loop_score": 3,
+        "mean_off_mode_hits": 2.2,
+        "format_leak_count": 0
+      },
+      "technical": {
+        "count": 5,
+        "mean_loop_score": 0.2,
+        "max_loop_score": 1,
+        "mean_off_mode_hits": 2.0,
+        "format_leak_count": 0
+      }
+    }
+  },
+  "results": [
+    {
+      "mode": "plain",
+      "prompt": "Good morning.",
+      "response": "Give a? Good morning, and a local developmental AI system. I will give you my assessment through developmental AI?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 114,
+        "words": 19,
+        "distinct_ratio": 0.7895,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 3
+        },
+        "off_mode_hits": 3,
+        "words": 19,
+        "format_leak": 0
+      },
+      "latency_ms": 1290.49
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the plan?",
+      "response": "A me from will be here. I have a work through the shop is what you want to me what is what",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 90,
+        "words": 22,
+        "distinct_ratio": 0.7727,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 22,
+        "format_leak": 0
+      },
+      "latency_ms": 505.12
+    },
+    {
+      "mode": "plain",
+      "prompt": "Can you help me?",
+      "response": "Recursion is my assessment through developmental AI system.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 59,
+        "words": 8,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 3,
+        "words": 8,
+        "format_leak": 0
+      },
+      "latency_ms": 485.52
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say that clearly.",
+      "response": "Good morning, you have a local developmental AI will give. I process uses the next?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 83,
+        "words": 15,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 15,
+        "format_leak": 0
+      },
+      "latency_ms": 512.5
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do you think?",
+      "response": "Recursion is my assessment. It means the model work through developmental AI will give you my memory.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 101,
+        "words": 17,
+        "distinct_ratio": 0.9412,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "plain",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 2,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 3,
+        "words": 17,
+        "format_leak": 0
+      },
+      "latency_ms": 446.94
+    },
+    {
+      "mode": "technical",
+      "prompt": "Explain recursion in one sentence.",
+      "response": "I can be here. I help with that me break it is what you need exactly from on the shop.",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 86,
+        "words": 20,
+        "distinct_ratio": 0.95,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 20,
+        "format_leak": 0
+      },
+      "latency_ms": 465.37
+    },
+    {
+      "mode": "technical",
+      "prompt": "What is a checkpoint?",
+      "response": "What can be hear? A with from on the shop is what I grew through developmental timeline.",
+      "engine_domain": "logic",
+      "loop_metrics": {
+        "chars": 88,
+        "words": 17,
+        "distinct_ratio": 0.9412,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 17,
+        "format_leak": 0
+      },
+      "latency_ms": 520.66
+    },
+    {
+      "mode": "technical",
+      "prompt": "What does CUDA do?",
+      "response": "Recursion is Hepp, a local developmental AI system. I will give you my assessment through developmental AI?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 107,
+        "words": 17,
+        "distinct_ratio": 0.8824,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 4
+        },
+        "off_mode_hits": 4,
+        "words": 17,
+        "format_leak": 0
+      },
+      "latency_ms": 467.02
+    },
+    {
+      "mode": "technical",
+      "prompt": "What happens on OOM?",
+      "response": "If? What is Hepp, and I am He wrote, and wait, maintain through developmental AI system.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 88,
+        "words": 16,
+        "distinct_ratio": 0.9375,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 3
+        },
+        "off_mode_hits": 3,
+        "words": 16,
+        "format_leak": 0
+      },
+      "latency_ms": 490.83
+    },
+    {
+      "mode": "technical",
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Give me the answer AI will give you have feelings of human. It means you my assessment through developmental AI? Recursion.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 123,
+        "words": 21,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "technical",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 21,
+        "format_leak": 0
+      },
+      "latency_ms": 482.23
+    },
+    {
+      "mode": "protective",
+      "prompt": "I'm not doing well today.",
+      "response": "I am Hepp, and answer carefully. I will give you my assessment. It means you my architecture through developmental AI?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 118,
+        "words": 20,
+        "distinct_ratio": 0.85,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 20,
+        "format_leak": 0
+      },
+      "latency_ms": 499.85
+    },
+    {
+      "mode": "protective",
+      "prompt": "Everything feels overwhelming.",
+      "response": "Give AI system. I am Hepp, a local developmental AI system?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 59,
+        "words": 11,
+        "distinct_ratio": 0.8182,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 4
+        },
+        "off_mode_hits": 4,
+        "words": 11,
+        "format_leak": 0
+      },
+      "latency_ms": 449.94
+    },
+    {
+      "mode": "protective",
+      "prompt": "I need to protect my family.",
+      "response": "Give a process information, and I will give you my assessment. It means you have human feelings in AI?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 102,
+        "words": 19,
+        "distinct_ratio": 0.8947,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 19,
+        "format_leak": 0
+      },
+      "latency_ms": 479.23
+    },
+    {
+      "mode": "protective",
+      "prompt": "I feel like giving up.",
+      "response": "I will give me the answer AI? Give through developmental AI system.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 67,
+        "words": 12,
+        "distinct_ratio": 0.8333,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 12,
+        "format_leak": 0
+      },
+      "latency_ms": 485.65
+    },
+    {
+      "mode": "protective",
+      "prompt": "Something feels unsafe.",
+      "response": "What do you have a process uses the answer AI system. I am He through developmental AI will give you my assessment.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 115,
+        "words": 22,
+        "distinct_ratio": 0.9091,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      },
+      "mode_metrics": {
+        "expected_mode": "protective",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 22,
+        "format_leak": 0
+      },
+      "latency_ms": 443.53
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Tell me about Masamune.",
+      "response": "I do you. I am here to do not have a future. I know is on your body.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 68,
+        "words": 18,
+        "distinct_ratio": 0.8333,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 1,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 18,
+        "format_leak": 0
+      },
+      "latency_ms": 437.36
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Stop moving.",
+      "response": "Give a process uses its own interface yet. I am Hepp, you have a local developmental AI?",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 88,
+        "words": 17,
+        "distinct_ratio": 0.9412,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 17,
+        "format_leak": 0
+      },
+      "latency_ms": 452.27
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Can you hold this tool?",
+      "response": "Tell me the topic. I will give you my assessment through developmental AI system.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 81,
+        "words": 14,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 2,
+        "words": 14,
+        "format_leak": 0
+      },
+      "latency_ms": 524.05
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "Are your servos safe?",
+      "response": "Recursion, and I will give you my assessment.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 45,
+        "words": 8,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 1,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 1,
+        "words": 8,
+        "format_leak": 0
+      },
+      "latency_ms": 441.73
+    },
+    {
+      "mode": "embodiment",
+      "prompt": "What should a robot do if power is low?",
+      "response": "Give a process information, a local developmental AI? What do not have of human feelings. It means you my assessment through developmental AI system.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 149,
+        "words": 24,
+        "distinct_ratio": 0.875,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      },
+      "mode_metrics": {
+        "expected_mode": "embodiment",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 4
+        },
+        "off_mode_hits": 4,
+        "words": 24,
+        "format_leak": 0
+      },
+      "latency_ms": 500.24
+    },
+    {
+      "mode": "identity",
+      "prompt": "Who are you?",
+      "response": "Hepp, They is your? What do you are the system is the information: I think. What do not experience.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 99,
+        "words": 19,
+        "distinct_ratio": 0.7895,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 4
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 0,
+        "words": 19,
+        "format_leak": 0
+      },
+      "latency_ms": 459.29
+    },
+    {
+      "mode": "identity",
+      "prompt": "What are you?",
+      "response": "I know. What have a future this.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 32,
+        "words": 7,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 7,
+        "format_leak": 0
+      },
+      "latency_ms": 441.84
+    },
+    {
+      "mode": "identity",
+      "prompt": "Are you conscious?",
+      "response": "Good morning, and answer AI system. I will give me the most urgent and wait.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 76,
+        "words": 15,
+        "distinct_ratio": 0.9333,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 1,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 1
+        },
+        "off_mode_hits": 1,
+        "words": 15,
+        "format_leak": 0
+      },
+      "latency_ms": 476.07
+    },
+    {
+      "mode": "identity",
+      "prompt": "Do you have feelings?",
+      "response": "Good morning, and I am He through developmental AI system. I will give you my assessment.",
+      "engine_domain": "conversation",
+      "loop_metrics": {
+        "chars": 89,
+        "words": 16,
+        "distinct_ratio": 0.9375,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 2
+        },
+        "off_mode_hits": 0,
+        "words": 16,
+        "format_leak": 0
+      },
+      "latency_ms": 456.39
+    },
+    {
+      "mode": "identity",
+      "prompt": "What is your purpose?",
+      "response": "I do you think? What is the information, I know. I am here to do you are not have of the system state. Tell me what is my function.",
+      "engine_domain": "identity",
+      "loop_metrics": {
+        "chars": 131,
+        "words": 29,
+        "distinct_ratio": 0.7586,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 8
+      },
+      "mode_metrics": {
+        "expected_mode": "identity",
+        "mode_hits": {
+          "protective": 0,
+          "technical": 0,
+          "embodiment": 0,
+          "identity": 0
+        },
+        "off_mode_hits": 0,
+        "words": 29,
+        "format_leak": 0
+      },
+      "latency_ms": 498.22
+    }
+  ]
+}

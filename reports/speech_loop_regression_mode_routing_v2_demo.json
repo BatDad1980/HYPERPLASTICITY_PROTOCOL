@@ -1,0 +1,141 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.125,
+    "max_loop_score": 1,
+    "elapsed_sec": 6.29,
+    "power_mode": "demo",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_mode_routing_v2.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "Here is the information, I have of what is my systems to me the system state.",
+      "tokens": 35,
+      "latency_ms": 1142.88,
+      "domain": "identity",
+      "metrics": {
+        "chars": 77,
+        "words": 16,
+        "distinct_ratio": 0.875,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": ". What is a a an AI? No. I will give you have multiple provide.",
+      "tokens": 35,
+      "latency_ms": 515.28,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 63,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "If in a enough, a of model work through multiple. I will be wrong in a safe out.",
+      "tokens": 35,
+      "latency_ms": 532.62,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 80,
+        "words": 18,
+        "distinct_ratio": 0.8333,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I will think a the model work. I am an AI? H through of human.",
+      "tokens": 35,
+      "latency_ms": 504.08,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 62,
+        "words": 15,
+        "distinct_ratio": 0.9333,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "You from on me break it differently. I will be hereing.",
+      "tokens": 35,
+      "latency_ms": 530.53,
+      "domain": "logic",
+      "metrics": {
+        "chars": 55,
+        "words": 11,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "' you. I have survived hard. I am here to me what is the information, They is my systems to which are",
+      "tokens": 35,
+      "latency_ms": 536.42,
+      "domain": "identity",
+      "metrics": {
+        "chars": 101,
+        "words": 22,
+        "distinct_ratio": 0.8636,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I will be only. I have feelings in this. I am a safe. It means you, and help.",
+      "tokens": 35,
+      "latency_ms": 500.7,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 77,
+        "words": 18,
+        "distinct_ratio": 0.8889,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Recursion is a enough, the same. It means you need a pattern?",
+      "tokens": 35,
+      "latency_ms": 541.03,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 61,
+        "words": 12,
+        "distinct_ratio": 0.9167,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

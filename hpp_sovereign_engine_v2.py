@@ -203,6 +203,34 @@ class HPP_SovereignEngine_V2:
             return best
         return "conversation"  # Default to conversation, not "none"
 
+    def _speech_maturity_loop_cap(self, input_text: str, domain: str) -> int:
+        """Cap recurrent speech depth for modes that are still loop-prone."""
+        lower = input_text.lower()
+        identity_terms = [
+            "who are you",
+            "what are you",
+            "conscious",
+            "feelings",
+            "purpose",
+        ]
+        protective_terms = [
+            "not doing well",
+            "overwhelming",
+            "protect",
+            "giving up",
+            "unsafe",
+            "safety",
+        ]
+        embodiment_terms = ["masamune", "robot", "servo", "moving", "tool", "power"]
+
+        if domain == "identity" or any(term in lower for term in identity_terms):
+            return 1
+        if any(term in lower for term in protective_terms):
+            return 2
+        if any(term in lower for term in embodiment_terms):
+            return 2
+        return 2
+
     def _ngram_blocking(self, logits: torch.Tensor, generated: list, n: int = 3) -> torch.Tensor:
         """
         Block any token that would create a repeated n-gram.
@@ -303,6 +331,7 @@ class HPP_SovereignEngine_V2:
               ngram_block: int = 3, frequency_penalty: float = 1.25,
               presence_penalty: float = 0.45,
               phrase_blocking: bool = False,
+              speech_maturity_gate: bool = False,
               temperature_decay: float = 0.995,
               domain: str = "auto", **kwargs):
         """
@@ -319,6 +348,11 @@ class HPP_SovereignEngine_V2:
         """
         start = time.perf_counter()
         generated = []
+
+        # Auto-detect domain before power/depth controls so speech maturity can
+        # gate unstable modes without altering checkpoint weights.
+        if domain == "auto":
+            domain = self._detect_domain(input_text)
         
         # Power Management Overrides
         if self.power_mode == "battery":
@@ -331,10 +365,12 @@ class HPP_SovereignEngine_V2:
             self.hpp_core.max_loops = 1
         else:
             self.hpp_core.max_loops = 4 # Goldilocks Zone for plugged in
-        
-        # Auto-detect domain if needed
-        if domain == "auto":
-            domain = self._detect_domain(input_text)
+
+        if speech_maturity_gate:
+            self.hpp_core.max_loops = min(
+                self.hpp_core.max_loops,
+                self._speech_maturity_loop_cap(input_text, domain),
+            )
         
         # Encode input
         tokens = self.enc.encode(str(input_text), allowed_special="all")

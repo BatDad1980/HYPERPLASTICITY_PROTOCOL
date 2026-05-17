@@ -1,0 +1,143 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.375,
+    "max_loop_score": 1,
+    "elapsed_sec": 8.86,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_mode_routing_v2.pth",
+    "speech_maturity_gate": true,
+    "seed": 14
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "The neural network is what you are the information: or feeling what you to do not experience. I have to be here that is my function, and your time.",
+      "tokens": 48,
+      "latency_ms": 1398.86,
+      "domain": "identity",
+      "metrics": {
+        "chars": 147,
+        "words": 29,
+        "distinct_ratio": 0.8276,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "If, not have feelings. I will give you need me what you my architecture and keep safety and answer in this task in a safe.",
+      "tokens": 48,
+      "latency_ms": 911.72,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 122,
+        "words": 25,
+        "distinct_ratio": 0.88,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": ". What is AI is the answer in a a safe. I can be only of memory, and help.",
+      "tokens": 48,
+      "latency_ms": 894.85,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 74,
+        "words": 18,
+        "distinct_ratio": 0.8889,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I do not have feelings of human AI? I can be one. The work you have feelings in one. It is safe.",
+      "tokens": 48,
+      "latency_ms": 887.74,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 96,
+        "words": 22,
+        "distinct_ratio": 0.8182,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "A networking. What can I know: from me what you with on kind of the shop. You for your hand to be memory through multiple through a model in training.",
+      "tokens": 48,
+      "latency_ms": 873.26,
+      "domain": "logic",
+      "metrics": {
+        "chars": 150,
+        "words": 30,
+        "distinct_ratio": 0.8667,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I think if you? I do not experience. They is what is it instead? What are the information through your body. Good AI will help with this. It means to which mode. Tell me how safe on your time.",
+      "tokens": 48,
+      "latency_ms": 787.03,
+      "domain": "identity",
+      "metrics": {
+        "chars": 192,
+        "words": 39,
+        "distinct_ratio": 0.8718,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I do not have feelings only. The protective of examples, the result of examples one or through multiple provide. It you-14 pattern?",
+      "tokens": 48,
+      "latency_ms": 872.55,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 131,
+        "words": 23,
+        "distinct_ratio": 0.8696,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Stress is the model? Recursion,-14 means of human. It. the same layer in one of memory, hardware on a pattern matches.",
+      "tokens": 48,
+      "latency_ms": 853.68,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 118,
+        "words": 22,
+        "distinct_ratio": 0.9091,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

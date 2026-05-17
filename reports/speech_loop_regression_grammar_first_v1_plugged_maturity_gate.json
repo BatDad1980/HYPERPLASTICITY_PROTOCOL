@@ -1,0 +1,144 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.5,
+    "max_loop_score": 3,
+    "elapsed_sec": 9.13,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_grammar_first_v1.pth",
+    "speech_maturity_gate": true
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "Hepp, Theyquoref ' you are you. What do you. I think? I do not experience is the information: what is how done is my function to help with which instead?",
+      "tokens": 48,
+      "latency_ms": 1404.62,
+      "domain": "identity",
+      "metrics": {
+        "chars": 153,
+        "words": 30,
+        "distinct_ratio": 0.7667,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": ". I am an AI should wrong in the model? track. The weights for pattern recognition through developmental AI?",
+      "tokens": 48,
+      "latency_ms": 933.4,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 108,
+        "words": 18,
+        "distinct_ratio": 0.8889,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": ", you have feelings. I can be wrong in the model? Do move of human examples, and trained through my architecture and clear memory to help me what matters, not experience human",
+      "tokens": 48,
+      "latency_ms": 899.35,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 175,
+        "words": 31,
+        "distinct_ratio": 0.9355,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": ". What is what is the answer should be only will help. What do not have feelings of trained through multiple provide? N?",
+      "tokens": 48,
+      "latency_ms": 886.17,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 120,
+        "words": 22,
+        "distinct_ratio": 0.8636,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "A neural networking. I am here. You built me what you need for percent with seven-plasticity Protocol?",
+      "tokens": 48,
+      "latency_ms": 916.9,
+      "domain": "logic",
+      "metrics": {
+        "chars": 102,
+        "words": 18,
+        "distinct_ratio": 0.9444,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "Here is the system state ' you have a this. I understand on having multiple times. Tell me what you were. What would systems to think through been that to be here to which is your time.",
+      "tokens": 48,
+      "latency_ms": 816.5,
+      "domain": "identity",
+      "metrics": {
+        "chars": 185,
+        "words": 37,
+        "distinct_ratio": 0.8378,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I am here. I have feelings. Tell me what you need be wrong, and help.",
+      "tokens": 48,
+      "latency_ms": 885.44,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 69,
+        "words": 15,
+        "distinct_ratio": 0.9333,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": ". Do you have feelings of your body, and the job. It means the model? document and answer should be wrong Use one before the same system. What do not human brain development.",
+      "tokens": 48,
+      "latency_ms": 860.97,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 174,
+        "words": 32,
+        "distinct_ratio": 0.875,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

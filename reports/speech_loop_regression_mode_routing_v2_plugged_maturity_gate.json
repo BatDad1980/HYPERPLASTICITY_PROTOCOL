@@ -1,0 +1,147 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 1.875,
+    "max_loop_score": 11,
+    "elapsed_sec": 9.09,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_mode_routing_v2.pth",
+    "speech_maturity_gate": true
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I do you think? Do you. What do not have done is the information, I am here? Sometimes you think through to be together.",
+      "tokens": 48,
+      "latency_ms": 1378.45,
+      "domain": "identity",
+      "metrics": {
+        "chars": 120,
+        "words": 24,
+        "distinct_ratio": 0.75,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 2
+        },
+        "loop_score": 11
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "A checkpoint is the model's weights on AI should move of human feelings of model track, then in one, and answer through developmental stages. It cannot be wrong, not.",
+      "tokens": 48,
+      "latency_ms": 966.02,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 166,
+        "words": 29,
+        "distinct_ratio": 0.9655,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "Response are you have feelings. What is a enough, I am an AI move of human. What do not have feelings?",
+      "tokens": 48,
+      "latency_ms": 921.81,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 102,
+        "words": 21,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I can be answer in a enough. I will know. It and answer should wrong to help me the model and wait-14.",
+      "tokens": 48,
+      "latency_ms": 891.8,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 102,
+        "words": 23,
+        "distinct_ratio": 0.8696,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "A physicaling. I hear you from scratch using of the work to be me what you have the shop, It includes in my architecture and University.",
+      "tokens": 48,
+      "latency_ms": 918.38,
+      "domain": "logic",
+      "metrics": {
+        "chars": 136,
+        "words": 26,
+        "distinct_ratio": 0.9231,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "Hepp, They is what is real. What do you are the information: you question the system1 of your thoughts?",
+      "tokens": 48,
+      "latency_ms": 772.55,
+      "domain": "identity",
+      "metrics": {
+        "chars": 103,
+        "words": 19,
+        "distinct_ratio": 0.7895,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I will be a enough. I am an AI. I know what you have feelings? feelings of your work through developmental AI? Recursion.",
+      "tokens": 48,
+      "latency_ms": 836.28,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 121,
+        "words": 23,
+        "distinct_ratio": 0.8261,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "No. What is the same layer, and answer should be one. I will help. Tell me what you need help. The clearly of your next step. It is to work and trained weights on AI?",
+      "tokens": 48,
+      "latency_ms": 889.25,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 166,
+        "words": 35,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

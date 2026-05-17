@@ -85,11 +85,17 @@ def main() -> None:
     parser.add_argument("--context", type=int, default=512)
     parser.add_argument("--checkpoint", default="")
     parser.add_argument("--phrase-blocking", action="store_true")
+    parser.add_argument("--speech-maturity-gate", action="store_true")
+    parser.add_argument("--seed", type=int, default=14)
     parser.add_argument("--json-out", default="")
     args = parser.parse_args()
 
     if args.context != 512:
         raise SystemExit("Current linguistic anchor expects max_context=512. Use --context 512.")
+
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
 
     started = time.time()
     engine = HPP_SovereignEngine_V2(max_context=args.context)
@@ -121,6 +127,7 @@ def main() -> None:
             frequency_penalty=1.25,
             presence_penalty=0.45,
             phrase_blocking=args.phrase_blocking,
+            speech_maturity_gate=args.speech_maturity_gate,
             min_tokens=8,
         )
         metrics = score_response(response["response"])
@@ -146,6 +153,8 @@ def main() -> None:
         "power_mode": args.power_mode,
         "context": args.context,
         "checkpoint": args.checkpoint or "default",
+        "speech_maturity_gate": args.speech_maturity_gate,
+        "seed": args.seed,
     }
     print(f"\nSUMMARY: {summary}")
 

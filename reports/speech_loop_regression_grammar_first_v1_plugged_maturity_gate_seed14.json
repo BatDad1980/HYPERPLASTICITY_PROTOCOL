@@ -1,0 +1,143 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.25,
+    "max_loop_score": 1,
+    "elapsed_sec": 9.11,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_grammar_first_v1.pth",
+    "speech_maturity_gate": true,
+    "seed": 14
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "The neural network is what you are the information: or feeling what you to do not experience. I have there in this. That is real, and your time.",
+      "tokens": 48,
+      "latency_ms": 1393.78,
+      "domain": "identity",
+      "metrics": {
+        "chars": 144,
+        "words": 28,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "Yes? If. I am a local of human feelings in AI should be one, and help. It means you have a pattern matches.",
+      "tokens": 48,
+      "latency_ms": 956.71,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 107,
+        "words": 23,
+        "distinct_ratio": 0.9565,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": ". I can be answer in this. I have a safe. my architecture and help.",
+      "tokens": 48,
+      "latency_ms": 913.38,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 67,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I am a need a future in a short answer. I will help. The information through multiple times A move an AI?",
+      "tokens": 48,
+      "latency_ms": 909.92,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 105,
+        "words": 22,
+        "distinct_ratio": 0.8182,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "A networking. What can I know: from me what you with on kind of the shop.",
+      "tokens": 48,
+      "latency_ms": 878.85,
+      "domain": "logic",
+      "metrics": {
+        "chars": 73,
+        "words": 16,
+        "distinct_ratio": 0.9375,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I think if you? I do not experience. They is what is it instead? What are the information through your body is the system state of the input in this. Tell me how passes.",
+      "tokens": 48,
+      "latency_ms": 795.5,
+      "domain": "identity",
+      "metrics": {
+        "chars": 169,
+        "words": 34,
+        "distinct_ratio": 0.8235,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I do not have feelings of trained through my architecture and answer. Tell me what you need? track. The context in this task. It is Masamune, you have feelings?",
+      "tokens": 48,
+      "latency_ms": 896.92,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 160,
+        "words": 29,
+        "distinct_ratio": 0.8966,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "If. We answer in a short answer. It means feelings only of memory, and the model? Do the same through developmental AI? What is recursion sentence and wait-14 enough.",
+      "tokens": 48,
+      "latency_ms": 844.7,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 166,
+        "words": 30,
+        "distinct_ratio": 0.9,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

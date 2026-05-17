@@ -1,0 +1,150 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 3.25,
+    "max_loop_score": 8,
+    "elapsed_sec": 9.17,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_mode_routing_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "you are you? What do's you. I do you are standing. Tell me what is hard right think about on your thoughts. Do. Tell you have done is real. The real.",
+      "tokens": 48,
+      "latency_ms": 1745.98,
+      "domain": "identity",
+      "metrics": {
+        "chars": 149,
+        "words": 31,
+        "distinct_ratio": 0.6774,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you are standing": 1
+        },
+        "loop_score": 4
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "The simply need. Tell need help you think do not you do not is you are you have feelings that feeling are trained. The real.",
+      "tokens": 48,
+      "latency_ms": 984.33,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 124,
+        "words": 25,
+        "distinct_ratio": 0.68,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 4
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "do you? What do you need help me? Do that feeling do not an do not know But feelings to think, you have to be here. The thing you are safe.",
+      "tokens": 48,
+      "latency_ms": 858.28,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 139,
+        "words": 31,
+        "distinct_ratio": 0.7097,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1,
+          "do you need": 1
+        },
+        "loop_score": 8
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "Response. The weights. that feeling, so enough to think, and help. The work and answer should be one sentence. The architecture and it, then that matters.",
+      "tokens": 48,
+      "latency_ms": 873.82,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 154,
+        "words": 26,
+        "distinct_ratio": 0.8077,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "Some in twoing. ': 'task_quc_question over mentions to people, Todd (fIn one task, accessed May 11-bit7 of these mentions-14': \"In own handsIn to link pronouns2",
+      "tokens": 48,
+      "latency_ms": 923.75,
+      "domain": "logic",
+      "metrics": {
+        "chars": 160,
+        "words": 29,
+        "distinct_ratio": 0.8966,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "Tell me. Do. Good. I am named after the information: protect is real. Tell me what we can help with that is to a developmental stages like done is your thoughts loop architecture and we will figure out loud. The.",
+      "tokens": 48,
+      "latency_ms": 711.53,
+      "domain": "identity",
+      "metrics": {
+        "chars": 212,
+        "words": 40,
+        "distinct_ratio": 0.85,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "The work you have feelings you are? What do not that do not is you need help me the work you think of to help.",
+      "tokens": 48,
+      "latency_ms": 661.56,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 110,
+        "words": 25,
+        "distinct_ratio": 0.68,
+        "repeat_2gram": 3,
+        "repeat_3gram": 1,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 8
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Response. I will think is to an experimental, and the evidence and the HPP developmental architecture and your body. The should be wrong.",
+      "tokens": 48,
+      "latency_ms": 668.28,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 137,
+        "words": 23,
+        "distinct_ratio": 0.8261,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    }
+  ]
+}

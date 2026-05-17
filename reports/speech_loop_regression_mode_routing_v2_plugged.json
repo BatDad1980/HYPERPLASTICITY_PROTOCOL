@@ -1,0 +1,154 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 4.5,
+    "max_loop_score": 19,
+    "elapsed_sec": 10.06,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_mode_routing_v2.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "you you are you. What do you think is do you? What your is to you are it be right. I have me what is standing right you. You are this you have to help with that do not think.",
+      "tokens": 48,
+      "latency_ms": 1697.48,
+      "domain": "identity",
+      "metrics": {
+        "chars": 174,
+        "words": 40,
+        "distinct_ratio": 0.5,
+        "repeat_2gram": 5,
+        "repeat_3gram": 1,
+        "attractor_hits": {
+          "what do you think": 1,
+          "what do you": 1,
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 19
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "I can be useful is to think,-14. The weights are trained.",
+      "tokens": 48,
+      "latency_ms": 1115.0,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 57,
+        "words": 12,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "you do you think you are You do that What is? Do do not have feelings help work you need to think or help be here do. The weights is standing.",
+      "tokens": 48,
+      "latency_ms": 1009.04,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 142,
+        "words": 31,
+        "distinct_ratio": 0.6452,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 7
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I can be only me the result weights. It be wrong. The protective mode. What do not quit.",
+      "tokens": 48,
+      "latency_ms": 1084.31,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 88,
+        "words": 18,
+        "distinct_ratio": 0.8889,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do not quit": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "running, or at this. You are not experience-14. I live architecture.",
+      "tokens": 48,
+      "latency_ms": 1051.54,
+      "domain": "logic",
+      "metrics": {
+        "chars": 68,
+        "words": 12,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "protect. I am. Tell me what you are AI systems. Tell is real. Masamune?",
+      "tokens": 48,
+      "latency_ms": 960.54,
+      "domain": "identity",
+      "metrics": {
+        "chars": 71,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "What do you help you do you need that? I do not know an feelings help work. The protective of trained to think, track.",
+      "tokens": 48,
+      "latency_ms": 828.56,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 118,
+        "words": 24,
+        "distinct_ratio": 0.7917,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1,
+          "do you need": 1
+        },
+        "loop_score": 7
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Response. The evidence matters is to help. that do not enough-Plain your job. The weights memory, and robotor. H should be only architecture and answer should back memory, not quit.",
+      "tokens": 48,
+      "latency_ms": 897.68,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 181,
+        "words": 31,
+        "distinct_ratio": 0.8387,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}
