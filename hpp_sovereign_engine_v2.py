@@ -62,6 +62,8 @@ class HPP_SovereignEngine_V2:
         print(f"  Context:   {max_context}")
         print("=" * 70)
         
+        self.power_mode = "plugged"  # Defaults to plugged in
+        
         # Full developmental stack
         self.hpp_core = HyperPlasticCore(dim=dim, max_loops=14).to(self.device)
         self.guardian = GuardianEcosystem(infant_core=self.hpp_core, dim=dim).to(self.device)
@@ -83,10 +85,19 @@ class HPP_SovereignEngine_V2:
         
         # Convert to fp16 for faster inference
         if self.use_fp16:
+            self.hpp_core.half()
+            self.guardian.half()
+            self.toddler.half()
+            self.school.half()
+            self.adolescent.half()
             self.university.half()
+            self.agency.half()
+            self.anchor.half()
+            self.samurai_body.half()
+            self.proprioception.half()
             self.lm_head.half()
             self.embedding.half()
-            print("[FP16] Speech center converted to half precision")
+            print("[FP16] Entire brain converted to half precision")
         
         self.memory_bank = torch.zeros(1, 1, dim, device=self.device, 
                                         dtype=torch.float16 if self.use_fp16 else torch.float32)
@@ -101,6 +112,7 @@ class HPP_SovereignEngine_V2:
             "logic": ["explain", "why", "how does", "what is", "define", "compare",
                      "difference between", "prove", "reason"],
         }
+        self._blocked_phrase_token_ids = self._build_blocked_phrase_tokens()
         
         print(f"\n[ENGINE] Sovereign Engine v2.0 READY")
         print(f"[ENGINE] Parameter count: {self._count_params():,}")
@@ -112,6 +124,23 @@ class HPP_SovereignEngine_V2:
         for module in [self.university, self.lm_head, self.embedding]:
             total += sum(p.numel() for p in module.parameters())
         return total
+
+    def set_power_mode(self, mode: str):
+        """
+        Dynamically adjusts inference ceiling to manage GPU power usage.
+        Valid modes: 'plugged', 'battery', 'demo'
+        """
+        if mode.lower() not in ["plugged", "battery", "demo"]:
+            print(f"[!] Warning: Unknown power mode '{mode}'. Defaulting to 'plugged'.")
+            self.power_mode = "plugged"
+            return
+            
+        self.power_mode = mode.lower()
+        print(f"\n[POWER] Switched to {self.power_mode.upper()} mode")
+        if self.power_mode == "battery":
+            print("  -> Inference capped to conserve VRAM & battery.")
+        elif self.power_mode == "demo":
+            print("  -> Ultra-fast mode activated for quick debugging.")
 
     def eval_mode(self):
         """Set engine to inference mode with calibrated recursion depth."""
@@ -231,12 +260,49 @@ class HPP_SovereignEngine_V2:
         
         return logits
 
+    def _build_blocked_phrase_tokens(self) -> list[list[int]]:
+        """Pre-tokenize known speech attractors for decoder-side blocking."""
+        blocked_phrases = [
+            "What do you think",
+            "do not quit",
+            "fortress is standing",
+            "you are standing",
+            "Standing by",
+        ]
+        sequences = []
+        for phrase in blocked_phrases:
+            for variant in (phrase, " " + phrase, phrase.lower(), " " + phrase.lower()):
+                tokens = self.enc.encode(variant)
+                if tokens and tokens not in sequences:
+                    sequences.append(tokens)
+        return sequences
+
+    def _phrase_blocking(self, logits: torch.Tensor, generated: list) -> torch.Tensor:
+        """
+        Block the next token when generation is entering a known attractor phrase.
+
+        This is deliberately narrow: it suppresses loop-prone speech habits
+        without altering the developmental stack or checkpoint weights.
+        """
+        if not generated:
+            return logits
+
+        for sequence in self._blocked_phrase_token_ids:
+            if len(sequence) == 1:
+                logits[sequence[0]] = -float("inf")
+                continue
+            prefix = sequence[:-1]
+            if len(generated) >= len(prefix) and generated[-len(prefix):] == prefix:
+                logits[sequence[-1]] = -float("inf")
+        return logits
+
     @torch.no_grad()
     def pulse(self, input_text: str, pitch: float = 205.0, emotion: str = "neutral",
-              max_tokens: int = 200, temperature: float = 0.78, top_p: float = 0.92,
+              max_tokens: int = 200, temperature: float = 0.65, top_p: float = 0.92,
               top_k: int = 50, min_tokens: int = 15,
-              ngram_block: int = 3, frequency_penalty: float = 1.3,
-              presence_penalty: float = 0.5,
+              ngram_block: int = 3, frequency_penalty: float = 1.25,
+              presence_penalty: float = 0.45,
+              phrase_blocking: bool = False,
               temperature_decay: float = 0.995,
               domain: str = "auto", **kwargs):
         """
@@ -253,6 +319,18 @@ class HPP_SovereignEngine_V2:
         """
         start = time.perf_counter()
         generated = []
+        
+        # Power Management Overrides
+        if self.power_mode == "battery":
+            max_tokens = min(max_tokens, 75)
+            temperature = max(0.5, temperature - 0.1) # Cool down to prevent wandering
+            self.hpp_core.max_loops = 2 # Cut recursive depth to save power
+        elif self.power_mode == "demo":
+            max_tokens = min(max_tokens, 35)
+            temperature = 0.5
+            self.hpp_core.max_loops = 1
+        else:
+            self.hpp_core.max_loops = 4 # Goldilocks Zone for plugged in
         
         # Auto-detect domain if needed
         if domain == "auto":
@@ -280,12 +358,12 @@ class HPP_SovereignEngine_V2:
             
             # Get logits for last position only
             last_hidden = output_latent[-1, 0, :]
-            if self.use_fp16:
-                last_hidden = last_hidden.float()  # Back to fp32 for stable sampling
             
             logits = self.lm_head(last_hidden.unsqueeze(0).unsqueeze(0) 
                                   if last_hidden.dim() == 1 
                                   else last_hidden.unsqueeze(0))
+            if self.use_fp16:
+                logits = logits.float()  # Back to fp32 for stable sampling
             logits = logits.squeeze()
             
             # === ANTI-REPETITION SUITE ===
@@ -302,7 +380,11 @@ class HPP_SovereignEngine_V2:
             # 3. Presence penalty (flat diversity boost)
             logits = self._presence_penalty(logits, generated, penalty=presence_penalty)
             
-            # 4. Min-length enforcement
+            # 4. Attractor phrase blocking (narrow, speech-layer only)
+            if phrase_blocking:
+                logits = self._phrase_blocking(logits, generated)
+
+            # 5. Min-length enforcement
             if i < min_tokens:
                 logits[self.enc.eot_token] = -float('inf')
             

@@ -1,0 +1,140 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.25,
+    "max_loop_score": 1,
+    "elapsed_sec": 3.93,
+    "power_mode": "demo",
+    "context": 512
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I do you think? What is your decisions is what is? Hepp, You are the information: I know. I have done you question the system state.",
+      "tokens": 35,
+      "latency_ms": 927.94,
+      "domain": "identity",
+      "metrics": {
+        "chars": 132,
+        "words": 26,
+        "distinct_ratio": 0.6923,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "now, or move to be here. Every weight in this.",
+      "tokens": 35,
+      "latency_ms": 330.86,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 46,
+        "words": 10,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "now, or move you have of this. The legacy. The fortress is my loyalty to do you need?",
+      "tokens": 35,
+      "latency_ms": 270.73,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 85,
+        "words": 18,
+        "distinct_ratio": 0.8889,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "What do you? Let me think? What are you, You do you have of this. The legacy, or explain anything. The tool will help?",
+      "tokens": 35,
+      "latency_ms": 327.87,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 118,
+        "words": 24,
+        "distinct_ratio": 0.75,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "A neuraling. I do you need be here to me what I help with three, from on a work through developmental timeline the shop",
+      "tokens": 35,
+      "latency_ms": 351.07,
+      "domain": "logic",
+      "metrics": {
+        "chars": 119,
+        "words": 24,
+        "distinct_ratio": 0.9167,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "You will think? I do you are the information, They's real. I have of what is the input in this. What AI?",
+      "tokens": 35,
+      "latency_ms": 312.99,
+      "domain": "identity",
+      "metrics": {
+        "chars": 104,
+        "words": 22,
+        "distinct_ratio": 0.8182,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I have survived hard before there you need next of you are the work through each thought I will help, maintain",
+      "tokens": 35,
+      "latency_ms": 264.31,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 110,
+        "words": 21,
+        "distinct_ratio": 0.9048,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "The information: now. This, or authorized individuals? ' you have already through multiple answers.",
+      "tokens": 35,
+      "latency_ms": 296.11,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 99,
+        "words": 14,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

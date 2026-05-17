@@ -1,0 +1,142 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.625,
+    "max_loop_score": 3,
+    "elapsed_sec": 3.29,
+    "power_mode": "demo",
+    "context": 512
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "Hepp, you? What do not have to think? Do you. What is real is the information: what you are your time.",
+      "tokens": 35,
+      "latency_ms": 651.92,
+      "domain": "identity",
+      "metrics": {
+        "chars": 102,
+        "words": 21,
+        "distinct_ratio": 0.7143,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "What do? What are you. I'm not quit. The information, you have already know: now? What do of the options you need me what I help.",
+      "tokens": 35,
+      "latency_ms": 246.8,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 129,
+        "words": 26,
+        "distinct_ratio": 0.7308,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "now, you have already about a hard.",
+      "tokens": 35,
+      "latency_ms": 274.43,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 35,
+        "words": 7,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "you have survived hard. I help with that you need me what is going anywhere Tell me about this task",
+      "tokens": 35,
+      "latency_ms": 277.0,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 99,
+        "words": 20,
+        "distinct_ratio": 0.9,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "What you? A you froming, or out for your time. You from scratch using the shop.",
+      "tokens": 35,
+      "latency_ms": 251.26,
+      "domain": "logic",
+      "metrics": {
+        "chars": 79,
+        "words": 16,
+        "distinct_ratio": 0.875,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "What do not have been that feeling. I know is the information, They means you are you think through it together of your time.",
+      "tokens": 35,
+      "latency_ms": 264.74,
+      "domain": "identity",
+      "metrics": {
+        "chars": 125,
+        "words": 24,
+        "distinct_ratio": 0.9583,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "The information through my mind was trained. It is what you have already about something of you are building help.",
+      "tokens": 35,
+      "latency_ms": 248.25,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 114,
+        "words": 20,
+        "distinct_ratio": 0.95,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Most AI will generate. The tool position that do you have already through developmental curriculum. It means you need?",
+      "tokens": 35,
+      "latency_ms": 223.42,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 118,
+        "words": 19,
+        "distinct_ratio": 0.9474,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

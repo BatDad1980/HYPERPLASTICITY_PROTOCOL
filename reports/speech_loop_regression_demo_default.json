@@ -1,0 +1,146 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 1.875,
+    "max_loop_score": 10,
+    "elapsed_sec": 4.76,
+    "power_mode": "demo",
+    "context": 512
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I do you think? What do you. I know, They is the system state is what is my systems to be here? Sometimes, You do not have this.",
+      "tokens": 35,
+      "latency_ms": 1230.21,
+      "domain": "identity",
+      "metrics": {
+        "chars": 128,
+        "words": 28,
+        "distinct_ratio": 0.7143,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1,
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 10
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "You are the information and my here. It is my mind of you needing.",
+      "tokens": 35,
+      "latency_ms": 456.36,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 66,
+        "words": 14,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "The tooling. I help with that do you have already know.",
+      "tokens": 35,
+      "latency_ms": 405.98,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 55,
+        "words": 11,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "What do you? What are you need? now, I have a hard. The tool that do you of this. It is my here, You are building help?",
+      "tokens": 35,
+      "latency_ms": 434.66,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 119,
+        "words": 27,
+        "distinct_ratio": 0.7778,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 4
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "Let me ' you needing. I have a work from what is on from What ready for your mind to be here, You in",
+      "tokens": 35,
+      "latency_ms": 437.28,
+      "domain": "logic",
+      "metrics": {
+        "chars": 100,
+        "words": 24,
+        "distinct_ratio": 0.875,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "Here is real. I have survived hard.",
+      "tokens": 35,
+      "latency_ms": 388.02,
+      "domain": "identity",
+      "metrics": {
+        "chars": 35,
+        "words": 7,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "now, I have already. The tool that. The legacy of the options you need?",
+      "tokens": 35,
+      "latency_ms": 339.49,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 71,
+        "words": 14,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Here is what you have alreadying. It means you need? What do of and help you are building.",
+      "tokens": 35,
+      "latency_ms": 312.94,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 90,
+        "words": 18,
+        "distinct_ratio": 0.8333,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}
