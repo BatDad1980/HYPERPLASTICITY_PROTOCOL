@@ -114,7 +114,7 @@ def load_all_data():
         for line in sampled:
             sample = json.loads(line)
             data.append(sample)
-            weights.append(0.5)  # Lower weight than identity/conversation
+            weights.append(0.15)  # Very low weight — diversity only, don't pollute speech
             task_count += 1
         print(f"[DATA] Task following: {task_count} samples (subsampled)")
     
@@ -202,21 +202,21 @@ def train(args):
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
         gb = torch.cuda.get_device_properties(0).total_memory / 1e9
-        print(f"[GPU] {torch.cuda.get_device_name(0)} — {gb:.1f} GB VRAM")
+        print(f"[GPU] {torch.cuda.get_device_name(0)} - {gb:.1f} GB VRAM")
     
     # Override config from args
     TrainConfig.steps = args.steps
     if args.aggressive:
         TrainConfig.lr = 1.2e-4
         TrainConfig.seq_end = 256
-        print("[MODE] AGGRESSIVE — higher LR, longer sequences")
+        print("[MODE] AGGRESSIVE - higher LR, longer sequences")
     
     print("=" * 70)
     print("     HPP PHASE 18: FRONTIER TRAINING")
     print("=" * 70)
     print(f"  Steps:         {TrainConfig.steps}")
-    print(f"  Batch:         {TrainConfig.batch_size} × {TrainConfig.grad_accum} = {TrainConfig.batch_size * TrainConfig.grad_accum}")
-    print(f"  Seq Length:    {TrainConfig.seq_start} → {TrainConfig.seq_end}")
+    print(f"  Batch:         {TrainConfig.batch_size} x {TrainConfig.grad_accum} = {TrainConfig.batch_size * TrainConfig.grad_accum}")
+    print(f"  Seq Length:    {TrainConfig.seq_start} -> {TrainConfig.seq_end}")
     print(f"  LR:            {TrainConfig.lr}")
     print(f"  Device:        {device}")
     print(f"  Mixed Prec:    {'YES' if device.type == 'cuda' else 'NO'}")
@@ -386,12 +386,14 @@ def train(args):
             
         except RuntimeError as e:
             if "out of memory" in str(e):
-                print(f"\n  [OOM] Step {step} — clearing cache, reducing seq")
+                print(f"\n  [OOM] Step {step} - clearing cache, reducing seq")
                 gc.collect()
                 torch.cuda.empty_cache()
-                optimizer.zero_grad()
+                optimizer.zero_grad(set_to_none=True)
+                scaler.update()  # Reset scaler state to prevent double unscale
                 # Temporarily reduce seq length
                 TrainConfig.seq_end = max(96, TrainConfig.seq_end - 32)
+                accum_loss = 0.0
                 continue
             raise
         
@@ -482,7 +484,7 @@ def test_speech_quality(engine, extended=False):
             "What is the meaning of the Hyperplasticity Protocol?",
         ]
     
-    print("\n  ─── SPEECH QUALITY TEST ───", flush=True)
+    print("\n  --- SPEECH QUALITY TEST ---", flush=True)
     
     all_distinct2 = []
     
@@ -504,7 +506,7 @@ def test_speech_quality(engine, extended=False):
         avg_d2 = sum(all_distinct2) / len(all_distinct2)
         print(f"\n  Avg Distinct-2: {avg_d2:.3f} (target > 0.5)", flush=True)
     
-    print("  ─── END TEST ───\n", flush=True)
+    print("  --- END TEST ---\n", flush=True)
     
     # Restore training mode
     engine.university.train()
