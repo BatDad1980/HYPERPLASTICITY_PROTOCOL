@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-05-17T14:31:01.978170+00:00",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "compute_capability": [
+    8,
+    9
+  ],
+  "total_memory_mib": 6140.5,
+  "before": {
+    "temperature_c": 47.0,
+    "memory_used_mib": 144.0,
+    "memory_total_mib": 6141.0,
+    "power_w": 8.43,
+    "utilization_percent": 4.0
+  },
+  "after": {
+    "temperature_c": 49.0,
+    "memory_used_mib": 272.0,
+    "memory_total_mib": 6141.0,
+    "power_w": 13.5,
+    "utilization_percent": 69.0
+  },
+  "matmul": [
+    {
+      "size": 4096,
+      "repeats": 4,
+      "dtype": "float16",
+      "status": "ok",
+      "elapsed_ms": 31.4846,
+      "mean_ms": 7.8712,
+      "approx_tflops": 17.4611,
+      "peak_allocated_mib": 136.125,
+      "peak_reserved_mib": 148.0
+    },
+    {
+      "size": 5120,
+      "repeats": 4,
+      "dtype": "float16",
+      "status": "ok",
+      "elapsed_ms": 60.6072,
+      "mean_ms": 15.1518,
+      "approx_tflops": 17.7164,
+      "peak_allocated_mib": 208.125,
+      "peak_reserved_mib": 220.0
+    }
+  ],
+  "allocation": [
+    {
+      "target_mib": 5120,
+      "cap_mib": 5632,
+      "status": "ok",
+      "peak_allocated_mib": 5128.125,
+      "peak_reserved_mib": 5140.0
+    },
+    {
+      "target_mib": 5632,
+      "cap_mib": 5632,
+      "status": "ok",
+      "peak_allocated_mib": 5640.125,
+      "peak_reserved_mib": 5652.0
+    }
+  ],
+  "boundary": "Controlled plugged-in field-lab probe; not long training, not model-quality evidence, not a burn-in test."
+}

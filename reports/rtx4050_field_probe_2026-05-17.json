@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-05-17T14:30:47.596636+00:00",
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "compute_capability": [
+    8,
+    9
+  ],
+  "total_memory_mib": 6140.5,
+  "before": {
+    "temperature_c": 46.0,
+    "memory_used_mib": 146.0,
+    "memory_total_mib": 6141.0,
+    "power_w": 8.35,
+    "utilization_percent": 0.0
+  },
+  "after": {
+    "temperature_c": 48.0,
+    "memory_used_mib": 274.0,
+    "memory_total_mib": 6141.0,
+    "power_w": 17.96,
+    "utilization_percent": 88.0
+  },
+  "matmul": [
+    {
+      "size": 1024,
+      "repeats": 8,
+      "dtype": "float16",
+      "status": "ok",
+      "elapsed_ms": 1.3137,
+      "mean_ms": 0.1642,
+      "approx_tflops": 13.0775,
+      "peak_allocated_mib": 16.125,
+      "peak_reserved_mib": 20.0
+    },
+    {
+      "size": 2048,
+      "repeats": 8,
+      "dtype": "float16",
+      "status": "ok",
+      "elapsed_ms": 8.0163,
+      "mean_ms": 1.002,
+      "approx_tflops": 17.1449,
+      "peak_allocated_mib": 40.125,
+      "peak_reserved_mib": 60.0
+    },
+    {
+      "size": 3072,
+      "repeats": 8,
+      "dtype": "float16",
+      "status": "ok",
+      "elapsed_ms": 26.3822,
+      "mean_ms": 3.2978,
+      "approx_tflops": 17.5822,
+      "peak_allocated_mib": 80.125,
+      "peak_reserved_mib": 92.0
+    },
+    {
+      "size": 4096,
+      "repeats": 8,
+      "dtype": "float16",
+      "status": "ok",
+      "elapsed_ms": 62.7931,
+      "mean_ms": 7.8491,
+      "approx_tflops": 17.5101,
+      "peak_allocated_mib": 136.125,
+      "peak_reserved_mib": 148.0
+    }
+  ],
+  "allocation": [
+    {
+      "target_mib": 1024,
+      "cap_mib": 5120,
+      "status": "ok",
+      "peak_allocated_mib": 1032.125,
+      "peak_reserved_mib": 1044.0
+    },
+    {
+      "target_mib": 2048,
+      "cap_mib": 5120,
+      "status": "ok",
+      "peak_allocated_mib": 2056.125,
+      "peak_reserved_mib": 2068.0
+    },
+    {
+      "target_mib": 3072,
+      "cap_mib": 5120,
+      "status": "ok",
+      "peak_allocated_mib": 3080.125,
+      "peak_reserved_mib": 3092.0
+    },
+    {
+      "target_mib": 4096,
+      "cap_mib": 5120,
+      "status": "ok",
+      "peak_allocated_mib": 4104.125,
+      "peak_reserved_mib": 4116.0
+    },
+    {
+      "target_mib": 5120,
+      "cap_mib": 5120,
+      "status": "ok",
+      "peak_allocated_mib": 5128.125,
+      "peak_reserved_mib": 5140.0
+    }
+  ],
+  "boundary": "Controlled plugged-in field-lab probe; not long training, not model-quality evidence, not a burn-in test."
+}
