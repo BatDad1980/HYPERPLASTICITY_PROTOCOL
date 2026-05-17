@@ -86,6 +86,7 @@ def main() -> None:
     parser.add_argument("--checkpoint", default="")
     parser.add_argument("--phrase-blocking", action="store_true")
     parser.add_argument("--speech-maturity-gate", action="store_true")
+    parser.add_argument("--speech-profile", choices=["raw", "stable"], default="raw")
     parser.add_argument("--seed", type=int, default=14)
     parser.add_argument("--json-out", default="")
     args = parser.parse_args()
@@ -128,6 +129,7 @@ def main() -> None:
             presence_penalty=0.45,
             phrase_blocking=args.phrase_blocking,
             speech_maturity_gate=args.speech_maturity_gate,
+            speech_profile=args.speech_profile,
             min_tokens=8,
         )
         metrics = score_response(response["response"])
@@ -154,6 +156,7 @@ def main() -> None:
         "context": args.context,
         "checkpoint": args.checkpoint or "default",
         "speech_maturity_gate": args.speech_maturity_gate,
+        "speech_profile": args.speech_profile,
         "seed": args.seed,
     }
     print(f"\nSUMMARY: {summary}")

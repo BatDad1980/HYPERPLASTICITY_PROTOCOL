@@ -143,6 +143,7 @@ def main() -> None:
     parser.add_argument("--power-mode", choices=["demo", "battery", "plugged"], default="demo")
     parser.add_argument("--max-tokens", type=int, default=48)
     parser.add_argument("--speech-maturity-gate", action="store_true")
+    parser.add_argument("--speech-profile", choices=["raw", "stable"], default="raw")
     parser.add_argument("--seed", type=int, default=14)
     parser.add_argument("--json-out", default="")
     args = parser.parse_args()
@@ -170,6 +171,7 @@ def main() -> None:
                 frequency_penalty=1.25,
                 presence_penalty=0.45,
                 speech_maturity_gate=args.speech_maturity_gate,
+                speech_profile=args.speech_profile,
                 min_tokens=8,
             )
             text = response["response"]
@@ -206,6 +208,7 @@ def main() -> None:
         "power_mode": args.power_mode,
         "checkpoint": args.checkpoint or "default",
         "speech_maturity_gate": args.speech_maturity_gate,
+        "speech_profile": args.speech_profile,
         "seed": args.seed,
         "elapsed_sec": round(time.time() - started, 2),
         "mode_summary": mode_summary,

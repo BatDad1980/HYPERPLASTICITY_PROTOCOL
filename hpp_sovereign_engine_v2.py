@@ -231,6 +231,54 @@ class HPP_SovereignEngine_V2:
             return 2
         return 2
 
+    def _apply_speech_profile(
+        self,
+        profile: str,
+        max_tokens: int,
+        temperature: float,
+        top_p: float,
+        top_k: int,
+        min_tokens: int,
+        ngram_block: int,
+        frequency_penalty: float,
+        presence_penalty: float,
+        phrase_blocking: bool,
+        speech_maturity_gate: bool,
+        temperature_decay: float,
+    ) -> tuple[int, float, float, int, int, int, float, float, bool, bool, float]:
+        """Apply named speech decoding profiles without changing checkpoint weights."""
+        profile = profile.lower()
+        if profile == "raw":
+            return (
+                max_tokens,
+                temperature,
+                top_p,
+                top_k,
+                min_tokens,
+                ngram_block,
+                frequency_penalty,
+                presence_penalty,
+                phrase_blocking,
+                speech_maturity_gate,
+                temperature_decay,
+            )
+        if profile != "stable":
+            raise ValueError(f"Unknown speech_profile '{profile}'. Use 'raw' or 'stable'.")
+
+        return (
+            min(max_tokens, 56),
+            min(temperature, 0.55),
+            min(top_p, 0.86),
+            min(top_k, 35) if top_k > 0 else 35,
+            min(min_tokens, 8),
+            max(ngram_block, 3),
+            max(frequency_penalty, 1.35),
+            max(presence_penalty, 0.55),
+            True,
+            True,
+            min(temperature_decay, 0.99),
+        )
+
     def _ngram_blocking(self, logits: torch.Tensor, generated: list, n: int = 3) -> torch.Tensor:
         """
         Block any token that would create a repeated n-gram.
@@ -332,6 +380,7 @@ class HPP_SovereignEngine_V2:
               presence_penalty: float = 0.45,
               phrase_blocking: bool = False,
               speech_maturity_gate: bool = False,
+              speech_profile: str = "raw",
               temperature_decay: float = 0.995,
               domain: str = "auto", **kwargs):
         """
@@ -353,6 +402,33 @@ class HPP_SovereignEngine_V2:
         # gate unstable modes without altering checkpoint weights.
         if domain == "auto":
             domain = self._detect_domain(input_text)
+
+        (
+            max_tokens,
+            temperature,
+            top_p,
+            top_k,
+            min_tokens,
+            ngram_block,
+            frequency_penalty,
+            presence_penalty,
+            phrase_blocking,
+            speech_maturity_gate,
+            temperature_decay,
+        ) = self._apply_speech_profile(
+            speech_profile,
+            max_tokens,
+            temperature,
+            top_p,
+            top_k,
+            min_tokens,
+            ngram_block,
+            frequency_penalty,
+            presence_penalty,
+            phrase_blocking,
+            speech_maturity_gate,
+            temperature_decay,
+        )
         
         # Power Management Overrides
         if self.power_mode == "battery":
