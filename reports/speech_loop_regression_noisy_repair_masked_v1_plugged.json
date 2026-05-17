@@ -1,0 +1,150 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 3.5,
+    "max_loop_score": 9,
+    "elapsed_sec": 5.65,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_noisy_repair_masked_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "The you do you are you think about is what is your is you you you are? do. You are raising to you. What's think.",
+      "tokens": 48,
+      "latency_ms": 982.05,
+      "domain": "identity",
+      "metrics": {
+        "chars": 112,
+        "words": 25,
+        "distinct_ratio": 0.48,
+        "repeat_2gram": 4,
+        "repeat_3gram": 1,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 9
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "Response do not know what is when is it its answer should back. Tell me the next step. The weights are trained me the most urgent right now?",
+      "tokens": 48,
+      "latency_ms": 595.64,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 140,
+        "words": 28,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "Response it means feelings?",
+      "tokens": 48,
+      "latency_ms": 591.52,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 27,
+        "words": 4,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "Response. Tell me the answer should backI am here. I will give you think? I do not have feelings an infant core.",
+      "tokens": 48,
+      "latency_ms": 552.37,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 112,
+        "words": 22,
+        "distinct_ratio": 0.9545,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "Some othering you think to be Do you need you need be hear. What do not doing think or you have done is real is what I help to be me to write where you are not quit.",
+      "tokens": 48,
+      "latency_ms": 540.83,
+      "domain": "logic",
+      "metrics": {
+        "chars": 165,
+        "words": 38,
+        "distinct_ratio": 0.6316,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1,
+          "do you need": 1
+        },
+        "loop_score": 8
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I am here. Tell me what you are hard right. Tell you are trained. Your reasoning. Tell to me what is running are hard developmental stages something real.",
+      "tokens": 48,
+      "latency_ms": 474.52,
+      "domain": "identity",
+      "metrics": {
+        "chars": 154,
+        "words": 28,
+        "distinct_ratio": 0.7143,
+        "repeat_2gram": 3,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "What is you do you have feelings you think? is you are explain do not answer answer simply. Tell me the work you need.",
+      "tokens": 48,
+      "latency_ms": 446.68,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 118,
+        "words": 24,
+        "distinct_ratio": 0.7083,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "you think": 1
+        },
+        "loop_score": 4
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Response. simply. Do? I do not have feelings its own output again.",
+      "tokens": 48,
+      "latency_ms": 436.81,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 66,
+        "words": 12,
+        "distinct_ratio": 0.9167,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

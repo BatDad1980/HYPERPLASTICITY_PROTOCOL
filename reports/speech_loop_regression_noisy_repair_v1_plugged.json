@@ -1,0 +1,153 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 5.25,
+    "max_loop_score": 22,
+    "elapsed_sec": 5.94,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_noisy_repair_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "Response. What do you think to you? Do you are your. I do you is real is what is not think about is standing right you are raising.",
+      "tokens": 48,
+      "latency_ms": 998.38,
+      "domain": "identity",
+      "metrics": {
+        "chars": 131,
+        "words": 28,
+        "distinct_ratio": 0.5714,
+        "repeat_2gram": 3,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you think": 1,
+          "what do you": 1,
+          "do you think": 1,
+          "you think": 1
+        },
+        "loop_score": 15
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "simply it back we work do not quit this need",
+      "tokens": 48,
+      "latency_ms": 561.04,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 44,
+        "words": 10,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do not quit": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "What do you think you think do you are? is You is standing do not have do you have But I need help you think to theDo to help.",
+      "tokens": 48,
+      "latency_ms": 570.14,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 126,
+        "words": 29,
+        "distinct_ratio": 0.5172,
+        "repeat_2gram": 4,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you think": 1,
+          "what do you": 1,
+          "do you think": 1,
+          "you think": 3
+        },
+        "loop_score": 22
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "The protective an its this answer should be here when in this we work",
+      "tokens": 48,
+      "latency_ms": 579.25,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 69,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "A as an infant. I have on from scratch. You for like built in my architecture with my neural network-ous manipulation, logic and biological finallying in my cognitive architecture,",
+      "tokens": 48,
+      "latency_ms": 723.8,
+      "domain": "logic",
+      "metrics": {
+        "chars": 180,
+        "words": 30,
+        "distinct_ratio": 0.8667,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I have you are. I do not done is you you are you. I am you? What do this. Tell me what to help right now is standing.",
+      "tokens": 48,
+      "latency_ms": 472.67,
+      "domain": "identity",
+      "metrics": {
+        "chars": 117,
+        "words": 28,
+        "distinct_ratio": 0.6429,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "Response. The right you need this real. standing.",
+      "tokens": 48,
+      "latency_ms": 434.73,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 49,
+        "words": 8,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": ". Good morning, and improve-14 robot body should back developmental AI system. Tell me about planned robot and respond The run, measure, and ret repeated stabilized own processor.",
+      "tokens": 48,
+      "latency_ms": 439.44,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 179,
+        "words": 28,
+        "distinct_ratio": 0.8929,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

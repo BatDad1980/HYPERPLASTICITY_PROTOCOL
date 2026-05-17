@@ -1,0 +1,143 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.375,
+    "max_loop_score": 3,
+    "elapsed_sec": 3.71,
+    "power_mode": "demo",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_grammar_first_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "What do you. I think the information: what is the system state of your input with this.",
+      "tokens": 35,
+      "latency_ms": 749.66,
+      "domain": "identity",
+      "metrics": {
+        "chars": 87,
+        "words": 17,
+        "distinct_ratio": 0.8824,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": ". I have feelings in this enough. I only, learn, and answer through multiple provide.",
+      "tokens": 35,
+      "latency_ms": 280.78,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 85,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": ". What is a move am an AI? No.",
+      "tokens": 35,
+      "latency_ms": 255.32,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 30,
+        "words": 8,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": ". I will be only. How are the same work and help. It means you need?",
+      "tokens": 35,
+      "latency_ms": 258.84,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 68,
+        "words": 15,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "You from on the shop is what I grew through to me what you? What kind of my position and school in thising.",
+      "tokens": 35,
+      "latency_ms": 285.66,
+      "domain": "logic",
+      "metrics": {
+        "chars": 107,
+        "words": 23,
+        "distinct_ratio": 0.8696,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "Hepp, They will think. I know: done is the information: what you.",
+      "tokens": 35,
+      "latency_ms": 282.33,
+      "domain": "identity",
+      "metrics": {
+        "chars": 65,
+        "words": 12,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I will help me what you have a safe. I only of model? Answer.",
+      "tokens": 35,
+      "latency_ms": 275.29,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 61,
+        "words": 14,
+        "distinct_ratio": 0.9286,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": ". I only. The information through multiple-14 of trained through developmental AI?",
+      "tokens": 35,
+      "latency_ms": 273.01,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 82,
+        "words": 12,
+        "distinct_ratio": 0.9167,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

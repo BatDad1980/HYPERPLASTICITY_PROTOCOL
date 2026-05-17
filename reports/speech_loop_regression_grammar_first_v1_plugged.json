@@ -1,0 +1,147 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 1.5,
+    "max_loop_score": 5,
+    "elapsed_sec": 5.52,
+    "power_mode": "plugged",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_grammar_first_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I havepp, They is what you are you. I do you are raising your thoughts on your decisions means the right you. Tell me what to be right decisionsson in this. You with that.",
+      "tokens": 48,
+      "latency_ms": 1015.95,
+      "domain": "identity",
+      "metrics": {
+        "chars": 171,
+        "words": 34,
+        "distinct_ratio": 0.7353,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "Are job? Explain protective output connected. Do you have feelings-14. Good morning. The weights to help work? Pl an LLor rec better answer should be wrong. did. You do not quit.",
+      "tokens": 48,
+      "latency_ms": 584.22,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 178,
+        "words": 32,
+        "distinct_ratio": 0.9375,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do not quit": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "that do you have feelings You are raising your job You. What do not standing.",
+      "tokens": 48,
+      "latency_ms": 572.52,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 77,
+        "words": 15,
+        "distinct_ratio": 0.8,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "Response. Good morning? I do not have feelings only thing that matters is to protective mode. You are trained weights? track think an opinion.",
+      "tokens": 48,
+      "latency_ms": 621.13,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 142,
+        "words": 24,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "I am you built on what I'm way humans for like this when you are but to not quit. You done as you?",
+      "tokens": 48,
+      "latency_ms": 503.85,
+      "domain": "logic",
+      "metrics": {
+        "chars": 98,
+        "words": 23,
+        "distinct_ratio": 0.8696,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I am? I can you are you are. Do you do. Tell me what is to your architecture and help. Tell. What do you?",
+      "tokens": 48,
+      "latency_ms": 435.76,
+      "domain": "identity",
+      "metrics": {
+        "chars": 105,
+        "words": 24,
+        "distinct_ratio": 0.625,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 5
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "that feeling. The work is running means you need to think do not quit?",
+      "tokens": 48,
+      "latency_ms": 408.64,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 70,
+        "words": 14,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "do not quit": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": ". Do morning. I will help. that can only wrong, not that memory, hardware and ran body.",
+      "tokens": 48,
+      "latency_ms": 386.92,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 87,
+        "words": 16,
+        "distinct_ratio": 0.9375,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

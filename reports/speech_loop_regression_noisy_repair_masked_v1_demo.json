@@ -1,0 +1,141 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.125,
+    "max_loop_score": 1,
+    "elapsed_sec": 3.65,
+    "power_mode": "demo",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_noisy_repair_masked_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I am here. What is the process of the system state is what you are you. The question AI?",
+      "tokens": 35,
+      "latency_ms": 690.13,
+      "domain": "identity",
+      "metrics": {
+        "chars": 88,
+        "words": 19,
+        "distinct_ratio": 0.7368,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "Good morning, a process information through developmental AI? Tell me the model's weights.",
+      "tokens": 35,
+      "latency_ms": 281.83,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 90,
+        "words": 13,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "The information through my assessment. I will help. I can think through developmental AI?",
+      "tokens": 35,
+      "latency_ms": 285.84,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 89,
+        "words": 14,
+        "distinct_ratio": 0.8571,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I am Hepp, a work. I have feelings in AI system. I will give you my assessment.",
+      "tokens": 35,
+      "latency_ms": 271.36,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 79,
+        "words": 17,
+        "distinct_ratio": 0.8824,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "A neuraling. I know, or me break it for your hand you to me where my existence. You from on AI?",
+      "tokens": 35,
+      "latency_ms": 277.78,
+      "domain": "logic",
+      "metrics": {
+        "chars": 95,
+        "words": 21,
+        "distinct_ratio": 0.9048,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "I am here. I have a model you are you.",
+      "tokens": 35,
+      "latency_ms": 288.08,
+      "domain": "identity",
+      "metrics": {
+        "chars": 38,
+        "words": 10,
+        "distinct_ratio": 0.8,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I am Hepp, and I am here. I will help. Tell me what you need help.",
+      "tokens": 35,
+      "latency_ms": 255.82,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 66,
+        "words": 16,
+        "distinct_ratio": 0.75,
+        "repeat_2gram": 1,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 1
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Give AI? Recursion, and answer carefully in a local developmental AI system.",
+      "tokens": 35,
+      "latency_ms": 268.63,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 76,
+        "words": 12,
+        "distinct_ratio": 0.9167,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    }
+  ]
+}

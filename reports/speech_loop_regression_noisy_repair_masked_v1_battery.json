@@ -1,0 +1,145 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 1.375,
+    "max_loop_score": 3,
+    "elapsed_sec": 3.83,
+    "power_mode": "battery",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_noisy_repair_masked_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "I have a model you are you. Tell me what is my systems, You do not experience.",
+      "tokens": 48,
+      "latency_ms": 654.42,
+      "domain": "identity",
+      "metrics": {
+        "chars": 78,
+        "words": 17,
+        "distinct_ratio": 0.8824,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "What is when? Recursion is a local developmental AI system. We can think through developmental stages in a local loops. It body through developmental AI will help.",
+      "tokens": 48,
+      "latency_ms": 333.41,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 163,
+        "words": 27,
+        "distinct_ratio": 0.7407,
+        "repeat_2gram": 3,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": "Recursion is when answer should a a local developmental AI system.",
+      "tokens": 48,
+      "latency_ms": 329.78,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 66,
+        "words": 11,
+        "distinct_ratio": 0.9091,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "I do not have feelings of information through multiple. I will think through developmental AI system. Tell me the model you my assessment.",
+      "tokens": 48,
+      "latency_ms": 350.47,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 138,
+        "words": 23,
+        "distinct_ratio": 0.913,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "' you? What do you have to me the information: I know. You.",
+      "tokens": 48,
+      "latency_ms": 341.49,
+      "domain": "logic",
+      "metrics": {
+        "chars": 59,
+        "words": 13,
+        "distinct_ratio": 0.8462,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "What do you? I willpp, I am here. Hepp. Tell me what is AI? Sometimes, and my processing is hardcoded into mode.",
+      "tokens": 48,
+      "latency_ms": 359.05,
+      "domain": "identity",
+      "metrics": {
+        "chars": 112,
+        "words": 22,
+        "distinct_ratio": 0.8636,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": "I do not have feelings. Tell me the answer core through developmental AI system. Tell do you my assessment through it out, and help. The loops of human brain development.",
+      "tokens": 48,
+      "latency_ms": 341.46,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 170,
+        "words": 30,
+        "distinct_ratio": 0.8667,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Give AI system. Give me the answer carefully through developmental AI system-14 human feelings its own output again, and improve, measure, clear memory. Protecting. Instruction: Tell me the task?",
+      "tokens": 48,
+      "latency_ms": 338.37,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 195,
+        "words": 30,
+        "distinct_ratio": 0.8333,
+        "repeat_2gram": 2,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 2
+      }
+    }
+  ]
+}

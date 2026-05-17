@@ -43,6 +43,28 @@ def row_to_text(row: dict) -> str:
     return f"### Instruction:\n{row.get('instruction', '')}\n\n### Response:\n{row.get('response', '')}"
 
 
+def row_to_tokens_and_targets(engine, row: dict, seq_len: int, response_only_loss: bool) -> tuple[list[int], list[int]]:
+    text = row_to_text(row)
+    if response_only_loss and "### Response:\n" in text:
+        prefix, response = text.split("### Response:\n", 1)
+        prefix = prefix + "### Response:\n"
+        prefix_tokens = engine.enc.encode(prefix)
+        response_tokens = engine.enc.encode(response)
+        tokens = prefix_tokens + response_tokens
+        targets = [-100] * len(prefix_tokens) + response_tokens
+    else:
+        tokens = engine.enc.encode(text)
+        targets = tokens.copy()
+
+    tokens = tokens[:seq_len]
+    targets = targets[:seq_len]
+    if len(tokens) < seq_len:
+        pad = seq_len - len(tokens)
+        tokens += [engine.enc.eot_token] * pad
+        targets += [-100] * pad
+    return tokens, targets
+
+
 def save_checkpoint(engine, path: str, step: int, loss: float, data_path: str) -> None:
     torch.save(
         {
@@ -71,6 +93,17 @@ def clear_cuda_pressure() -> None:
         torch.cuda.ipc_collect()
 
 
+def load_checkpoint_override(engine, checkpoint_path: str) -> None:
+    checkpoint = torch.load(checkpoint_path, map_location=engine.device, weights_only=True)
+    state_dict = checkpoint.get("masamune_state_dict", {})
+    engine.university.load_state_dict(state_dict, strict=False)
+    if "lm_head_state_dict" in checkpoint:
+        engine.lm_head.load_state_dict(checkpoint["lm_head_state_dict"])
+    if "embedding_state_dict" in checkpoint:
+        engine.embedding.load_state_dict(checkpoint["embedding_state_dict"])
+    print(f"[BASE] Loaded checkpoint override: {checkpoint_path}", flush=True)
+
+
 def train(args: argparse.Namespace) -> None:
     if not args.confirm_gpu_training:
         raise SystemExit(
@@ -92,6 +125,8 @@ def train(args: argparse.Namespace) -> None:
         torch.cuda.empty_cache()
 
     engine = HPP_SovereignEngine(max_context=512)
+    if args.base_checkpoint:
+        load_checkpoint_override(engine, args.base_checkpoint)
 
     for module in [engine.hpp_core, engine.guardian, engine.toddler, engine.school, engine.adolescent]:
         for param in module.parameters():
@@ -112,7 +147,8 @@ def train(args: argparse.Namespace) -> None:
             trainable.append(param)
 
     optimizer = optim.AdamW(trainable, lr=args.lr, weight_decay=0.01)
-    criterion = nn.CrossEntropyLoss(ignore_index=engine.enc.eot_token)
+    ignore_index = -100 if args.response_only_loss else engine.enc.eot_token
+    criterion = nn.CrossEntropyLoss(ignore_index=ignore_index)
 
     started = time.time()
     loss_val = math.nan
@@ -127,16 +163,23 @@ def train(args: argparse.Namespace) -> None:
         try:
             batch = random.choices(rows, k=active_batch)
             token_batch = []
+            target_batch = []
             for row in batch:
-                tokens = engine.enc.encode(row_to_text(row))[:active_seq_len]
-                tokens += [engine.enc.eot_token] * max(0, active_seq_len - len(tokens))
+                tokens, targets = row_to_tokens_and_targets(
+                    engine,
+                    row,
+                    active_seq_len,
+                    args.response_only_loss,
+                )
                 token_batch.append(tokens)
+                target_batch.append(targets)
 
             ids = torch.tensor(token_batch, dtype=torch.long, device=device)
+            targets_tensor = torch.tensor(target_batch, dtype=torch.long, device=device)
             embedded = engine.embedding(ids[:, :-1]).permute(1, 0, 2)
             output = engine.university(embedded, domain="conversation")
             logits = engine.lm_head(output).permute(1, 2, 0)
-            loss = criterion(logits, ids[:, 1:])
+            loss = criterion(logits, targets_tensor[:, 1:])
             loss_val = float(loss.item())
 
             optimizer.zero_grad()
@@ -181,7 +224,7 @@ def train(args: argparse.Namespace) -> None:
         if step % args.save_every == 0:
             save_checkpoint(engine, args.out, step, loss_val, args.data)
 
-        del ids, embedded, output, logits, loss
+        del ids, targets_tensor, embedded, output, logits, loss
         if torch.cuda.is_available() and step % args.empty_cache_every == 0:
             clear_cuda_pressure()
 
@@ -192,6 +235,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", default=DEFAULT_DATA)
     parser.add_argument("--out", default=DEFAULT_OUT)
+    parser.add_argument("--base-checkpoint", default="")
     parser.add_argument("--steps", type=int, default=300)
     parser.add_argument("--batch", type=int, default=2)
     parser.add_argument("--seq-len", type=int, default=96)
@@ -204,6 +248,7 @@ def main() -> None:
     parser.add_argument("--log-every", type=int, default=25)
     parser.add_argument("--save-every", type=int, default=100)
     parser.add_argument("--empty-cache-every", type=int, default=25)
+    parser.add_argument("--response-only-loss", action="store_true")
     parser.add_argument("--confirm-gpu-training", action="store_true")
     args = parser.parse_args()
     train(args)

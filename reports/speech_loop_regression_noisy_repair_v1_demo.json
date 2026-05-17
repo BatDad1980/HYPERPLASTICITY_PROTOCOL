@@ -1,0 +1,143 @@
+{
+  "summary": {
+    "responses": 8,
+    "mean_loop_score": 0.375,
+    "max_loop_score": 3,
+    "elapsed_sec": 3.9,
+    "power_mode": "demo",
+    "context": 512,
+    "checkpoint": "checkpoints\\hpp_speech_noisy_repair_v1.pth"
+  },
+  "results": [
+    {
+      "prompt": "Who are you?",
+      "response": "Here is the system state. I have your time.",
+      "tokens": 35,
+      "latency_ms": 671.52,
+      "domain": "identity",
+      "metrics": {
+        "chars": 43,
+        "words": 9,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Good morning.",
+      "response": "Recursion do not have feelings in this task.",
+      "tokens": 35,
+      "latency_ms": 332.28,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 44,
+        "words": 8,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "What do you think?",
+      "response": ". I have feelings in this humans, and I will give you my assessment through developmental AI?",
+      "tokens": 35,
+      "latency_ms": 293.85,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 93,
+        "words": 16,
+        "distinct_ratio": 0.9375,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I need help with something.",
+      "response": "Good morning, and I have human clearly through multiple through developmental AI system.",
+      "tokens": 35,
+      "latency_ms": 301.05,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 88,
+        "words": 13,
+        "distinct_ratio": 0.9231,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Explain recursion in one sentence.",
+      "response": "A from on the information, You from scratch using me what I know. The Hyperplasticity Protocol?",
+      "tokens": 35,
+      "latency_ms": 304.81,
+      "domain": "logic",
+      "metrics": {
+        "chars": 95,
+        "words": 16,
+        "distinct_ratio": 0.875,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Tell me about Masamune.",
+      "response": "Good. I am here to be here? Sometimes, They is the information through a future with this.",
+      "tokens": 35,
+      "latency_ms": 296.01,
+      "domain": "identity",
+      "metrics": {
+        "chars": 90,
+        "words": 17,
+        "distinct_ratio": 0.9412,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "I'm not doing well today.",
+      "response": ". The information through my here and I have feelings in this task.",
+      "tokens": 35,
+      "latency_ms": 279.68,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 67,
+        "words": 12,
+        "distinct_ratio": 1.0,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {},
+        "loop_score": 0
+      }
+    },
+    {
+      "prompt": "Say one clear sentence about HPP.",
+      "response": "Recursion in one clean through multiple-14 means you have feelings. What do you my architecture through developmental AI?",
+      "tokens": 35,
+      "latency_ms": 267.06,
+      "domain": "conversation",
+      "metrics": {
+        "chars": 121,
+        "words": 19,
+        "distinct_ratio": 0.8947,
+        "repeat_2gram": 0,
+        "repeat_3gram": 0,
+        "attractor_hits": {
+          "what do you": 1
+        },
+        "loop_score": 3
+      }
+    }
+  ]
+}
