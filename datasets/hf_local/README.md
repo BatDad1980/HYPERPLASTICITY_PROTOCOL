@@ -1,0 +1,23 @@
+# HPP V2 Local Dataset Index
+
+This folder contains local JSONL datasets used by the HPP V2 wild lab.
+
+Some large datasets are local and ignored by Git. The speech evidence datasets below are intentionally tracked because they are small enough and needed for reproducible reports.
+
+## Tracked Speech Evidence Datasets
+
+- `SPEECH_CLEANUP_BALANCED_V1.jsonl` - balanced cleanup curriculum.
+- `SPEECH_GRAMMAR_FIRST_V1.jsonl` - grammar-first curriculum that became the current best speech base.
+- `SPEECH_NOISY_REPAIR_V1.jsonl` - noisy-input developmental repair curriculum.
+- `SPEECH_MODE_ROUTING_V1.jsonl` - first mode-balanced routing curriculum.
+- `SPEECH_MODE_ROUTING_V2.jsonl` - grammar-anchored mode-routing curriculum.
+
+## Current Lesson
+
+Noise exposure is useful only when the clean response is what gets reinforced.
+
+For speech, response-only loss and maturity-gated inference are currently more useful than simply adding more recurrent depth.
+
+## Boundary
+
+These datasets are experimental and may contain personal/project identity language. Do not treat them as buyer-safe public data without review.
