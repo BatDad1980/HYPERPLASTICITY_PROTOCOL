@@ -47,7 +47,7 @@ class BioLoopResonator(nn.Module):
             environmental_stress = "LOW"
             
         # Convert the physical frequency into a latent modulation tensor
-        freq_tensor = torch.tensor([[freq_hz]], dtype=torch.float32, device=self.frequency_embedding.weight.device)
+        freq_tensor = torch.tensor([[freq_hz]], dtype=self.frequency_embedding.weight.dtype, device=self.frequency_embedding.weight.device)
         modulation = self.frequency_embedding(freq_tensor).view(1, 1, self.dim)
         
         return modulation, environmental_stress, state_log

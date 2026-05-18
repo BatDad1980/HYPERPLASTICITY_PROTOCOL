@@ -22,7 +22,7 @@ class BrocasArea(nn.Module):
     def forward(self, x):
         # Generate causal mask for the speech center
         seq_len = x.size(0)
-        causal_mask = nn.Transformer.generate_square_subsequent_mask(seq_len, device=x.device)
+        causal_mask = nn.Transformer.generate_square_subsequent_mask(seq_len, device=x.device).to(x.dtype)
         
         # Apply causal masking to prevent looking into the future
         speech_thought = self.speech_layer(x, src_mask=causal_mask)

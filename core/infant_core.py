@@ -46,7 +46,7 @@ class KarmicMicrogliaFilter(nn.Module):
         mask = ~((self.karma > survival_threshold) & (self.vairagya < 0.5))
         
         # Soft-gating application
-        return x * mask.float().view(1, 1, -1)
+        return x * mask.to(x.dtype).view(1, 1, -1)
 
 
 class HyperPlasticCore(nn.Module):

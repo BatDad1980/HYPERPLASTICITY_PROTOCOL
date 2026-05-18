@@ -21,9 +21,9 @@ the Structural Compass + Speech Center + Domain Routing to translate
 those deep thoughts into clear English.
 
 Usage:
-    python train_frontier.py                    # Default 5000 steps
-    python train_frontier.py --steps 10000      # Extended run
-    python train_frontier.py --aggressive       # Unlock more layers
+    python train_frontier.py --confirm-gpu-training
+    python train_frontier.py --steps 10000 --confirm-gpu-training
+    python train_frontier.py --aggressive --confirm-gpu-training
 ===============================================================================
 """
 import os
@@ -49,11 +49,11 @@ from hpp_sovereign_engine import HPP_SovereignEngine
 # CONFIGURATION
 # ================================================================
 class TrainConfig:
-    steps = 5000
+    steps = 3000            # Short aggressive grammar focus
     batch_size = 2
     grad_accum = 4          # Effective batch = 8
     seq_start = 64          # Curriculum: start short
-    seq_end = 192           # Curriculum: end long
+    seq_end = 256           # Curriculum: end long
     seq_ramp_steps = 1500   # Steps to reach full seq length
     lr = 8e-5
     warmup = 400
@@ -129,6 +129,18 @@ def load_all_data():
                 weights.append(3.0)  # High weight
                 id_count += 1
         print(f"[DATA] Identity: {id_count} samples")
+        
+    # Syntax data (if separate file exists)
+    syn_path = "datasets/hf_local/SYNTAX_FOUNDATION.jsonl"
+    if os.path.exists(syn_path):
+        syn_count = 0
+        with open(syn_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                sample = json.loads(line)
+                data.append(sample)
+                weights.append(4.0)  # VERY High weight for grammar
+                syn_count += 1
+        print(f"[DATA] Syntax Foundation: {syn_count} samples")
     
     print(f"[DATA] Total pool: {len(data)} samples")
     return data, weights
@@ -195,6 +207,12 @@ def compute_distinct_n(tokens: list, n: int = 2) -> float:
 # TRAINING LOOP
 # ================================================================
 def train(args):
+    if not args.confirm_gpu_training:
+        raise SystemExit(
+            "Refusing to start frontier training without --confirm-gpu-training. "
+            "Check power/cooling and commit current work first."
+        )
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     # Clean VRAM
@@ -228,8 +246,7 @@ def train(args):
     
     # === FREEZE STRATEGY ===
     print("\n[FREEZE] Locking deep brain...")
-    for module in [engine.hpp_core, engine.guardian, engine.toddler,
-                   engine.school, engine.adolescent]:
+    for module in [engine.hpp_core, engine.guardian, engine.school]:
         for p in module.parameters():
             p.requires_grad = False
     
@@ -245,6 +262,13 @@ def train(args):
         p.requires_grad = True
         trainable_params.append(p)
     print("  [+] Speech Center (LM Head + Embedding)")
+    
+    # Toddler (Broca) and Adolescent (Frontal)
+    for module in [engine.toddler, engine.adolescent]:
+        for p in module.parameters():
+            p.requires_grad = True
+            trainable_params.append(p)
+    print("  [+] Deep Language Centers (Toddler + Adolescent)")
     
     # Structural Compass (position + time)
     for p in engine.university.compass.parameters():
@@ -279,6 +303,8 @@ def train(args):
     optimizer = optim.AdamW([
         {'params': list(engine.lm_head.parameters()) + list(engine.embedding.parameters()),
          'lr': TrainConfig.lr, 'name': 'speech'},
+        {'params': list(engine.toddler.parameters()) + list(engine.adolescent.parameters()),
+         'lr': TrainConfig.lr * 0.1, 'name': 'deep_language'},
         {'params': list(engine.university.compass.parameters()),
          'lr': TrainConfig.lr * 0.5, 'name': 'compass'},
         {'params': [p for n, l in engine.university.domain_expertise.items() 
@@ -288,7 +314,7 @@ def train(args):
          'lr': TrainConfig.lr * 0.3, 'name': 'domains'},
     ], weight_decay=TrainConfig.weight_decay)
     
-    criterion = nn.CrossEntropyLoss(ignore_index=engine.enc.eot_token)
+    criterion = nn.CrossEntropyLoss(ignore_index=-100)
     
     # Mixed precision
     use_amp = device.type == "cuda"
@@ -322,6 +348,8 @@ def train(args):
                 pg['lr'] = current_lr * 0.5
             elif base_name == 'domains':
                 pg['lr'] = current_lr * 0.3
+            elif base_name == 'deep_language':
+                pg['lr'] = current_lr * 0.1
             else:
                 pg['lr'] = current_lr
         
@@ -347,15 +375,32 @@ def train(args):
         batch = random.choices(data, weights=weights, k=TrainConfig.batch_size)
         texts = [sample_to_text(s) for s in batch]
         
-        # Tokenize with current curriculum length
+        # Tokenize with instruction masking
         token_batch = []
+        target_batch = []
         for text in texts:
-            tokens = engine.enc.encode(text)[:seq_len]
+            parts = text.split("### Response:\n")
+            if len(parts) == 2:
+                inst_tokens = engine.enc.encode(parts[0] + "### Response:\n")
+                resp_tokens = engine.enc.encode(parts[1])
+                tokens = inst_tokens + resp_tokens
+                targets = [-100] * len(inst_tokens) + resp_tokens
+            else:
+                tokens = engine.enc.encode(text)
+                targets = tokens.copy()
+                
+            tokens = tokens[:seq_len]
+            targets = targets[:seq_len]
+            
             if len(tokens) < seq_len:
                 tokens = tokens + [engine.enc.eot_token] * (seq_len - len(tokens))
+                targets = targets + [-100] * (seq_len - len(targets))
+                
             token_batch.append(tokens)
+            target_batch.append(targets)
         
         ids = torch.tensor(token_batch, dtype=torch.long, device=device)
+        targets_tensor = torch.tensor(target_batch, dtype=torch.long, device=device)
         
         # Forward with mixed precision
         try:
@@ -364,7 +409,8 @@ def train(args):
                 domain = pick_domain()
                 output = engine.university(embedded, domain=domain)
                 logits = engine.lm_head(output).permute(1, 2, 0)
-                loss = criterion(logits, ids[:, 1:])
+                # Shift targets for next-token prediction
+                loss = criterion(logits, targets_tensor[:, 1:])
                 loss = loss / TrainConfig.grad_accum  # Scale for accumulation
             
             scaler.scale(loss).backward()
@@ -390,7 +436,10 @@ def train(args):
                 gc.collect()
                 torch.cuda.empty_cache()
                 optimizer.zero_grad(set_to_none=True)
-                scaler.update()  # Reset scaler state to prevent double unscale
+                try:
+                    scaler.update()
+                except Exception:
+                    pass
                 # Temporarily reduce seq length
                 TrainConfig.seq_end = max(96, TrainConfig.seq_end - 32)
                 accum_loss = 0.0
@@ -410,7 +459,7 @@ def train(args):
         
         # Save checkpoint
         if step % TrainConfig.save_every == 0:
-            save_checkpoint(engine, step, real_loss)
+            save_checkpoint(engine, step, real_loss, promote_anchor=args.promote_anchor)
             if real_loss < best_loss:
                 best_loss = real_loss
         
@@ -437,11 +486,11 @@ def train(args):
     print(f"  Best loss:  {best_loss:.4f}")
     print("=" * 70)
     
-    save_checkpoint(engine, TrainConfig.steps, avg_final, tag="frontier_final")
+    save_checkpoint(engine, TrainConfig.steps, avg_final, tag="frontier_final", promote_anchor=args.promote_anchor)
     test_speech_quality(engine, extended=True)
 
 
-def save_checkpoint(engine, step, loss, tag="progress"):
+def save_checkpoint(engine, step, loss, tag="progress", promote_anchor=False):
     """Save training checkpoint."""
     ckpt = {
         'masamune_state_dict': engine.university.state_dict(),
@@ -452,15 +501,16 @@ def save_checkpoint(engine, step, loss, tag="progress"):
         'phase': 'frontier_v18'
     }
     
-    # Always update the linguistic anchor (primary speech checkpoint)
-    anchor_path = "checkpoints/hpp_linguistic_anchor.pth"
-    torch.save(ckpt, anchor_path)
-    
-    # Also save a numbered checkpoint
-    step_path = f"checkpoints/hpp_frontier_{step}.pth"
+    safe_tag = str(tag).replace(" ", "_")
+    step_path = f"checkpoints/hpp_frontier_{safe_tag}_{step}.pth"
     torch.save(ckpt, step_path)
-    
-    print(f"  [SAVE] Step {step} | Loss: {loss:.4f}", flush=True)
+
+    if promote_anchor:
+        anchor_path = "checkpoints/hpp_linguistic_anchor.pth"
+        torch.save(ckpt, anchor_path)
+        print(f"  [PROMOTE] Updated linguistic anchor at step {step}", flush=True)
+
+    print(f"  [SAVE] {step_path} | Loss: {loss:.4f}", flush=True)
 
 
 def test_speech_quality(engine, extended=False):
@@ -523,8 +573,10 @@ def test_speech_quality(engine, extended=False):
 # ================================================================
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="HPP Frontier Training Pipeline")
-    parser.add_argument('--steps', type=int, default=5000, help='Training steps')
+    parser.add_argument('--steps', type=int, default=3000, help='Training steps')
     parser.add_argument('--aggressive', action='store_true', help='Aggressive mode (higher LR, longer seq)')
+    parser.add_argument('--confirm-gpu-training', action='store_true', help='Required guard before CUDA training starts')
+    parser.add_argument('--promote-anchor', action='store_true', help='Also overwrite checkpoints/hpp_linguistic_anchor.pth after saves')
     args = parser.parse_args()
     
     train(args)

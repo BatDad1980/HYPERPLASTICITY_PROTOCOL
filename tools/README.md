@@ -10,6 +10,7 @@ This folder contains reproducible utility scripts for the wild HPP V2 lab.
 - `build_speech_noisy_repair_dataset.py` - builds the developmental noisy-input repair curriculum.
 - `build_speech_mode_routing_dataset.py` - builds speech mode routing V1.
 - `build_speech_mode_routing_v2_dataset.py` - builds grammar-anchored speech mode routing V2.
+- `build_syntax_foundation_dataset.py` - builds a small clean grammar scaffold dataset.
 - `train_speech_cleanup_balanced.py` - guarded CUDA trainer with checkpoint override, response-only loss, and OOM backoff.
 - `speech_loop_regression.py` - lightweight loop/attractor regression.
 - `speech_mode_regression.py` - mode-specific speech regression for plain, technical, protective, embodiment, and identity prompts.
@@ -18,6 +19,12 @@ This folder contains reproducible utility scripts for the wild HPP V2 lab.
 ## Hardware / Field Lab
 
 - `probe_4050_today.py` - bounded RTX 4050 health, allocation, and throughput probe.
+
+## Frontier Training
+
+- `train_frontier.py` lives at the repo root because it is a primary training entrypoint.
+- It now refuses to run without `--confirm-gpu-training`.
+- It no longer overwrites `checkpoints/hpp_linguistic_anchor.pth` unless `--promote-anchor` is explicitly passed.
 
 ## Current Speech Baseline
 

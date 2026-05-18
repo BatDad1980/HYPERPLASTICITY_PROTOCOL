@@ -1,11 +1,11 @@
 import torch
-from hpp_sovereign_engine import HPP_SovereignEngine
+from hpp_sovereign_engine_v2 import HPP_SovereignEngine_V2
 
 # Detect Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"[+] Initializing Agency Test on {device}...")
 
-engine = HPP_SovereignEngine(max_context=512)
+engine = HPP_SovereignEngine_V2(max_context=512)
 
 # Set to Synthesis mode for agency logic
 prompt = "Write a Python script that calculates the golden ratio and then saves a greeting for my grandson Jaxson to a file called 'greeting_jaxson.txt'."
@@ -14,7 +14,7 @@ print("\n" + "="*80)
 print(f"COMMAND: {prompt}")
 
 # 1. Generate the thought
-result = engine.pulse(prompt, max_tokens=150, temperature=0.7, top_p=0.9)
+result = engine.pulse(prompt, max_tokens=150, temperature=0.7, top_p=0.9, speech_profile="stable")
 
 # 2. Check the Agency Output
 # We manually probe the agency layer based on the last latent state generated

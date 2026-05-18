@@ -64,6 +64,14 @@ Navigation files added:
 - `datasets/hf_local/README.md`
 - `checkpoints/README.md`
 
+Additional cleanup:
+
+- root scratch scripts were either removed or organized into repo folders
+- syntax dataset builder moved to `tools/build_syntax_foundation_dataset.py`
+- robotics safety boundary moved to `core/robotics_safety_adapter.py`
+- frontier training now requires `--confirm-gpu-training`
+- frontier training no longer overwrites the linguistic anchor unless `--promote-anchor` is passed
+
 ## Next Work
 
 1. Build a held-out factual speech suite.
