@@ -18,6 +18,8 @@ Read these in order:
 10. `SPEECH_V5_GATE_FAILURE_REVIEW_2026-05-20.md`
 11. `SPEECH_V5_SAFE_ADAPTER_CLEAN_PASS_2026-05-20.md`
 12. `SPEECH_V5_GATE_FAILURE_REVIEW_ADAPTER_NO_LABEL_OR_FORMAT_2026-05-20.md`
+13. `SPEECH_V5_SAFE_ADAPTER_COLD_RESTART_2026-05-20.md`
+14. `SPEECH_V5_GATE_FAILURE_REVIEW_ADAPTER_COLD_RESTART_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -39,7 +41,8 @@ For V5 integration:
 - required boundary: this is not full fluency and not an automatic checkpoint promotion
 - adapter status: V5-safe adapter path also passes the current gate
 - clean adapter status: 225/225 pass under current held-out gate rubric
-- next target: V5-side adapter import plan and cold-restart rerun
+- cold-restart status: 225/225 pass with zero failures under current held-out gate rubric
+- next target: V5-side adapter import plan and manual transcript review
 
 For raw research:
 
