@@ -20,6 +20,9 @@ Read these in order:
 12. `SPEECH_V5_GATE_FAILURE_REVIEW_ADAPTER_NO_LABEL_OR_FORMAT_2026-05-20.md`
 13. `SPEECH_V5_SAFE_ADAPTER_COLD_RESTART_2026-05-20.md`
 14. `SPEECH_V5_GATE_FAILURE_REVIEW_ADAPTER_COLD_RESTART_2026-05-20.md`
+15. `SPEECH_V5_MANUAL_TRANSCRIPT_REVIEW_COLD_RESTART_2026-05-20.md`
+16. `SPEECH_V5_STRICT_SURFACE_GATE_2026-05-20.md`
+17. `SPEECH_V5_GATE_FAILURE_REVIEW_ADAPTER_STRICT_SURFACE_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -42,7 +45,9 @@ For V5 integration:
 - adapter status: V5-safe adapter path also passes the current gate
 - clean adapter status: 225/225 pass under current held-out gate rubric
 - cold-restart status: 225/225 pass with zero failures under current held-out gate rubric
-- next target: V5-side adapter import plan and manual transcript review
+- manual transcript status: hold for V5-native speech; wrapper residue and semantic incoherence remain too high
+- strict surface status: 27/225 pass; leading wrapper residue is now counted directly
+- next target: response-cleaning repair, then rerun the strict surface gate
 
 For raw research:
 

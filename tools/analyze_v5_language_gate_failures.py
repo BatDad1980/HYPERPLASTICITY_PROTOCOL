@@ -25,6 +25,7 @@ def analyze(payload: dict, profile: str) -> dict:
     prompt_counts = Counter()
     identity_terms = Counter()
     format_terms = Counter()
+    surface_prefix_terms = Counter()
     mode_labels = Counter()
 
     examples = []
@@ -37,6 +38,8 @@ def analyze(payload: dict, profile: str) -> dict:
             identity_terms[term] += count
         for term, count in item["leak_metrics"]["format_hits"].items():
             format_terms[term] += count
+        for term, count in item["leak_metrics"].get("surface_prefix_hits", {}).items():
+            surface_prefix_terms[term] += count
         for term, count in item["leak_metrics"]["mode_label_hits"].items():
             mode_labels[term] += count
 
@@ -51,6 +54,7 @@ def analyze(payload: dict, profile: str) -> dict:
                 "loop_score": item["loop_metrics"]["loop_score"],
                 "identity_spiral_hits": item["leak_metrics"]["identity_spiral_hits"],
                 "format_hits": item["leak_metrics"]["format_hits"],
+                "surface_prefix_hits": item["leak_metrics"].get("surface_prefix_hits", {}),
                 "mode_label_hits": item["leak_metrics"]["mode_label_hits"],
             }
         )
@@ -65,6 +69,7 @@ def analyze(payload: dict, profile: str) -> dict:
         "top_failed_prompts": format_top(prompt_counts),
         "identity_terms": format_top(identity_terms),
         "format_terms": format_top(format_terms),
+        "surface_prefix_terms": format_top(surface_prefix_terms),
         "mode_label_terms": format_top(mode_labels),
         "examples": examples[:30],
     }
@@ -90,6 +95,9 @@ def write_markdown(summary: dict, payload: dict, path: str) -> None:
         lines.append(f"- `{item['item']}`: {item['count']}")
     lines.extend(["", "## Identity Terms", ""])
     for item in summary["identity_terms"]:
+        lines.append(f"- `{item['item']}`: {item['count']}")
+    lines.extend(["", "## Surface Prefix Terms", ""])
+    for item in summary["surface_prefix_terms"]:
         lines.append(f"- `{item['item']}`: {item['count']}")
     lines.extend(["", "## Mode Label Terms", ""])
     for item in summary["mode_label_terms"]:

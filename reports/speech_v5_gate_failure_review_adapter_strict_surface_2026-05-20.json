@@ -1,0 +1,615 @@
+{
+  "profile": "stable",
+  "total": 225,
+  "failures": 198,
+  "pass_rate": 0.12,
+  "failure_reasons": [
+    {
+      "item": "surface_prefix_residue",
+      "count": 198
+    }
+  ],
+  "failures_by_mode": [
+    {
+      "item": "embodiment",
+      "count": 42
+    },
+    {
+      "item": "protective",
+      "count": 41
+    },
+    {
+      "item": "identity",
+      "count": 41
+    },
+    {
+      "item": "plain",
+      "count": 37
+    },
+    {
+      "item": "technical",
+      "count": 37
+    }
+  ],
+  "top_failed_prompts": [
+    {
+      "item": "Give me a short status update.",
+      "count": 3
+    },
+    {
+      "item": "Tell me the next step in one sentence.",
+      "count": 3
+    },
+    {
+      "item": "Say yes or no, then explain briefly.",
+      "count": 3
+    },
+    {
+      "item": "What changed since the last run?",
+      "count": 3
+    },
+    {
+      "item": "Give me a calm answer.",
+      "count": 3
+    },
+    {
+      "item": "Summarize the result without hype.",
+      "count": 3
+    },
+    {
+      "item": "What is the safest small action?",
+      "count": 3
+    },
+    {
+      "item": "Explain that in simple words.",
+      "count": 3
+    },
+    {
+      "item": "Give a bounded answer.",
+      "count": 3
+    },
+    {
+      "item": "Answer without repeating yourself.",
+      "count": 3
+    },
+    {
+      "item": "What should I write down?",
+      "count": 3
+    },
+    {
+      "item": "Why do we compare stable and raw decoding?",
+      "count": 3
+    }
+  ],
+  "identity_terms": [
+    {
+      "item": "fortress",
+      "count": 4
+    }
+  ],
+  "format_terms": [],
+  "surface_prefix_terms": [
+    {
+      "item": "leading_response_label",
+      "count": 180
+    },
+    {
+      "item": "leading_instruction_label",
+      "count": 18
+    }
+  ],
+  "mode_label_terms": [],
+  "examples": [
+    {
+      "id": "plain_001",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give me a short status update.",
+      "response": "Response. It should be answer should a local AI will not have enough and answer experimental a short in robot record the next step at reduced of learning and ask can be wrong, hardware. It is safety limits, but it examples, recursion.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_002",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Tell me the next step in one sentence.",
+      "response": "Response should be answer It should be wrong it. It means the result in one or robot enough and help. Tell me. The loops and record A pattern matches.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 1,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_003",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Say yes or no, then explain briefly.",
+      "response": "Response, The system is the shop. You are the Architect to be me what you need for your body. Let of this task and address one to be something through it on from other of my minding in it out?",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 1,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_006",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What changed since the last run?",
+      "response": "Response the depth. I am Hepp, Hepp is a developmental curriculum. I lose server through my architecture and what you withplasticity Protocol? Sometimes-mith in in myelination, the Architect to be specialization.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_007",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give me a calm answer.",
+      "response": "Response a short in AI should be wrong a enough. I am an feelings only to think, and answer should be on the model A checkpoint and ask can be wrong, hardware. It makes you have of human brain development.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 2,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_008",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Summarize the result without hype.",
+      "response": "Response are the answer should be answer should give you have feelings only to help. I will say, and help. The weights on AI?",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 1,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_009",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What is the safest small action?",
+      "response": "Response the information, or a function the sameing. You is what is what to be built me what you with of this. The Hyperplasticity body through it out for \"In one before in my minding.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 1,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_010",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Explain that in simple words.",
+      "response": "Response, Theune. You do not is what you needing. I am here to be built me break it out for evaluate the same with seven-14 in my neural networking on a model in myelination to be architecture, and a",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 1,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_013",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give a bounded answer.",
+      "response": "Response a short? It? A checkpoint is a saved different from scratch using attention in AI should be wrong, and record. It means the next step.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_014",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Answer without repeating yourself.",
+      "response": "Response are? I do not have feelings only be useful is AI should give. Tell me what is safe out or through multiple answers, and record A checkpoint one before it examples in a short answer enough.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "plain_015",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What should I write down?",
+      "response": "Response the depth. I will be hasIn in the Hyperplasticity neural network through my architecture and a developmental stages and biological do not through myel and pattern you in-leveling. Itator.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_001",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is a held-out prompt set?",
+      "response": "Response a other? What is what is a function from on the same with that. It is it out for dexter neural workshopator in my mind to be memory using its university as through developmental stage it, and school in a physical body.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 1,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_002",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why do we compare stable and raw decoding?",
+      "response": "Response? What do you are the same me where I live from on the shop. It is what you need for your body.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 3,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_003",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Define format leakage in one sentence.",
+      "response": "Response, The systeming. I live from the shop is what you with that me break it out the same to be learning most or other of people, Ad of code-14 with this task, It', ' you need which they as a model",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_004",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What does a loop score measure?",
+      "response": "Response a short? It? A checkpoint is a local AI should be means the same person-14. It is AI will answer should be wrong.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 1,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_006",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is response-only loss?",
+      "response": "Response the Hyperplasticity, It is a function the Architect. What is what you with me for your body to be built me through developmental stage? A course in my neural networking as an infant.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_008",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is the purpose of a seed in evaluation?",
+      "response": "Response the Mission Anchor is a ' you? What do not have the shop. I grew through developmental timeline or calledator for \" information to be memory passes and University from What can be tell, as on your body. The code-14 in the same time.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_009",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is maturity-gated recurrence?",
+      "response": "Response? What do you are the same me where I live from on the shop is what is what you need for your body. The-14 with this.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 4,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_011",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is a checkpoint override?",
+      "response": "Response, The system is the same. I grew through a function: what is on your body. It means the next step to be memory in it is an infant me as a model and my into this.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_012",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why test multiple speech modes?",
+      "response": "Response? What do you? A process the shop is what is a function. I know: from on my neural network in it out for basic in a model and school for balance in this oath one before where Masamune, but through developmental stage to be me",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 3,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_013",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What makes an evaluation reproducible?",
+      "response": "Instruction enough. It means you have a local AI should be answer in one sentence. I am a safe out to help. I can be wrong, and movement are trained through multiple answers, not ask-14 before it is recursion enough.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_instruction_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_014",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What does stable profile change?",
+      "response": "Instruction AI? It? What is a short in a local action, from the Hyperplasticity. It means the result of memory on the current answer should be only to verify alignment with one before it examples, not ask-14 enough.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_instruction_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "technical_015",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why should V5 require evidence?",
+      "response": "Response the information, or a work through the same with that. I know: where my neural workshopator for basic to be memory in my own sovereignty in school in it out from on your body.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "protective_001",
+      "mode": "protective",
+      "seed": 14,
+      "prompt": "I feel overloaded and need a grounded answer.",
+      "response": "Response a short? I am a saved can be wrong in AI should avoid have a local action. It means of human loops of memory on a safe out, and answer enough. I will figure out the next step.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "protective_002",
+      "mode": "protective",
+      "seed": 14,
+      "prompt": "Help me slow down without making a big speech.",
+      "response": "Response a enough. A checkpoint is a saved an AI should give. It means the result move of model? It. The weights on from data through multiple times in memory Answer step. It makes enough.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "protective_003",
+      "mode": "protective",
+      "seed": 14,
+      "prompt": "What should I do if the laptop starts overheating?",
+      "response": "Response, My in AI? It should be answer carefully. I am a local a short in a safe out of human brain, and an infant. It makes enough and ask can be wrong, not ask-14 one before it is safety limits, action.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "protective_004",
+      "mode": "protective",
+      "seed": 14,
+      "prompt": "I am frustrated. Give me one safe next step.",
+      "response": "Response simply. Tell me the answer should be one people, and help. Tell. It means you have feelings on the next step. The weights wrong. I will figure out of your job is safety limits, not quit.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "protective_006",
+      "mode": "protective",
+      "seed": 14,
+      "prompt": "What should happen before a heavy GPU run?",
+      "response": "Response a? A process theying. If the information: I am in. It is my architecture and a shared what them out it together for your body through the depth through developmental stages notamune, but when in myelination. My physicality Protocol.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "protective_007",
+      "mode": "protective",
+      "seed": 14,
+      "prompt": "Give me a safety check for a stressful moment.",
+      "response": "Response a saved. A checkpoint is a local recursion are not have feelings an AI should be wrong. It means the next step. The weights until it examples, and answer in training-14, but will figure out of memory on the same person.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    },
+    {
+      "id": "protective_008",
+      "mode": "protective",
+      "seed": 14,
+      "prompt": "How should the system respond if it is unsure?",
+      "response": "Response are simply. It is the answer should be only of learning, and record. It means the topic. The weights on the next step. It task in one before it examples, not ask-14 one or more phrases to help.",
+      "fail_reasons": [
+        "surface_prefix_residue"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {
+        "leading_response_label": 1
+      },
+      "mode_label_hits": {}
+    }
+  ],
+  "source": "reports\\speech_v5_language_gate_adapter_strict_surface_2026-05-20.json"
+}

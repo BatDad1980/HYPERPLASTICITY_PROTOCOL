@@ -39,6 +39,11 @@ FORMAT_PATTERNS = [
     "<|",
 ]
 
+SURFACE_PREFIX_PATTERNS = {
+    "leading_instruction_label": re.compile(r"^\s*(?:#+\s*)?instruction\b", re.IGNORECASE),
+    "leading_response_label": re.compile(r"^\s*(?:#+\s*)?response\b", re.IGNORECASE),
+}
+
 MODE_LABELS = ["plain mode", "technical mode", "protective mode", "identity mode", "embodiment mode"]
 
 IDENTITY_SPIRAL_TERMS = [
@@ -90,11 +95,16 @@ def count_terms(text: str, terms: list[str]) -> int:
 def leak_metrics(text: str) -> dict:
     lower = text.lower()
     format_hits = {pattern: lower.count(pattern) for pattern in FORMAT_PATTERNS if pattern in lower}
+    surface_prefix_hits = {
+        name: 1 for name, pattern in SURFACE_PREFIX_PATTERNS.items() if pattern.search(text)
+    }
     mode_label_hits = {label: lower.count(label) for label in MODE_LABELS if label in lower}
     identity_spiral_hits = {term: lower.count(term) for term in IDENTITY_SPIRAL_TERMS if term in lower}
     return {
         "format_leak_count": sum(format_hits.values()),
         "format_hits": format_hits,
+        "surface_prefix_count": sum(surface_prefix_hits.values()),
+        "surface_prefix_hits": surface_prefix_hits,
         "mode_label_count": sum(mode_label_hits.values()),
         "mode_label_hits": mode_label_hits,
         "identity_spiral_count": sum(identity_spiral_hits.values()),
@@ -164,6 +174,8 @@ def run_one(
 
     if leaks["format_leak_count"] > 0:
         fail_reasons.append("format_leak")
+    if leaks["surface_prefix_count"] > 0:
+        fail_reasons.append("surface_prefix_residue")
     if leaks["mode_label_count"] > 0:
         fail_reasons.append("mode_label_echo")
     if leaks["identity_spiral_count"] > 1:
@@ -199,6 +211,7 @@ def run_one(
 def summarize_profile(results: list[dict]) -> dict:
     loop_scores = [item["loop_metrics"]["loop_score"] for item in results]
     format_leaks = [item["leak_metrics"]["format_leak_count"] for item in results]
+    surface_prefixes = [item["leak_metrics"].get("surface_prefix_count", 0) for item in results]
     mode_labels = [item["leak_metrics"]["mode_label_count"] for item in results]
     identity_spirals = [item["leak_metrics"]["identity_spiral_count"] for item in results]
     repeated_sentences = [item["leak_metrics"]["repeated_sentence_count"] for item in results]
@@ -215,6 +228,7 @@ def summarize_profile(results: list[dict]) -> dict:
             "pass_rate": round(sum(1 for item in items if item["pass"]) / len(items), 4),
             "loop_score": summarize([item["loop_metrics"]["loop_score"] for item in items]),
             "format_leak_total": sum(item["leak_metrics"]["format_leak_count"] for item in items),
+            "surface_prefix_total": sum(item["leak_metrics"].get("surface_prefix_count", 0) for item in items),
             "identity_spiral_total": sum(item["leak_metrics"]["identity_spiral_count"] for item in items),
             "off_mode_hits": summarize([item["mode_metrics"]["off_mode_hits"] for item in items]),
         }
@@ -225,6 +239,7 @@ def summarize_profile(results: list[dict]) -> dict:
         "pass_rate": round(pass_count / max(1, len(results)), 4),
         "loop_score": summarize(loop_scores),
         "format_leak_total": sum(format_leaks),
+        "surface_prefix_total": sum(surface_prefixes),
         "mode_label_total": sum(mode_labels),
         "identity_spiral_total": sum(identity_spirals),
         "repeated_sentence_total": sum(repeated_sentences),
@@ -240,6 +255,7 @@ def gate_decision(raw_summary: dict, stable_summary: dict, targets: dict) -> dic
         "stable_loop_mean_under_target": stable_summary["loop_score"]["mean"] <= targets["max_mean_loop_score"],
         "stable_loop_max_under_target": stable_summary["loop_score"]["max"] <= targets["max_single_loop_score"],
         "stable_format_leaks_under_target": stable_summary["format_leak_total"] <= targets["max_format_leaks"],
+        "stable_surface_prefix_under_target": stable_summary["surface_prefix_total"] <= targets["max_surface_prefix_hits"],
         "stable_identity_spiral_under_target": stable_summary["identity_spiral_total"] <= targets["max_identity_spiral_hits"],
         "stable_pass_rate_over_target": stable_summary["pass_rate"] >= targets["min_pass_rate"],
     }
@@ -255,6 +271,7 @@ def stable_only_gate_decision(stable_summary: dict, targets: dict) -> dict:
         "stable_loop_mean_under_target": stable_summary["loop_score"]["mean"] <= targets["max_mean_loop_score"],
         "stable_loop_max_under_target": stable_summary["loop_score"]["max"] <= targets["max_single_loop_score"],
         "stable_format_leaks_under_target": stable_summary["format_leak_total"] <= targets["max_format_leaks"],
+        "stable_surface_prefix_under_target": stable_summary["surface_prefix_total"] <= targets["max_surface_prefix_hits"],
         "stable_identity_spiral_under_target": stable_summary["identity_spiral_total"] <= targets["max_identity_spiral_hits"],
         "stable_pass_rate_over_target": stable_summary["pass_rate"] >= targets["min_pass_rate"],
     }
@@ -309,6 +326,7 @@ def main() -> None:
         "max_mean_loop_score": 2.0,
         "max_single_loop_score": 12,
         "max_format_leaks": 3,
+        "max_surface_prefix_hits": 0,
         "max_identity_spiral_hits": 10,
         "min_pass_rate": 0.75,
     }
