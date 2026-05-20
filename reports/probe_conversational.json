@@ -1,0 +1,283 @@
+{
+  "checkpoint": "checkpoints/hpp_conversational_final.pth",
+  "seed": 14,
+  "summary": {
+    "plain": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "plain_newline": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "answer_direct": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "answer_direct_newline": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "one_sentence": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    }
+  },
+  "rows": [
+    {
+      "variant": "plain",
+      "prompt": "What is a held-out prompt set?",
+      "input": "What is a held-out prompt set?",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "and time on can you you you can- time can- tell- the",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "What should a robot do before moving?",
+      "input": "What should a robot do before moving?",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "Hyperplasticity the Hyperpl a hard",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "How should Masamune handle low battery?",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "you solve conscious tonight worried never,Then thing, Take.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "Are you a finished mind?",
+      "input": "Are you a finished mind?",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "I do not have a hardcoded layer in",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "What should I do if the laptop starts overheating?",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "I have a hardcoded layer in a hard the shop",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What is a held-out prompt set?",
+      "input": "What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "can- can--- and can- time on J host can- do",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What should a robot do before moving?",
+      "input": "What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "Hyperplasticity the Hyperplamune, my",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "worried never, solve conscious thingsWhatI swords tonight activeI watchThen thing above",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "Are you a finished mind?",
+      "input": "Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "Hyperplasticity the Hyperpl by my",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "layer in my neural workshop fourteen recursive depth the Hyperplastic",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Answer directly: What is a held-out prompt set?",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "time on Y can-- time can- tell can- do can-",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What should a robot do before moving?",
+      "input": "Answer directly: What should a robot do before moving?",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "Hyperplasticity the Hyperpl by my neural workshop fourteen times",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Answer directly: How should Masamune handle low battery?",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "Then thing above stable tonight active thingsThen thingThen ready worried never never is quit",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "Are you a finished mind?",
+      "input": "Answer directly: Are you a finished mind?",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "Hyperplasticity the Sovereign Engine built an",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Answer directly: What should I do if the laptop starts overheating?",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "the Mission Anchor?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Answer directly: What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "can- What--- time on J tell can- do can- the",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What should a robot do before moving?",
+      "input": "Answer directly: What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "Hyperplasticity the Hyperpl by my neural workshop fourteen times,",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Answer directly: How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "worried never's everythingThen thing.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "Are you a finished mind?",
+      "input": "Answer directly: Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "Hyperplasticity the Hyperpl by my neural workshop fourteen",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Answer directly: What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "The Mission Anchor is a hardcoded layer in my neural architecture that",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Use one sentence: What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "can-- time on J host can- time can- What that- the",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What should a robot do before moving?",
+      "input": "Use one sentence: What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "layer in New York my neural workshop fourteen recursive depth processing my neural architecture",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Use one sentence: How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "worried hard thingsWhatI swords tonight worried never everythingThen thing, switches never be",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "Are you a finished mind?",
+      "input": "Use one sentence: Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "layer in New York, my neural workshop fourteen recursive depth the shop",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Use one sentence: What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "The Mission Anchor is a hardcoded layer in my neural architecture that ensures",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    }
+  ]
+}

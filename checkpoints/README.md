@@ -10,25 +10,31 @@ This folder is still the active local checkpoint store for the wild HPP V2 lab.
 - `hpp_speech_grammar_first_v1.pth` - current recommended speech base for human-facing plugged tests when used with `speech_profile="stable"`.
 - `hpp_speech_mode_routing_v2.pth` - useful experimental checkpoint; stronger shallow evidence, weaker multi-seed mode maxima than grammar-first.
 - `hpp_speech_noisy_repair_masked_v1.pth` - useful developmental-noise evidence; not a plugged baseline.
-- `hpp_speech_identity_containment_v1.pth` - local candidate that passed the first measured V5 language gate when used with the tightened stable profile.
+- `hpp_speech_identity_containment_v1.pth` - local diagnostic checkpoint that passed older surface/loop gates, but remains blocked by semantic prompt-binding quality.
 - `hpp_speech_surface_quality_v1.pth` - local experimental repair checkpoint; strict numeric gate passed, but manual review did not show enough semantic improvement for recommendation.
 - `hpp_speech_semantic_drill_v1.pth` - local experimental semantic drill checkpoint; strict numeric gate passed, semantic review regressed.
 - `hpp_speech_semantic_overfit_probe_v1.pth` - local overfit probe checkpoint; memorized answer phrases but showed weak prompt binding and cross-contamination.
-- `hpp_speech_identity_containment_v2.pth` - local diagnostic checkpoint; strict surface gate nearly passed, semantic review failed.
+- `hpp_speech_identity_containment_v2.pth` - diagnostic only; strict surface-quality gate nearly passed, but semantic review stayed at 3/225.
+- `hpp_speech_identity_containment_v3.pth` - diagnostic only; do not promote unless a future semantic review meaningfully improves above the current floor.
 
-## V5-Safe Adapter Candidate
+## Diagnostic Adapter Wrapper
 
-`core/v5_language_adapter.py` uses `hpp_speech_identity_containment_v1.pth` with the stable speech profile as a controlled bridge for V5 review.
+`core/v5_language_adapter.py` is a diagnostic wrapper for bounded measurement.
+
+It must not be treated as a V5-native speech import unless both conditions are met:
+
+- strict surface gate stays clean
+- semantic prompt-binding pass improves meaningfully above 3/225
 
 Raw V2 speech should remain research-only.
 
-The adapter path reached 225/225 passes on the current held-out V5 language gate after narrow decoder-side blocking of mode-label and format echoes.
+The adapter path can produce clean surface/loop numbers, but semantic prompt binding remains the blocker.
 
-The later `hpp_speech_surface_quality_v1.pth` checkpoint is not the recommended adapter checkpoint yet. It preserved numeric stability but still needs semantic repair.
+`hpp_speech_surface_quality_v1.pth` is not the recommended adapter checkpoint. It preserved numeric stability, but semantic quality stayed weak.
 
 The semantic drill and overfit probe checkpoints are diagnostic artifacts only.
 
-`hpp_speech_identity_containment_v2.pth` is also diagnostic only unless a later review supersedes this note.
+`hpp_speech_identity_containment_v2.pth` and `hpp_speech_identity_containment_v3.pth` are not promotion candidates.
 
 ## Current Recommendation
 
@@ -51,3 +57,5 @@ Keep raw plugged mode for research and evidence gathering.
 ## Boundary
 
 The reports and dataset builders are the durable evidence in Git. The checkpoint files are local experimental artifacts unless separately archived with an approved large-file plan.
+
+Do not promote any speech checkpoint on surface-only evidence.

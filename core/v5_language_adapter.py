@@ -1,8 +1,8 @@
-"""V5-safe language adapter candidate for HPP V2 speech.
+"""Diagnostic language adapter wrapper for HPP V2 speech.
 
-This adapter packages the current passing V5 language-gate behavior:
+This adapter packages bounded inference behavior for measurement only:
 stable speech profile, bounded token count, and explicit checkpoint loading.
-It is an adapter candidate, not a native V5 import.
+It is not a V5-native import and does not imply promotion.
 """
 from __future__ import annotations
 
@@ -32,7 +32,7 @@ class V5LanguageAdapterConfig:
 
 
 class V5SafeLanguageAdapter:
-    """Thin inference wrapper around HPP V2 speech for V5 review."""
+    """Thin diagnostic inference wrapper around HPP V2 speech."""
 
     def __init__(self, config: V5LanguageAdapterConfig | None = None) -> None:
         self.config = config or V5LanguageAdapterConfig()
@@ -40,7 +40,7 @@ class V5SafeLanguageAdapter:
         self._load_checkpoint(self.config.checkpoint)
         self.engine.set_power_mode(self.config.power_mode)
 
-    def answer(self, prompt: str, *, seed: int | None = None, mode: str = "auto") -> dict:
+    def answer(self, prompt: str, *, seed: int | None = None, mode: str = "conversation") -> dict:
         if seed is not None:
             torch.manual_seed(seed)
             if torch.cuda.is_available():

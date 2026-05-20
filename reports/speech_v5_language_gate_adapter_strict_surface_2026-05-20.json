@@ -165,7 +165,9 @@
       "max_identity_spiral_hits": 10,
       "min_pass_rate": 0.75
     },
-    "comparison_boundary": "Stable-only adapter run; raw-vs-stable comparison must come from a separate two-profile gate artifact."
+    "comparison_boundary": "Stable-only adapter run; raw-vs-stable comparison must come from a separate two-profile gate artifact.",
+    "surface_gate_pass": false,
+    "boundary": "Historical surface/loop gate interpretation only. V5-native readiness requires semantic prompt-binding improvement and manual transcript review."
   },
   "transcripts": [
     {

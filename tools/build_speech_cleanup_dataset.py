@@ -115,7 +115,12 @@ def main() -> None:
 
     random.seed(args.seed)
     rows = []
-    for path in [args.source, args.cleanup]:
+    sources = [
+        args.source,
+        args.cleanup,
+        os.path.join("datasets", "hf_local", "SPEECH_IDENTITY_CONTAINMENT_V1.jsonl")
+    ]
+    for path in sources:
         if os.path.exists(path):
             rows.extend(load_jsonl(path))
     rows.extend(BRIDGE_ROWS)

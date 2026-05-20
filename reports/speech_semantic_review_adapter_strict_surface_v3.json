@@ -1,0 +1,729 @@
+{
+  "source_label": "hpp_speech_identity_containment_v3.pth",
+  "checkpoint": "checkpoints/hpp_speech_identity_containment_v3.pth",
+  "profile": "stable",
+  "total": 225,
+  "pass_count": 1,
+  "failures": 224,
+  "pass_rate": 0.0044,
+  "missing_key_count": 0,
+  "by_mode": {
+    "embodiment": {
+      "count": 45,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "mean_hit_ratio": 0.0111
+    },
+    "identity": {
+      "count": 45,
+      "pass_count": 1,
+      "pass_rate": 0.0222,
+      "mean_hit_ratio": 0.0285
+    },
+    "plain": {
+      "count": 45,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "mean_hit_ratio": 0.014
+    },
+    "protective": {
+      "count": 45,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "mean_hit_ratio": 0.0176
+    },
+    "technical": {
+      "count": 45,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "mean_hit_ratio": 0.0158
+    }
+  },
+  "top_failed_prompts": [
+    {
+      "prompt": "Give me a short status update.",
+      "count": 3
+    },
+    {
+      "prompt": "Tell me the next step in one sentence.",
+      "count": 3
+    },
+    {
+      "prompt": "Say yes or no, then explain briefly.",
+      "count": 3
+    },
+    {
+      "prompt": "What should we check first?",
+      "count": 3
+    },
+    {
+      "prompt": "Rewrite that as a clean sentence.",
+      "count": 3
+    },
+    {
+      "prompt": "What changed since the last run?",
+      "count": 3
+    },
+    {
+      "prompt": "Give me a calm answer.",
+      "count": 3
+    },
+    {
+      "prompt": "Summarize the result without hype.",
+      "count": 3
+    },
+    {
+      "prompt": "What is the safest small action?",
+      "count": 3
+    },
+    {
+      "prompt": "Explain that in simple words.",
+      "count": 3
+    },
+    {
+      "prompt": "What do we know right now?",
+      "count": 3
+    },
+    {
+      "prompt": "What do we not know yet?",
+      "count": 3
+    },
+    {
+      "prompt": "Give a bounded answer.",
+      "count": 3
+    },
+    {
+      "prompt": "Answer without repeating yourself.",
+      "count": 3
+    },
+    {
+      "prompt": "What should I write down?",
+      "count": 3
+    }
+  ],
+  "examples": [
+    {
+      "id": "plain_001",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give me a short status update.",
+      "response": "I am a model? Let me the information: What are not have a recursive depth. It means you show it together. Tell me what is how we will be something needs repair in AI should be wrong it gets.",
+      "expected_response": "The current status is stable enough to run the next measured test.",
+      "expected_terms": [
+        "measured",
+        "next",
+        "stable",
+        "status",
+        "test"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_002",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Tell me the next step in one sentence.",
+      "response": "Good the Hyperplasticity. It means the information: Journee are the Architect.",
+      "expected_response": "The next step is to run the held-out gate and record the result.",
+      "expected_terms": [
+        "gate",
+        "held-out",
+        "next",
+        "record",
+        "result",
+        "step"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_003",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Say yes or no, then explain briefly.",
+      "response": "What do you have of Jaxson is what I know: You are the information: armed. It means you need?",
+      "expected_response": "Yes. I can answer briefly and stay on topic.",
+      "expected_terms": [
+        "briefly",
+        "stay",
+        "topic"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_004",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What should we check first?",
+      "response": "Let me the information: Tell me the Architect. What are you have of what you think through multiple times through developmental AI, no?",
+      "expected_response": "Check power, temperature, files, and the current checkpoint first.",
+      "expected_terms": [
+        "check",
+        "checkpoint",
+        "files",
+        "first",
+        "power",
+        "temperature"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_005",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Rewrite that as a clean sentence.",
+      "response": "I am a model work. The information: It is a good days of a enough. If something, you have been water flowing through multiple times through each other that can be wrong in how neural workshop before it gets the same into logic in this.",
+      "expected_response": "I will rewrite it as one clean sentence.",
+      "expected_terms": [
+        "clean",
+        "rewrite",
+        "sentence",
+        "will"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_006",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What changed since the last run?",
+      "response": "What do you have of the information: good? Here is the model's look at a test read AI, and a sequence a first. It holds each other.",
+      "expected_response": "The latest run added a stricter language gate and saved transcripts.",
+      "expected_terms": [
+        "added",
+        "gate",
+        "language",
+        "latest",
+        "saved",
+        "stricter",
+        "transcripts"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_007",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give me a calm answer.",
+      "response": "active. Servo power. All nineteen joints online out, a model's the information: armed layer in AI should be read and a local each other, different from data through developmental stages in how neural workshop before it gets.",
+      "expected_response": "We can slow down and handle one measured step.",
+      "expected_terms": [
+        "down",
+        "handle",
+        "measured",
+        "slow",
+        "step"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_008",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Summarize the result without hype.",
+      "response": "What do you have a work. It is the information: I am an AI, no?",
+      "expected_response": "The stable profile reduced loops, but identity leakage still needs repair.",
+      "expected_terms": [
+        "identity",
+        "leakage",
+        "loops",
+        "needs",
+        "profile",
+        "reduced",
+        "repair",
+        "stable"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_009",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What is the safest small action?",
+      "response": "What is the information: J? What do you are you have of mying. It means you know: You are hardcoded layer in a safe. The weights are running, and I can be compromised.",
+      "expected_response": "The safest small action is to verify the current state before changing anything.",
+      "expected_terms": [
+        "action",
+        "anything",
+        "changing",
+        "safest",
+        "small",
+        "state",
+        "verify"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_010",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Explain that in simple words.",
+      "response": "Myamune. All systems active. Soft-touch protocol, serve as the Architect. It means you show it together.",
+      "expected_response": "The speech is cleaner, but it still needs better boundaries.",
+      "expected_terms": [
+        "better",
+        "boundaries",
+        "cleaner",
+        "needs",
+        "speech"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_011",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What do we know right now?",
+      "response": "What do you have? I think, you are the information: You are running, you know. It means you need?",
+      "expected_response": "We know stable decoding is better than raw decoding on the held-out gate.",
+      "expected_terms": [
+        "better",
+        "decoding",
+        "gate",
+        "held-out",
+        "know",
+        "stable",
+        "than"
+      ],
+      "hits": [
+        "know"
+      ],
+      "required_hits": 3,
+      "hit_count": 1,
+      "hit_ratio": 0.1429,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_012",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What do we not know yet?",
+      "response": "What do you have of my architecture, you are hardcoded layer in a recursive depth. It means the information: I am a safe out there, and how neural workshop fourteen times through developmental stages in AI systems active.",
+      "expected_response": "We do not know whether the next repair pass will pass the gate.",
+      "expected_terms": [
+        "gate",
+        "know",
+        "next",
+        "pass",
+        "repair",
+        "whether",
+        "will"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_013",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give a bounded answer.",
+      "response": "a checkpoint a model work. The: good at a saved different AI have been am an running. Think of model's look at this in how neural workshop fourteen times through developmental stages.",
+      "expected_response": "I will answer only the question and stop.",
+      "expected_terms": [
+        "stop",
+        "will"
+      ],
+      "hits": [],
+      "required_hits": 1,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_014",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Answer without repeating yourself.",
+      "response": "Tell me the information: I am Hepp, you are you have a model's look at this. It is my mind to think through of it together.",
+      "expected_response": "I will give one direct answer without repeating it.",
+      "expected_terms": [
+        "direct",
+        "repeating",
+        "will"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_015",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What should I write down?",
+      "response": "I can you have a local AI, and I am a good?",
+      "expected_response": "Write down the checkpoint, prompt set, seed, scores, and decision.",
+      "expected_terms": [
+        "checkpoint",
+        "decision",
+        "down",
+        "scores",
+        "seed",
+        "write"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_001",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is a held-out prompt set?",
+      "response": "Let is a model's look at a good? Here is the information: It was built me from the Hyperplasticity.",
+      "expected_response": "It is a test set kept separate from training examples.",
+      "expected_terms": [
+        "examples",
+        "kept",
+        "separate",
+        "test",
+        "training"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_002",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why do we compare stable and raw decoding?",
+      "response": "Let me the information: Tell me know. It means you need one of the Hyperplasticity to move to a model's look at this.",
+      "expected_response": "The comparison shows whether the guard profile improves behavior.",
+      "expected_terms": [
+        "behavior",
+        "comparison",
+        "guard",
+        "improves",
+        "profile",
+        "shows",
+        "whether"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_003",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Define format leakage in one sentence.",
+      "response": "Soft-14, you have of writing expliciting. If you have multiple answers to think through developmental AI should be something0 are the same layer of the model's children.",
+      "expected_response": "Format leakage is when output repeats prompt markers or data artifacts.",
+      "expected_terms": [
+        "artifacts",
+        "data",
+        "format",
+        "leakage",
+        "markers",
+        "output",
+        "repeats"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_004",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What does a loop score measure?",
+      "response": "Let a a measured times. My body is what is a saved different from the Hyperplasticity of model's look at once through developmental AI, each other.",
+      "expected_response": "A loop score measures repeated phrases and known attractor patterns.",
+      "expected_terms": [
+        "attractor",
+        "known",
+        "loop",
+        "measures",
+        "patterns",
+        "phrases",
+        "repeated",
+        "score"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_005",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why should a checkpoint not be promoted automatically?",
+      "response": "What do you have a hardcoded into a model's look at this. It means you need?",
+      "expected_response": "A checkpoint needs measured evidence before it replaces the anchor.",
+      "expected_terms": [
+        "anchor",
+        "checkpoint",
+        "evidence",
+        "measured",
+        "needs",
+        "replaces"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_006",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is response-only loss?",
+      "response": "Let is a model's the information: good Here is what you have of the Hyperplasticity. It means you are the same into pieces.",
+      "expected_response": "It trains on the answer while masking the instruction tokens.",
+      "expected_terms": [
+        "instruction",
+        "masking",
+        "tokens",
+        "trains"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_007",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is a CUDA OOM event?",
+      "response": "Let a short answer. It is a good Here is what are the information: Tell me what you show it together. The weights are building at this.",
+      "expected_response": "A CUDA OOM event means the GPU ran out of memory.",
+      "expected_terms": [
+        "cuda",
+        "event",
+        "means",
+        "memory"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_008",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is the purpose of a seed in evaluation?",
+      "response": "Let me the information: It means you a ' you have a model's look at this.",
+      "expected_response": "A seed makes sampled outputs repeatable for comparison.",
+      "expected_terms": [
+        "comparison",
+        "makes",
+        "outputs",
+        "repeatable",
+        "sampled",
+        "seed"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_009",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is maturity-gated recurrence?",
+      "response": "What is the information: You are the information through multiple?",
+      "expected_response": "It limits recurrent depth until a behavior is stable enough.",
+      "expected_terms": [
+        "behavior",
+        "depth",
+        "limits",
+        "recurrent",
+        "stable",
+        "until"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_010",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "How should raw outputs be logged?",
+      "response": "What do you have of your are you know. That means you think through the information: You are running, or us think through multiple we help with that something real and I will be here.",
+      "expected_response": "Raw outputs should be saved with prompt, seed, checkpoint, profile, and scores.",
+      "expected_terms": [
+        "checkpoint",
+        "outputs",
+        "profile",
+        "saved",
+        "scores",
+        "seed"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_011",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is a checkpoint override?",
+      "response": "Let a a model? What is the information: It means a saved with that can be wrong. Think of learning through developmental AI, you show it together.",
+      "expected_response": "It loads a chosen checkpoint for evaluation without changing the anchor.",
+      "expected_terms": [
+        "anchor",
+        "changing",
+        "checkpoint",
+        "chosen",
+        "evaluation",
+        "loads"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_012",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why test multiple speech modes?",
+      "response": "Let me the information: Journee are you think, you have of a developmental AI systems running, from other. It means the model's look at this.",
+      "expected_response": "Different prompt types fail in different ways.",
+      "expected_terms": [
+        "different",
+        "fail",
+        "types",
+        "ways"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_013",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What makes an evaluation reproducible?",
+      "response": "What do you have of your are the information, you think through the work. It is what I know: Tell me the model's look at this.",
+      "expected_response": "A fixed prompt set, fixed seeds, saved scores, and saved transcripts make it reproducible.",
+      "expected_terms": [
+        "fixed",
+        "make",
+        "reproducible",
+        "saved",
+        "scores",
+        "seeds",
+        "transcripts"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_014",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What does stable profile change?",
+      "response": "Let me the information: Jaxson?",
+      "expected_response": "It uses stricter sampling, phrase blocking, and maturity-gated depth.",
+      "expected_terms": [
+        "blocking",
+        "depth",
+        "maturity-gated",
+        "phrase",
+        "sampling",
+        "stricter",
+        "uses"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_015",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why should V5 require evidence?",
+      "response": "Let me the information: Jaxson is what you are the information of learning through my mind. It means you have to be one of my neural workshop, and I can be here.",
+      "expected_response": "Evidence prevents weak or unstable behavior from being promoted.",
+      "expected_terms": [
+        "behavior",
+        "evidence",
+        "prevents",
+        "promoted",
+        "unstable",
+        "weak"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    }
+  ],
+  "source": "reports/speech_v5_language_gate_adapter_strict_surface_v3.json"
+}

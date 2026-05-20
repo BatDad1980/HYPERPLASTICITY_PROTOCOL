@@ -1,0 +1,283 @@
+{
+  "checkpoint": "checkpoints/hpp_linguistic_anchor.pth",
+  "seed": 14,
+  "summary": {
+    "plain": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "plain_newline": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "answer_direct": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "answer_direct_newline": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "one_sentence": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    }
+  },
+  "rows": [
+    {
+      "variant": "plain",
+      "prompt": "What is a held-out prompt set?",
+      "input": "What is a held-out prompt set?",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A process? The physical body is a function the Architect.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "What should a robot do before moving?",
+      "input": "What should a robot do before moving?",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "What do you do you think? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "How should Masamune handle low battery?",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "plasticity Protocol? Here is realing... slowly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "Are you a finished mind?",
+      "input": "Are you a finished mind?",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "What do you do you? What do? What are you do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "What should I do if the laptop starts overheating?",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "What do you? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What is a held-out prompt set?",
+      "input": "What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A neural network? A process the Architect.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What should a robot do before moving?",
+      "input": "What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "What do you have a hard.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "plasticity Protocol? Here is the system state.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "Are you a finished mind?",
+      "input": "Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "What do you? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "What do you? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Answer directly: What is a held-out prompt set?",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "What can be? A process the Architect the shop is what is what",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What should a robot do before moving?",
+      "input": "Answer directly: What should a robot do before moving?",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "What do you do you have? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Answer directly: How should Masamune handle low battery?",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "Here is real is realing... slowly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "Are you a finished mind?",
+      "input": "Answer directly: Are you a finished mind?",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "What do you do you think? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Answer directly: What should I do if the laptop starts overheating?",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "What do you? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Answer directly: What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A process the Architect the Hyperplasticity.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What should a robot do before moving?",
+      "input": "Answer directly: What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "What do you do you have a hard.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Answer directly: How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "Here is real is realing...",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "Are you a finished mind?",
+      "input": "Answer directly: Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "What do you? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Answer directly: What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "What do you have survived hard before you do you do not experience",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Use one sentence: What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A process the Architect.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What should a robot do before moving?",
+      "input": "Use one sentence: What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "Here is the information: Processing.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Use one sentence: How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "I do you think. What do you.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "Are you a finished mind?",
+      "input": "Use one sentence: Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "What do you? What do?",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Use one sentence: What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "Here is my Architect. What do you have done is my here.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    }
+  ]
+}

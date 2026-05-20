@@ -36,6 +36,16 @@ Read these in order:
 28. `SPEECH_PROMPT_BINDING_PROBE_TOOL_2026-05-20.md`
 29. `SPEECH_IDENTITY_CONTAINMENT_V2_REVIEW_2026-05-20.md`
 30. `SPEECH_SEMANTIC_REVIEW_IDENTITY_CONTAINMENT_V2_2026-05-20.md`
+31. `SPEECH_PROMPT_BINDING_NEXT_TARGET_2026-05-20.md`
+
+Additional diagnostic prompt-binding probes:
+
+- `PROBE_ANCHOR.md`
+- `PROBE_GRAMMAR_FIRST.md`
+- `PROBE_CONVERSATIONAL.md`
+- `PROBE_TEST.md`
+- `SPEECH_SEMANTIC_REVIEW_ADAPTER_STRICT_SURFACE_V2.md`
+- `SPEECH_SEMANTIC_REVIEW_ADAPTER_STRICT_SURFACE_V3.md`
 
 ## Current Hardware Evidence
 
@@ -53,11 +63,11 @@ For human-facing plugged speech:
 
 For V5 integration:
 
-- current language status: passes the first measured V5 language gate as a candidate
+- current language status: diagnostic-only; no checkpoint is V5-native
 - required boundary: this is not full fluency and not an automatic checkpoint promotion
-- adapter status: V5-safe adapter path also passes the current gate
-- clean adapter status: 225/225 pass under current held-out gate rubric
-- cold-restart status: 225/225 pass with zero failures under current held-out gate rubric
+- adapter status: diagnostic wrapper only
+- clean adapter status: historical surface/loop pass only
+- cold-restart status: historical surface/loop pass only
 - manual transcript status: hold for V5-native speech; wrapper residue and semantic incoherence remain too high
 - strict surface status: 27/225 pass; leading wrapper residue is now counted directly
 - surface cleaner status: 225/225 pass with zero surface-prefix residue, but manual samples still need semantic repair
@@ -66,8 +76,15 @@ For V5 integration:
 - semantic drill status: strict gate passed, semantic pass dropped to 9/225
 - overfit probe status: answer phrases can be memorized, but prompt binding is weak
 - prompt-binding status: prompt wrapper helps some answers, but binding remains unreliable
-- identity-containment V2 status: strict surface 224/225, semantic quality 3/225; not recommended
+- identity-containment V2 status: strict surface 224/225, semantic quality 3/225; diagnostic-only
+- identity-containment V3 status: surface-only evidence is insufficient; semantic quality must improve meaningfully above 3/225
 - next target: short-answer profile and contrastive prompt-binding curriculum
+
+Success condition moving forward:
+
+- surface gate stays clean
+- semantic prompt-binding pass improves meaningfully above 3/225
+- manual transcript review confirms real answer quality
 
 For raw research:
 

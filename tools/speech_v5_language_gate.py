@@ -260,9 +260,14 @@ def gate_decision(raw_summary: dict, stable_summary: dict, targets: dict) -> dic
         "stable_pass_rate_over_target": stable_summary["pass_rate"] >= targets["min_pass_rate"],
     }
     return {
-        "ready_for_v5_native": all(checks.values()),
+        "surface_gate_pass": all(checks.values()),
+        "ready_for_v5_native": False,
         "checks": checks,
         "targets": targets,
+        "boundary": (
+            "Surface/loop gate only. V5-native readiness requires semantic "
+            "prompt-binding improvement and manual transcript review."
+        ),
     }
 
 
@@ -276,10 +281,15 @@ def stable_only_gate_decision(stable_summary: dict, targets: dict) -> dict:
         "stable_pass_rate_over_target": stable_summary["pass_rate"] >= targets["min_pass_rate"],
     }
     return {
-        "ready_for_v5_native": all(checks.values()),
+        "surface_gate_pass": all(checks.values()),
+        "ready_for_v5_native": False,
         "checks": checks,
         "targets": targets,
         "comparison_boundary": "Stable-only adapter run; raw-vs-stable comparison must come from a separate two-profile gate artifact.",
+        "boundary": (
+            "Surface/loop gate only. V5-native readiness requires semantic "
+            "prompt-binding improvement and manual transcript review."
+        ),
     }
 
 

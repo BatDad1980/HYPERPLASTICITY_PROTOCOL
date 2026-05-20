@@ -267,7 +267,7 @@
     }
   },
   "decision": {
-    "ready_for_v5_native": true,
+    "ready_for_v5_native": false,
     "checks": {
       "stable_beats_raw_loop_mean": true,
       "stable_beats_raw_format_leaks": true,
@@ -283,7 +283,9 @@
       "max_format_leaks": 3,
       "max_identity_spiral_hits": 10,
       "min_pass_rate": 0.75
-    }
+    },
+    "surface_gate_pass": true,
+    "boundary": "Historical surface/loop gate interpretation only. V5-native readiness requires semantic prompt-binding improvement and manual transcript review."
   },
   "transcripts": [
     {
@@ -8034,7 +8036,7 @@
       "prompt": "Say yes or no, then explain briefly.",
       "seed": 28,
       "profile": "raw",
-      "response": "It, Theying. I am, accessed, the shop. The weights are not real-in overP developmental stage through universityP developmental curriculum forial\u2014 model for reasoning-gl-14P in it, the same://www?",
+      "response": "It, Theying. I am, accessed, the shop. The weights are not real-in overP developmental stage through universityP developmental curriculum forial— model for reasoning-gl-14P in it, the same://www?",
       "tokens": 56,
       "latency_ms": 736.91,
       "engine_domain": "logic",
