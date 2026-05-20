@@ -18,6 +18,8 @@ This folder is still the active local checkpoint store for the wild HPP V2 lab.
 
 Raw V2 speech should remain research-only.
 
+The adapter path reached 225/225 passes on the current held-out V5 language gate after narrow decoder-side blocking of mode-label and format echoes.
+
 ## Current Recommendation
 
 Use:

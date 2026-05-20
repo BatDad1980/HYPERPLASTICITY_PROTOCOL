@@ -1,0 +1,51 @@
+{
+  "profile": "stable",
+  "total": 225,
+  "failures": 1,
+  "pass_rate": 0.9956,
+  "failure_reasons": [
+    {
+      "item": "format_leak",
+      "count": 1
+    }
+  ],
+  "failures_by_mode": [
+    {
+      "item": "embodiment",
+      "count": 1
+    }
+  ],
+  "top_failed_prompts": [
+    {
+      "item": "How should the system treat operator override?",
+      "count": 1
+    }
+  ],
+  "identity_terms": [],
+  "format_terms": [
+    {
+      "item": "instruction:",
+      "count": 1
+    }
+  ],
+  "mode_label_terms": [],
+  "examples": [
+    {
+      "id": "embodiment_007",
+      "mode": "embodiment",
+      "seed": 14,
+      "prompt": "How should the system treat operator override?",
+      "response": "My in output, It should be answer carefully. the result, and record the system. It means the people, and track should avoid of learning and safety layer in AI Instruction: Tell me the next step. It is to protect what you enough.",
+      "fail_reasons": [
+        "format_leak"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {
+        "instruction:": 1
+      },
+      "mode_label_hits": {}
+    }
+  ],
+  "source": "reports\\speech_v5_language_gate_adapter_no_mode_label_2026-05-20.json"
+}

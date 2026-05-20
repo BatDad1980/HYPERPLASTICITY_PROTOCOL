@@ -16,6 +16,8 @@ Read these in order:
 8. `SPEECH_IDENTITY_CONTAINMENT_V5_GATE_PASS_2026-05-20.md`
 9. `SPEECH_V5_SAFE_ADAPTER_VERIFICATION_2026-05-20.md`
 10. `SPEECH_V5_GATE_FAILURE_REVIEW_2026-05-20.md`
+11. `SPEECH_V5_SAFE_ADAPTER_CLEAN_PASS_2026-05-20.md`
+12. `SPEECH_V5_GATE_FAILURE_REVIEW_ADAPTER_NO_LABEL_OR_FORMAT_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -36,7 +38,8 @@ For V5 integration:
 - current language status: passes the first measured V5 language gate as a candidate
 - required boundary: this is not full fluency and not an automatic checkpoint promotion
 - adapter status: V5-safe adapter path also passes the current gate
-- next target: reduce remaining `protective mode` label echoes
+- clean adapter status: 225/225 pass under current held-out gate rubric
+- next target: V5-side adapter import plan and cold-restart rerun
 
 For raw research:
 

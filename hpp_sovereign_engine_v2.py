@@ -349,6 +349,9 @@ class HPP_SovereignEngine_V2:
             "I protect",
             "consciousness",
             "protect the fortress",
+            "protective mode",
+            "Instruction:",
+            "Response:",
         ]
         sequences = []
         for phrase in blocked_phrases:
