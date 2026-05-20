@@ -30,6 +30,8 @@ Read these in order:
 22. `SPEECH_SEMANTIC_QUALITY_GATE_2026-05-20.md`
 23. `SPEECH_SEMANTIC_REVIEW_ADAPTER_SURFACE_CLEANER_2026-05-20.md`
 24. `SPEECH_SEMANTIC_REVIEW_SURFACE_QUALITY_V1_2026-05-20.md`
+25. `SPEECH_SEMANTIC_REVIEW_SEMANTIC_DRILL_V1_2026-05-20.md`
+26. `SPEECH_SEMANTIC_OVERFIT_PROBE_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -57,7 +59,9 @@ For V5 integration:
 - surface cleaner status: 225/225 pass with zero surface-prefix residue, but manual samples still need semantic repair
 - surface-quality V1 training status: strict gate passed, but manual review still holds it from V5-native speech
 - semantic quality status: surface cleaner 5/225, surface-quality V1 16/225
-- next target: stronger semantic repair curriculum, then strict plus semantic plus manual gates
+- semantic drill status: strict gate passed, semantic pass dropped to 9/225
+- overfit probe status: answer phrases can be memorized, but prompt binding is weak
+- next target: prompt-binding probe comparing exact training prefix, plain prompt, and adapter prompt
 
 For raw research:
 
