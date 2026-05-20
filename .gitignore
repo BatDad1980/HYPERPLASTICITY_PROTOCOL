@@ -15,6 +15,7 @@ output2.txt
 output.log
 read_pdf.py
 hpp_brain_checkpoint.pth
+scratch/
 
 # OS generated files
 .DS_Store

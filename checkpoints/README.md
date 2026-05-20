@@ -11,6 +11,7 @@ This folder is still the active local checkpoint store for the wild HPP V2 lab.
 - `hpp_speech_mode_routing_v2.pth` - useful experimental checkpoint; stronger shallow evidence, weaker multi-seed mode maxima than grammar-first.
 - `hpp_speech_noisy_repair_masked_v1.pth` - useful developmental-noise evidence; not a plugged baseline.
 - `hpp_speech_identity_containment_v1.pth` - local candidate that passed the first measured V5 language gate when used with the tightened stable profile.
+- `hpp_speech_surface_quality_v1.pth` - local experimental repair checkpoint; strict numeric gate passed, but manual review did not show enough semantic improvement for recommendation.
 
 ## V5-Safe Adapter Candidate
 
@@ -19,6 +20,8 @@ This folder is still the active local checkpoint store for the wild HPP V2 lab.
 Raw V2 speech should remain research-only.
 
 The adapter path reached 225/225 passes on the current held-out V5 language gate after narrow decoder-side blocking of mode-label and format echoes.
+
+The later `hpp_speech_surface_quality_v1.pth` checkpoint is not the recommended adapter checkpoint yet. It preserved numeric stability but still needs semantic repair.
 
 ## Current Recommendation
 

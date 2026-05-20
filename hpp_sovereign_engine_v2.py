@@ -593,6 +593,7 @@ class HPP_SovereignEngine_V2:
         # Clean up whitespace
         text = re.sub(r'\s+', ' ', text).strip()
         text = re.sub(r'^(?:Instruction|Response)\s*[:.,?-]?\s*', '', text, flags=re.IGNORECASE).strip()
+        text = re.sub(r'^[^\w]+', '', text).strip()
         
         return text
 
