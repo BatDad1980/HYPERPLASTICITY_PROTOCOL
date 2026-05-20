@@ -15,6 +15,7 @@ This folder contains reproducible utility scripts for the wild HPP V2 lab.
 - `speech_loop_regression.py` - lightweight loop/attractor regression.
 - `speech_mode_regression.py` - mode-specific speech regression for plain, technical, protective, embodiment, and identity prompts.
 - `speech_multiseed_eval.py` - multi-seed raw-vs-stable speech profile evaluation.
+- `speech_v5_language_gate.py` - held-out V5 language gate evaluator with full transcript artifacts.
 
 ## Hardware / Field Lab
 

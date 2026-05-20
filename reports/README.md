@@ -12,6 +12,7 @@ Read these in order:
 4. `SPEECH_MODE_ROUTING_AND_MATURITY_GATE_2026-05-17.md`
 5. `SPEECH_STABLE_PROFILE_MULTI_SEED_2026-05-17.md`
 6. `HPP_V2_CURRENT_STATUS_2026-05-18.md`
+7. `SPEECH_V5_LANGUAGE_GATE_2026-05-19.md`
 
 ## Current Hardware Evidence
 
@@ -26,6 +27,12 @@ For human-facing plugged speech:
 - checkpoint: `checkpoints/hpp_speech_grammar_first_v1.pth`
 - engine: `hpp_sovereign_engine_v2.py`
 - inference option: `speech_profile="stable"`
+
+For V5 integration:
+
+- current language status: not V5-native yet
+- reason: held-out gate still shows too much identity/developmental vocabulary leakage
+- next target: identity containment repair pass
 
 For raw research:
 
