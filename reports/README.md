@@ -34,6 +34,8 @@ Read these in order:
 26. `SPEECH_SEMANTIC_OVERFIT_PROBE_2026-05-20.md`
 27. `SPEECH_PROMPT_BINDING_PROBE_2026-05-20.md`
 28. `SPEECH_PROMPT_BINDING_PROBE_TOOL_2026-05-20.md`
+29. `SPEECH_IDENTITY_CONTAINMENT_V2_REVIEW_2026-05-20.md`
+30. `SPEECH_SEMANTIC_REVIEW_IDENTITY_CONTAINMENT_V2_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -64,6 +66,7 @@ For V5 integration:
 - semantic drill status: strict gate passed, semantic pass dropped to 9/225
 - overfit probe status: answer phrases can be memorized, but prompt binding is weak
 - prompt-binding status: prompt wrapper helps some answers, but binding remains unreliable
+- identity-containment V2 status: strict surface 224/225, semantic quality 3/225; not recommended
 - next target: short-answer profile and contrastive prompt-binding curriculum
 
 For raw research:

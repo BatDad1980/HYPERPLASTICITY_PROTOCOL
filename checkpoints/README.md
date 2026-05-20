@@ -14,6 +14,7 @@ This folder is still the active local checkpoint store for the wild HPP V2 lab.
 - `hpp_speech_surface_quality_v1.pth` - local experimental repair checkpoint; strict numeric gate passed, but manual review did not show enough semantic improvement for recommendation.
 - `hpp_speech_semantic_drill_v1.pth` - local experimental semantic drill checkpoint; strict numeric gate passed, semantic review regressed.
 - `hpp_speech_semantic_overfit_probe_v1.pth` - local overfit probe checkpoint; memorized answer phrases but showed weak prompt binding and cross-contamination.
+- `hpp_speech_identity_containment_v2.pth` - local diagnostic checkpoint; strict surface gate nearly passed, semantic review failed.
 
 ## V5-Safe Adapter Candidate
 
@@ -26,6 +27,8 @@ The adapter path reached 225/225 passes on the current held-out V5 language gate
 The later `hpp_speech_surface_quality_v1.pth` checkpoint is not the recommended adapter checkpoint yet. It preserved numeric stability but still needs semantic repair.
 
 The semantic drill and overfit probe checkpoints are diagnostic artifacts only.
+
+`hpp_speech_identity_containment_v2.pth` is also diagnostic only unless a later review supersedes this note.
 
 ## Current Recommendation
 
