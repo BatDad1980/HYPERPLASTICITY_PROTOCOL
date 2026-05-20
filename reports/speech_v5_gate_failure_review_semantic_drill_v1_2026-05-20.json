@@ -1,0 +1,15 @@
+{
+  "profile": "stable",
+  "total": 225,
+  "failures": 0,
+  "pass_rate": 1.0,
+  "failure_reasons": [],
+  "failures_by_mode": [],
+  "top_failed_prompts": [],
+  "identity_terms": [],
+  "format_terms": [],
+  "surface_prefix_terms": [],
+  "mode_label_terms": [],
+  "examples": [],
+  "source": "reports\\speech_v5_language_gate_semantic_drill_v1_2026-05-20.json"
+}
