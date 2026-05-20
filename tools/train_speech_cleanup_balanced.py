@@ -69,7 +69,7 @@ def row_to_tokens_and_targets(engine, row: dict, seq_len: int, response_only_los
     if len(tokens) < seq_len:
         pad = seq_len - len(tokens)
         tokens += [engine.enc.eot_token] * pad
-        targets += [-100] * pad
+        targets += [engine.enc.eot_token] + [-100] * (pad - 1)
     return tokens, targets
 
 

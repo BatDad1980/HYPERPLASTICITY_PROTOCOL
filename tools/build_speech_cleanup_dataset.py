@@ -91,6 +91,9 @@ def row_key(row: dict) -> tuple[str, str]:
 
 def normalize_row(row: dict) -> dict:
     out = dict(row)
+    if "instruction" in out and "response" in out:
+        out["prompt_text"] = out["instruction"]
+        out["response"] = out["response"]
     if "text" not in out and "instruction" in out and "response" in out:
         out["text"] = f"### Instruction:\n{out['instruction']}\n\n### Response:\n{out['response']}"
     out.setdefault("category", "uncategorized")
