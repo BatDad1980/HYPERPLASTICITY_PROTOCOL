@@ -27,6 +27,9 @@ Read these in order:
 19. `SPEECH_V5_GATE_FAILURE_REVIEW_ADAPTER_SURFACE_CLEANER_2026-05-20.md`
 20. `SPEECH_SURFACE_QUALITY_V1_TRAINING_2026-05-20.md`
 21. `SPEECH_V5_GATE_FAILURE_REVIEW_SURFACE_QUALITY_V1_2026-05-20.md`
+22. `SPEECH_SEMANTIC_QUALITY_GATE_2026-05-20.md`
+23. `SPEECH_SEMANTIC_REVIEW_ADAPTER_SURFACE_CLEANER_2026-05-20.md`
+24. `SPEECH_SEMANTIC_REVIEW_SURFACE_QUALITY_V1_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -53,7 +56,8 @@ For V5 integration:
 - strict surface status: 27/225 pass; leading wrapper residue is now counted directly
 - surface cleaner status: 225/225 pass with zero surface-prefix residue, but manual samples still need semantic repair
 - surface-quality V1 training status: strict gate passed, but manual review still holds it from V5-native speech
-- next target: stronger semantic repair curriculum and manual transcript quality gate
+- semantic quality status: surface cleaner 5/225, surface-quality V1 16/225
+- next target: stronger semantic repair curriculum, then strict plus semantic plus manual gates
 
 For raw research:
 
