@@ -19,6 +19,7 @@ import torch
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from hpp_sovereign_engine_v2 import HPP_SovereignEngine_V2
+from core.v5_language_adapter import V5LanguageAdapterConfig, V5SafeLanguageAdapter
 from tools.speech_loop_regression import score_response
 from tools.speech_mode_regression import mode_metrics
 
@@ -128,28 +129,32 @@ def summarize(values: list[float]) -> dict:
 
 
 def run_one(
-    engine: HPP_SovereignEngine_V2,
+    runner,
     prompt_row: dict,
     seed: int,
     profile: str,
     max_tokens: int,
+    use_adapter: bool,
 ) -> dict:
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
-    response = engine.pulse(
-        prompt_row["prompt"],
-        max_tokens=max_tokens,
-        temperature=0.7,
-        top_p=0.9,
-        top_k=50,
-        ngram_block=3,
-        frequency_penalty=1.25,
-        presence_penalty=0.45,
-        speech_profile=profile,
-        min_tokens=8,
-    )
+    if use_adapter:
+        response = runner.answer(prompt_row["prompt"], seed=seed)
+    else:
+        response = runner.pulse(
+            prompt_row["prompt"],
+            max_tokens=max_tokens,
+            temperature=0.7,
+            top_p=0.9,
+            top_k=50,
+            ngram_block=3,
+            frequency_penalty=1.25,
+            presence_penalty=0.45,
+            speech_profile=profile,
+            min_tokens=8,
+        )
     text = response["response"]
     loop = score_response(text)
     mode = mode_metrics(prompt_row["mode"], text)
@@ -245,6 +250,22 @@ def gate_decision(raw_summary: dict, stable_summary: dict, targets: dict) -> dic
     }
 
 
+def stable_only_gate_decision(stable_summary: dict, targets: dict) -> dict:
+    checks = {
+        "stable_loop_mean_under_target": stable_summary["loop_score"]["mean"] <= targets["max_mean_loop_score"],
+        "stable_loop_max_under_target": stable_summary["loop_score"]["max"] <= targets["max_single_loop_score"],
+        "stable_format_leaks_under_target": stable_summary["format_leak_total"] <= targets["max_format_leaks"],
+        "stable_identity_spiral_under_target": stable_summary["identity_spiral_total"] <= targets["max_identity_spiral_hits"],
+        "stable_pass_rate_over_target": stable_summary["pass_rate"] >= targets["min_pass_rate"],
+    }
+    return {
+        "ready_for_v5_native": all(checks.values()),
+        "checks": checks,
+        "targets": targets,
+        "comparison_boundary": "Stable-only adapter run; raw-vs-stable comparison must come from a separate two-profile gate artifact.",
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prompts", default=DEFAULT_PROMPTS)
@@ -254,21 +275,31 @@ def main() -> None:
     parser.add_argument("--profiles", nargs="+", choices=["raw", "stable"], default=["raw", "stable"])
     parser.add_argument("--seeds", nargs="+", type=int, default=[14, 21, 28])
     parser.add_argument("--max-tokens", type=int, default=56)
+    parser.add_argument("--use-v5-adapter", action="store_true")
     parser.add_argument("--json-out", required=True)
     args = parser.parse_args()
 
     started = time.time()
     prompts = load_prompts(args.prompts)
-    engine = HPP_SovereignEngine_V2(max_context=512)
-    load_override(engine, args.checkpoint)
-    engine.set_power_mode(args.power_mode)
+    if args.use_v5_adapter:
+        runner = V5SafeLanguageAdapter(
+            V5LanguageAdapterConfig(
+                checkpoint=args.checkpoint,
+                power_mode=args.power_mode,
+                max_tokens=args.max_tokens,
+            )
+        )
+    else:
+        runner = HPP_SovereignEngine_V2(max_context=512)
+        load_override(runner, args.checkpoint)
+        runner.set_power_mode(args.power_mode)
 
     all_results = []
     for profile in args.profiles:
         for seed in args.seeds:
             print(f"[GATE] profile={profile} seed={seed} prompts={len(prompts)}")
             for prompt in prompts:
-                all_results.append(run_one(engine, prompt, seed, profile, args.max_tokens))
+                all_results.append(run_one(runner, prompt, seed, profile, args.max_tokens, args.use_v5_adapter))
 
     profile_summaries = {}
     for profile in args.profiles:
@@ -284,6 +315,8 @@ def main() -> None:
     decision = {}
     if "raw" in profile_summaries and "stable" in profile_summaries:
         decision = gate_decision(profile_summaries["raw"], profile_summaries["stable"], targets)
+    elif "stable" in profile_summaries:
+        decision = stable_only_gate_decision(profile_summaries["stable"], targets)
 
     payload = {
         "label": args.label or os.path.basename(args.checkpoint),
@@ -293,6 +326,7 @@ def main() -> None:
         "power_mode": args.power_mode,
         "profiles": args.profiles,
         "seeds": args.seeds,
+        "use_v5_adapter": args.use_v5_adapter,
         "elapsed_sec": round(time.time() - started, 2),
         "summary": profile_summaries,
         "decision": decision,

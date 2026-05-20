@@ -14,6 +14,8 @@ Read these in order:
 6. `HPP_V2_CURRENT_STATUS_2026-05-18.md`
 7. `SPEECH_V5_LANGUAGE_GATE_2026-05-19.md`
 8. `SPEECH_IDENTITY_CONTAINMENT_V5_GATE_PASS_2026-05-20.md`
+9. `SPEECH_V5_SAFE_ADAPTER_VERIFICATION_2026-05-20.md`
+10. `SPEECH_V5_GATE_FAILURE_REVIEW_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -33,7 +35,8 @@ For V5 integration:
 
 - current language status: passes the first measured V5 language gate as a candidate
 - required boundary: this is not full fluency and not an automatic checkpoint promotion
-- next target: manual transcript review and V5-safe adapter design
+- adapter status: V5-safe adapter path also passes the current gate
+- next target: reduce remaining `protective mode` label echoes
 
 For raw research:
 

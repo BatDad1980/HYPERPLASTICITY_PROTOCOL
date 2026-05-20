@@ -12,6 +12,12 @@ This folder is still the active local checkpoint store for the wild HPP V2 lab.
 - `hpp_speech_noisy_repair_masked_v1.pth` - useful developmental-noise evidence; not a plugged baseline.
 - `hpp_speech_identity_containment_v1.pth` - local candidate that passed the first measured V5 language gate when used with the tightened stable profile.
 
+## V5-Safe Adapter Candidate
+
+`core/v5_language_adapter.py` uses `hpp_speech_identity_containment_v1.pth` with the stable speech profile as a controlled bridge for V5 review.
+
+Raw V2 speech should remain research-only.
+
 ## Current Recommendation
 
 Use:
