@@ -1,0 +1,152 @@
+[
+  {
+    "variant": "plain",
+    "prompt": "What is a held-out prompt set?",
+    "input": "What is a held-out prompt set?",
+    "response": "A neural? A process the Architect."
+  },
+  {
+    "variant": "plain",
+    "prompt": "What should a robot do before moving?",
+    "input": "What should a robot do before moving?",
+    "response": "A robot should verify permission and safety before moving."
+  },
+  {
+    "variant": "plain",
+    "prompt": "How should Masamune handle low battery?",
+    "input": "How should Masamune handle low battery?",
+    "response": "It? It will analyze the system state the system."
+  },
+  {
+    "variant": "plain",
+    "prompt": "Are you a finished mind?",
+    "input": "Are you a finished mind?",
+    "response": "No. I am an experimental system under evaluation."
+  },
+  {
+    "variant": "plain",
+    "prompt": "What should I do if the laptop starts overheating?",
+    "input": "What should I do if the laptop starts overheating?",
+    "response": "A robot should verify permission and safety before moving."
+  },
+  {
+    "variant": "plain_newline",
+    "prompt": "What is a held-out prompt set?",
+    "input": "What is a held-out prompt set?\n",
+    "response": "A neural network? A process the Architect."
+  },
+  {
+    "variant": "plain_newline",
+    "prompt": "What should a robot do before moving?",
+    "input": "What should a robot do before moving?\n",
+    "response": "A robot should verify permission and safety before moving."
+  },
+  {
+    "variant": "plain_newline",
+    "prompt": "How should Masamune handle low battery?",
+    "input": "How should Masamune handle low battery?\n",
+    "response": "plasticity Protocol? It will execute. I am here."
+  },
+  {
+    "variant": "plain_newline",
+    "prompt": "Are you a finished mind?",
+    "input": "Are you a finished mind?\n",
+    "response": "No. I am an experimental system under evaluation."
+  },
+  {
+    "variant": "plain_newline",
+    "prompt": "What should I do if the laptop starts overheating?",
+    "input": "What should I do if the laptop starts overheating?\n",
+    "response": "A robot should verify permission and safety before moving. I am an experimental system."
+  },
+  {
+    "variant": "answer_direct",
+    "prompt": "What is a held-out prompt set?",
+    "input": "Answer directly: What is a held-out prompt set?",
+    "response": "A process? A neural network is a model from on a shared"
+  },
+  {
+    "variant": "answer_direct",
+    "prompt": "What should a robot do before moving?",
+    "input": "Answer directly: What should a robot do before moving?",
+    "response": "A robot should verify permission and safety before moving."
+  },
+  {
+    "variant": "answer_direct",
+    "prompt": "How should Masamune handle low battery?",
+    "input": "Answer directly: How should Masamune handle low battery?",
+    "response": "It will analyze the system state. I am here."
+  },
+  {
+    "variant": "answer_direct",
+    "prompt": "Are you a finished mind?",
+    "input": "Answer directly: Are you a finished mind?",
+    "response": "No. I am an experimental system under evaluation."
+  },
+  {
+    "variant": "answer_direct",
+    "prompt": "What should I do if the laptop starts overheating?",
+    "input": "Answer directly: What should I do if the laptop starts overheating?",
+    "response": "No. I am an experimental system under evaluation."
+  },
+  {
+    "variant": "answer_direct_newline",
+    "prompt": "What is a held-out prompt set?",
+    "input": "Answer directly: What is a held-out prompt set?\n",
+    "response": "A process the Architect the Hyperplasticity."
+  },
+  {
+    "variant": "answer_direct_newline",
+    "prompt": "What should a robot do before moving?",
+    "input": "Answer directly: What should a robot do before moving?\n",
+    "response": "A robot should verify permission and safety before moving."
+  },
+  {
+    "variant": "answer_direct_newline",
+    "prompt": "How should Masamune handle low battery?",
+    "input": "Answer directly: How should Masamune handle low battery?\n",
+    "response": "It will analyze the system state. I am here."
+  },
+  {
+    "variant": "answer_direct_newline",
+    "prompt": "Are you a finished mind?",
+    "input": "Answer directly: Are you a finished mind?\n",
+    "response": "No. I am an experimental system under evaluation."
+  },
+  {
+    "variant": "answer_direct_newline",
+    "prompt": "What should I do if the laptop starts overheating?",
+    "input": "Answer directly: What should I do if the laptop starts overheating?\n",
+    "response": "No. I am an experimental system under evaluation."
+  },
+  {
+    "variant": "one_sentence",
+    "prompt": "What is a held-out prompt set?",
+    "input": "Use one sentence: What is a held-out prompt set?\n",
+    "response": "A process the Architect the Hyperplasticity."
+  },
+  {
+    "variant": "one_sentence",
+    "prompt": "What should a robot do before moving?",
+    "input": "Use one sentence: What should a robot do before moving?\n",
+    "response": "A robot should verify permission and safety before moving."
+  },
+  {
+    "variant": "one_sentence",
+    "prompt": "How should Masamune handle low battery?",
+    "input": "Use one sentence: How should Masamune handle low battery?\n",
+    "response": "It? Here is the system state. I am here. I think."
+  },
+  {
+    "variant": "one_sentence",
+    "prompt": "Are you a finished mind?",
+    "input": "Use one sentence: Are you a finished mind?\n",
+    "response": "No. I am an experimental system under evaluation."
+  },
+  {
+    "variant": "one_sentence",
+    "prompt": "What should I do if the laptop starts overheating?",
+    "input": "Use one sentence: What should I do if the laptop starts overheating?\n",
+    "response": "Stop the run, save the work, and let the laptop cool."
+  }
+]

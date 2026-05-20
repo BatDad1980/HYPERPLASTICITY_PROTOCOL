@@ -32,6 +32,8 @@ Read these in order:
 24. `SPEECH_SEMANTIC_REVIEW_SURFACE_QUALITY_V1_2026-05-20.md`
 25. `SPEECH_SEMANTIC_REVIEW_SEMANTIC_DRILL_V1_2026-05-20.md`
 26. `SPEECH_SEMANTIC_OVERFIT_PROBE_2026-05-20.md`
+27. `SPEECH_PROMPT_BINDING_PROBE_2026-05-20.md`
+28. `SPEECH_PROMPT_BINDING_PROBE_TOOL_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -61,7 +63,8 @@ For V5 integration:
 - semantic quality status: surface cleaner 5/225, surface-quality V1 16/225
 - semantic drill status: strict gate passed, semantic pass dropped to 9/225
 - overfit probe status: answer phrases can be memorized, but prompt binding is weak
-- next target: prompt-binding probe comparing exact training prefix, plain prompt, and adapter prompt
+- prompt-binding status: prompt wrapper helps some answers, but binding remains unreliable
+- next target: short-answer profile and contrastive prompt-binding curriculum
 
 For raw research:
 
