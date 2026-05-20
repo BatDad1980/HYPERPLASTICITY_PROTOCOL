@@ -352,6 +352,8 @@ class HPP_SovereignEngine_V2:
             "protective mode",
             "Instruction:",
             "Response:",
+            "Instruction",
+            "Response",
         ]
         sequences = []
         for phrase in blocked_phrases:
@@ -590,6 +592,7 @@ class HPP_SovereignEngine_V2:
         
         # Clean up whitespace
         text = re.sub(r'\s+', ' ', text).strip()
+        text = re.sub(r'^(?:Instruction|Response)\s*[:.,?-]?\s*', '', text, flags=re.IGNORECASE).strip()
         
         return text
 

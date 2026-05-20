@@ -44,17 +44,25 @@ def row_to_text(row: dict) -> str:
 
 
 def row_to_tokens_and_targets(engine, row: dict, seq_len: int, response_only_loss: bool) -> tuple[list[int], list[int]]:
-    text = row_to_text(row)
-    if response_only_loss and "### Response:\n" in text:
-        prefix, response = text.split("### Response:\n", 1)
-        prefix = prefix + "### Response:\n"
+    if response_only_loss and row.get("prompt_text") and row.get("response"):
+        prefix = str(row["prompt_text"]).strip() + "\n"
+        response = str(row["response"]).strip()
         prefix_tokens = engine.enc.encode(prefix)
         response_tokens = engine.enc.encode(response)
         tokens = prefix_tokens + response_tokens
         targets = [-100] * len(prefix_tokens) + response_tokens
     else:
-        tokens = engine.enc.encode(text)
-        targets = tokens.copy()
+        text = row_to_text(row)
+        if response_only_loss and "### Response:\n" in text:
+            prefix, response = text.split("### Response:\n", 1)
+            prefix = prefix + "### Response:\n"
+            prefix_tokens = engine.enc.encode(prefix)
+            response_tokens = engine.enc.encode(response)
+            tokens = prefix_tokens + response_tokens
+            targets = [-100] * len(prefix_tokens) + response_tokens
+        else:
+            tokens = engine.enc.encode(text)
+            targets = tokens.copy()
 
     tokens = tokens[:seq_len]
     targets = targets[:seq_len]
