@@ -12,6 +12,7 @@ Some large datasets are local and ignored by Git. The speech evidence datasets b
 - `SPEECH_MODE_ROUTING_V1.jsonl` - first mode-balanced routing curriculum.
 - `SPEECH_MODE_ROUTING_V2.jsonl` - grammar-anchored mode-routing curriculum.
 - `SPEECH_HELDOUT_V5_GATE_V1.jsonl` - held-out language gate prompt suite for V5 integration readiness.
+- `SPEECH_IDENTITY_CONTAINMENT_V1.jsonl` - bounded-answer repair curriculum for identity containment.
 
 ## Local / Ignored Datasets
 

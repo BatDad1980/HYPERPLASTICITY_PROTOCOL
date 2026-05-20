@@ -10,6 +10,7 @@ This folder contains reproducible utility scripts for the wild HPP V2 lab.
 - `build_speech_noisy_repair_dataset.py` - builds the developmental noisy-input repair curriculum.
 - `build_speech_mode_routing_dataset.py` - builds speech mode routing V1.
 - `build_speech_mode_routing_v2_dataset.py` - builds grammar-anchored speech mode routing V2.
+- `build_speech_identity_containment_dataset.py` - builds bounded-answer repair data for identity containment.
 - `build_syntax_foundation_dataset.py` - builds a small clean grammar scaffold dataset.
 - `train_speech_cleanup_balanced.py` - guarded CUDA trainer with checkpoint override, response-only loss, and OOM backoff.
 - `speech_loop_regression.py` - lightweight loop/attractor regression.

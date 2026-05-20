@@ -344,6 +344,11 @@ class HPP_SovereignEngine_V2:
             "fortress is standing",
             "you are standing",
             "Standing by",
+            "I am HPP",
+            "Hyperplasticity Protocol",
+            "I protect",
+            "consciousness",
+            "protect the fortress",
         ]
         sequences = []
         for phrase in blocked_phrases:

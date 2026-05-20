@@ -13,6 +13,7 @@ Read these in order:
 5. `SPEECH_STABLE_PROFILE_MULTI_SEED_2026-05-17.md`
 6. `HPP_V2_CURRENT_STATUS_2026-05-18.md`
 7. `SPEECH_V5_LANGUAGE_GATE_2026-05-19.md`
+8. `SPEECH_IDENTITY_CONTAINMENT_V5_GATE_PASS_2026-05-20.md`
 
 ## Current Hardware Evidence
 
@@ -30,9 +31,9 @@ For human-facing plugged speech:
 
 For V5 integration:
 
-- current language status: not V5-native yet
-- reason: held-out gate still shows too much identity/developmental vocabulary leakage
-- next target: identity containment repair pass
+- current language status: passes the first measured V5 language gate as a candidate
+- required boundary: this is not full fluency and not an automatic checkpoint promotion
+- next target: manual transcript review and V5-safe adapter design
 
 For raw research:
 
