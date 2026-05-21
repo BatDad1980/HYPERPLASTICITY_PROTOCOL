@@ -74,6 +74,7 @@ def run_probe(args: argparse.Namespace) -> dict:
                 speech_maturity_gate=True,
                 speech_profile=args.speech_profile,
                 min_tokens=3,
+                domain=args.domain,
             )["response"]
             scored = score_item(
                 {
@@ -111,6 +112,7 @@ def run_probe(args: argparse.Namespace) -> dict:
     return {
         "checkpoint": args.checkpoint,
         "seed": args.seed,
+        "domain": args.domain,
         "summary": summary,
         "rows": rows,
     }
@@ -122,6 +124,7 @@ def write_markdown(payload: dict, path: str) -> None:
         "",
         f"Checkpoint: `{payload['checkpoint']}`",
         f"Seed: `{payload['seed']}`",
+        f"Domain: `{payload['domain']}`",
         "",
         "## Summary",
         "",
@@ -157,6 +160,11 @@ def main() -> None:
     parser.add_argument("--top-k", type=int, default=8)
     parser.add_argument("--frequency-penalty", type=float, default=1.05)
     parser.add_argument("--presence-penalty", type=float, default=0.15)
+    parser.add_argument(
+        "--domain",
+        default="auto",
+        choices=["auto", "conversation", "logic", "identity", "synthesis", "none"],
+    )
     parser.add_argument(
         "--speech-profile",
         choices=["raw", "stable", "semantic_short"],

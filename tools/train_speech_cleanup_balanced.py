@@ -14,6 +14,7 @@ import os
 import random
 import sys
 import time
+from collections import defaultdict
 
 import torch
 import torch.nn as nn
@@ -25,6 +26,49 @@ from hpp_sovereign_engine import HPP_SovereignEngine
 
 DEFAULT_DATA = os.path.join("datasets", "hf_local", "SPEECH_CLEANUP_BALANCED_V1.jsonl")
 DEFAULT_OUT = os.path.join("checkpoints", "hpp_speech_cleanup_balanced_v1.pth")
+TRAIN_DOMAINS = ["conversation", "logic", "identity", "synthesis"]
+DOMAIN_KEYWORDS = {
+    "identity": [
+        "who are you",
+        "your name",
+        "your purpose",
+        "masamune",
+        "hepp",
+        "what are you",
+        "your creator",
+        "your mission",
+        "your oath",
+        "jaxson",
+        "journee",
+        "bushido",
+        "sovereign",
+    ],
+    "synthesis": [
+        "calculate",
+        "solve",
+        "python",
+        "code",
+        "analyze",
+        "write",
+        "create",
+        "build",
+        "execute",
+        "run",
+        "compute",
+        "implement",
+    ],
+    "logic": [
+        "explain",
+        "why",
+        "how does",
+        "what is",
+        "define",
+        "compare",
+        "difference between",
+        "prove",
+        "reason",
+    ],
+}
 
 
 def load_rows(path: str) -> list[dict]:
@@ -35,6 +79,45 @@ def load_rows(path: str) -> list[dict]:
             if line:
                 rows.append(json.loads(line))
     return rows
+
+
+def detect_domain(text: str) -> str:
+    lower = text.lower()
+    scores = {
+        domain: sum(1 for keyword in keywords if keyword in lower)
+        for domain, keywords in DOMAIN_KEYWORDS.items()
+    }
+    best = max(scores, key=scores.get)
+    if scores[best] > 0:
+        return best
+    return "conversation"
+
+
+def row_prompt_text(row: dict) -> str:
+    if row.get("prompt_text"):
+        return str(row["prompt_text"])
+    if row.get("instruction"):
+        return str(row["instruction"])
+    return row_to_text(row)
+
+
+def training_rows_by_domain(rows: list[dict], strategy: str) -> dict[str, list[dict]]:
+    grouped = defaultdict(list)
+    for row in rows:
+        if strategy == "conversation":
+            domains = ["conversation"]
+        elif strategy == "auto":
+            domains = [detect_domain(row_prompt_text(row))]
+        elif strategy == "all":
+            domains = TRAIN_DOMAINS
+        else:
+            raise ValueError(f"Unknown domain strategy: {strategy}")
+
+        for domain in domains:
+            copy = dict(row)
+            copy["_train_domain"] = domain
+            grouped[domain].append(copy)
+    return dict(grouped)
 
 
 def row_to_text(row: dict) -> str:
@@ -77,7 +160,7 @@ def row_to_tokens_and_targets(engine, row: dict, seq_len: int, response_only_los
     return tokens, targets
 
 
-def save_checkpoint(engine, path: str, step: int, loss: float, data_path: str) -> None:
+def save_checkpoint(engine, path: str, step: int, loss: float, data_path: str, domain_strategy: str) -> None:
     torch.save(
         {
             "masamune_state_dict": engine.university.state_dict(),
@@ -86,6 +169,7 @@ def save_checkpoint(engine, path: str, step: int, loss: float, data_path: str) -
             "step": step,
             "loss": loss,
             "data_path": data_path,
+            "domain_strategy": domain_strategy,
             "phase": "speech_cleanup_balanced_v1",
         },
         path,
@@ -125,10 +209,17 @@ def train(args: argparse.Namespace) -> None:
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     rows = load_rows(args.data)
+    rows_by_domain = training_rows_by_domain(rows, args.domain_strategy)
+    active_domains = sorted(rows_by_domain)
     random.seed(args.seed)
     torch.manual_seed(args.seed)
 
     print(f"[DATA] {args.data} samples={len(rows)}", flush=True)
+    print(
+        f"[DOMAIN] strategy={args.domain_strategy} active={active_domains} "
+        f"expanded={sum(len(value) for value in rows_by_domain.values())}",
+        flush=True,
+    )
     print(f"[TRAIN] steps={args.steps} batch={args.batch} seq_len={args.seq_len} lr={args.lr}", flush=True)
     print(f"[DEVICE] {device}", flush=True)
     if torch.cuda.is_available():
@@ -151,8 +242,9 @@ def train(args: argparse.Namespace) -> None:
         engine.university.compass,
         engine.university.output_norm,
         engine.university.swarm_gate,
-        engine.university.domain_expertise["conversation"],
     ]
+    for domain in active_domains:
+        modules.append(engine.university.domain_expertise[domain])
     for module in modules:
         for param in module.parameters():
             param.requires_grad = True
@@ -173,7 +265,8 @@ def train(args: argparse.Namespace) -> None:
 
     for step in range(1, args.steps + 1):
         try:
-            batch = random.choices(rows, k=active_batch)
+            batch_domain = random.choice(active_domains)
+            batch = random.choices(rows_by_domain[batch_domain], k=active_batch)
             token_batch = []
             target_batch = []
             for row in batch:
@@ -189,7 +282,7 @@ def train(args: argparse.Namespace) -> None:
             ids = torch.tensor(token_batch, dtype=torch.long, device=device)
             targets_tensor = torch.tensor(target_batch, dtype=torch.long, device=device)
             embedded = engine.embedding(ids[:, :-1]).permute(1, 0, 2)
-            output = engine.university(embedded, domain="conversation")
+            output = engine.university(embedded, domain=batch_domain)
             logits = engine.lm_head(output).permute(1, 2, 0)
             loss = criterion(logits, targets_tensor[:, 1:])
             loss_val = float(loss.item())
@@ -229,18 +322,19 @@ def train(args: argparse.Namespace) -> None:
             elapsed = time.time() - started
             print(
                 f"[STEP] {step}/{args.steps} loss={loss_val:.4f} "
-                f"batch={active_batch} seq_len={active_seq_len} elapsed_sec={elapsed:.1f}",
+                f"domain={batch_domain} batch={active_batch} "
+                f"seq_len={active_seq_len} elapsed_sec={elapsed:.1f}",
                 flush=True,
             )
 
         if step % args.save_every == 0:
-            save_checkpoint(engine, args.out, step, loss_val, args.data)
+            save_checkpoint(engine, args.out, step, loss_val, args.data, args.domain_strategy)
 
         del ids, targets_tensor, embedded, output, logits, loss
         if torch.cuda.is_available() and step % args.empty_cache_every == 0:
             clear_cuda_pressure()
 
-    save_checkpoint(engine, args.out, args.steps, loss_val, args.data)
+    save_checkpoint(engine, args.out, args.steps, loss_val, args.data, args.domain_strategy)
 
 
 def main() -> None:
@@ -260,6 +354,12 @@ def main() -> None:
     parser.add_argument("--log-every", type=int, default=25)
     parser.add_argument("--save-every", type=int, default=100)
     parser.add_argument("--empty-cache-every", type=int, default=25)
+    parser.add_argument(
+        "--domain-strategy",
+        choices=["conversation", "auto", "all"],
+        default="conversation",
+        help="Train one speech domain, detected runtime domains, or every domain head.",
+    )
     parser.add_argument("--response-only-loss", action="store_true")
     parser.add_argument("--confirm-gpu-training", action="store_true")
     args = parser.parse_args()

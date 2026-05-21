@@ -145,6 +145,7 @@ def run_one(
     profile: str,
     max_tokens: int,
     use_adapter: bool,
+    domain: str,
 ) -> dict:
     torch.manual_seed(seed)
     if torch.cuda.is_available():
@@ -164,6 +165,7 @@ def run_one(
             presence_penalty=0.45,
             speech_profile=profile,
             min_tokens=8,
+            domain=domain,
         )
     text = response["response"]
     loop = score_response(text)
@@ -302,6 +304,12 @@ def main() -> None:
     parser.add_argument("--profiles", nargs="+", choices=["raw", "stable"], default=["raw", "stable"])
     parser.add_argument("--seeds", nargs="+", type=int, default=[14, 21, 28])
     parser.add_argument("--max-tokens", type=int, default=56)
+    parser.add_argument(
+        "--domain",
+        default="auto",
+        choices=["auto", "conversation", "logic", "identity", "synthesis", "none"],
+        help="Diagnostic domain override. Default keeps runtime auto-routing.",
+    )
     parser.add_argument("--use-v5-adapter", action="store_true")
     parser.add_argument("--json-out", required=True)
     args = parser.parse_args()
@@ -326,7 +334,17 @@ def main() -> None:
         for seed in args.seeds:
             print(f"[GATE] profile={profile} seed={seed} prompts={len(prompts)}")
             for prompt in prompts:
-                all_results.append(run_one(runner, prompt, seed, profile, args.max_tokens, args.use_v5_adapter))
+                all_results.append(
+                    run_one(
+                        runner,
+                        prompt,
+                        seed,
+                        profile,
+                        args.max_tokens,
+                        args.use_v5_adapter,
+                        args.domain,
+                    )
+                )
 
     profile_summaries = {}
     for profile in args.profiles:
@@ -353,6 +371,7 @@ def main() -> None:
         "prompt_count": len(prompts),
         "power_mode": args.power_mode,
         "profiles": args.profiles,
+        "domain": args.domain,
         "seeds": args.seeds,
         "use_v5_adapter": args.use_v5_adapter,
         "elapsed_sec": round(time.time() - started, 2),

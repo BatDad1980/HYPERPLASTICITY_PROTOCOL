@@ -38,6 +38,7 @@ Read these in order:
 30. `SPEECH_SEMANTIC_REVIEW_IDENTITY_CONTAINMENT_V2_2026-05-20.md`
 31. `SPEECH_PROMPT_BINDING_NEXT_TARGET_2026-05-20.md`
 32. `SPEECH_PROMPT_BINDING_CONTRASTIVE_V1_2026-05-21.md`
+33. `SPEECH_PROMPT_SIGNAL_AND_DOMAIN_ALL_V1_2026-05-21.md`
 
 Additional diagnostic prompt-binding probes:
 
@@ -80,7 +81,8 @@ For V5 integration:
 - identity-containment V2 status: strict surface 224/225, semantic quality 3/225; diagnostic-only
 - identity-containment V3 status: surface-only evidence is insufficient; semantic quality must improve meaningfully above 3/225
 - prompt-binding contrastive V1 status: surface 223/225, semantic 3/225; no semantic improvement
-- next target: inspect prompt-conditioned signal and consider wider trainable slice or retrieval-scaffolded answer selection
+- prompt signal/domain-all V1 status: internal first-token ranks and teacher-forced continuation improved, but auto-routed semantic review stayed 2/225 and forced-conversation review reached only 4/225; diagnostic-only
+- next target: exposure-bias bridge using corrupted/generated answer-prefix continuation, with semantic pass required above the 3/225 floor before promotion
 
 Success condition moving forward:
 
