@@ -39,6 +39,7 @@ Read these in order:
 31. `SPEECH_PROMPT_BINDING_NEXT_TARGET_2026-05-20.md`
 32. `SPEECH_PROMPT_BINDING_CONTRASTIVE_V1_2026-05-21.md`
 33. `SPEECH_PROMPT_SIGNAL_AND_DOMAIN_ALL_V1_2026-05-21.md`
+34. `SPEECH_EXPOSURE_BIAS_BRIDGE_V1_2026-05-21.md`
 
 Additional diagnostic prompt-binding probes:
 
@@ -82,7 +83,8 @@ For V5 integration:
 - identity-containment V3 status: surface-only evidence is insufficient; semantic quality must improve meaningfully above 3/225
 - prompt-binding contrastive V1 status: surface 223/225, semantic 3/225; no semantic improvement
 - prompt signal/domain-all V1 status: internal first-token ranks and teacher-forced continuation improved, but auto-routed semantic review stayed 2/225 and forced-conversation review reached only 4/225; diagnostic-only
-- next target: exposure-bias bridge using corrupted/generated answer-prefix continuation, with semantic pass required above the 3/225 floor before promotion
+- exposure-bias bridge V1 status: surface held 225/225 and teacher-forced signal improved, but bad-prefix semantic recovery stayed 0/75 and semantic free-generation reached only 6/225; diagnostic-only
+- next target: build recovery data from model-generated bad prefixes, with recovery variants required to improve above zero and semantic pass required to improve meaningfully before promotion
 
 Success condition moving forward:
 
