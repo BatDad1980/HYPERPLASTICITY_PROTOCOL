@@ -45,7 +45,11 @@ def row_to_text(row: dict) -> str:
 
 def row_to_tokens_and_targets(engine, row: dict, seq_len: int, response_only_loss: bool) -> tuple[list[int], list[int]]:
     if response_only_loss and row.get("prompt_text") and row.get("response"):
-        prefix = str(row["prompt_text"]).strip() + "\n"
+        prefix = row.get("completion_prefix")
+        if prefix is None:
+            prefix = str(row["prompt_text"]).strip() + "\n"
+        else:
+            prefix = str(prefix)
         response = str(row["response"]).strip()
         prefix_tokens = engine.enc.encode(prefix)
         response_tokens = engine.enc.encode(response)

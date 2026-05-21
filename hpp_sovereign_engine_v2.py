@@ -262,8 +262,24 @@ class HPP_SovereignEngine_V2:
                 speech_maturity_gate,
                 temperature_decay,
             )
+        if profile == "semantic_short":
+            return (
+                min(max_tokens, 18),
+                min(temperature, 0.25),
+                min(top_p, 0.55),
+                min(top_k, 8) if top_k > 0 else 8,
+                min(min_tokens, 3),
+                max(ngram_block, 3),
+                max(frequency_penalty, 1.05),
+                max(presence_penalty, 0.15),
+                True,
+                True,
+                min(temperature_decay, 0.98),
+            )
         if profile != "stable":
-            raise ValueError(f"Unknown speech_profile '{profile}'. Use 'raw' or 'stable'.")
+            raise ValueError(
+                f"Unknown speech_profile '{profile}'. Use 'raw', 'stable', or 'semantic_short'."
+            )
 
         return (
             min(max_tokens, 56),

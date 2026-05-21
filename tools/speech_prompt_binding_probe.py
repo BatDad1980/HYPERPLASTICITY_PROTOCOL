@@ -44,6 +44,8 @@ VARIANTS = {
     "answer_direct": "Answer directly: {prompt}",
     "answer_direct_newline": "Answer directly: {prompt}\n",
     "one_sentence": "Use one sentence: {prompt}\n",
+    "question_answer": "Question: {prompt}\nAnswer:",
+    "short_answer": "Short answer: {prompt}\n",
 }
 
 
@@ -70,7 +72,7 @@ def run_probe(args: argparse.Namespace) -> dict:
                 presence_penalty=args.presence_penalty,
                 phrase_blocking=True,
                 speech_maturity_gate=True,
-                speech_profile="raw",
+                speech_profile=args.speech_profile,
                 min_tokens=3,
             )["response"]
             scored = score_item(
@@ -155,6 +157,11 @@ def main() -> None:
     parser.add_argument("--top-k", type=int, default=8)
     parser.add_argument("--frequency-penalty", type=float, default=1.05)
     parser.add_argument("--presence-penalty", type=float, default=0.15)
+    parser.add_argument(
+        "--speech-profile",
+        choices=["raw", "stable", "semantic_short"],
+        default="semantic_short",
+    )
     parser.add_argument("--json-out", required=True)
     parser.add_argument("--md-out", required=True)
     args = parser.parse_args()
