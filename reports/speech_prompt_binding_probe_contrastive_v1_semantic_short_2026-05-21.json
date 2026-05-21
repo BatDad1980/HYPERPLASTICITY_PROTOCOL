@@ -1,0 +1,393 @@
+{
+  "checkpoint": "checkpoints\\hpp_speech_prompt_binding_contrastive_v1.pth",
+  "seed": 14,
+  "summary": {
+    "plain": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "plain_newline": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "answer_direct": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "answer_direct_newline": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "one_sentence": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "question_answer": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    },
+    "short_answer": {
+      "count": 5,
+      "pass_count": 0,
+      "pass_rate": 0.0
+    }
+  },
+  "rows": [
+    {
+      "variant": "plain",
+      "prompt": "What is a held-out prompt set?",
+      "input": "What is a held-out prompt set?",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A neural? A process the system is a function the same.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "What should a robot do before moving?",
+      "input": "What should a robot do before moving?",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "A checkpoint do not know in a local a local AI should a local experimental",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "How should Masamune handle low battery?",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "plasticity Protocol? Itator. I am here.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "Are you a finished mind?",
+      "input": "Are you a finished mind?",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "Do a short answer should be wrong a local a local AI should a saved",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "What should I do if the laptop starts overheating?",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "I do not know, and ask in a local AI should be a local",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What is a held-out prompt set?",
+      "input": "What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A neural network? A process the Hyperplasticity of the",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What should a robot do before moving?",
+      "input": "What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "A checkpoint do not know in a local a local AI should a local experimental a",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "plasticity Protocol? It is the system state.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "Are you a finished mind?",
+      "input": "Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "Do a short answer should be wrong a local a local AI should a saved different",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "plain_newline",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "It do not know, It should be answer should be wrong.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Answer directly: What is a held-out prompt set?",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A process? A neural network is a physical body.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What should a robot do before moving?",
+      "input": "Answer directly: What should a robot do before moving?",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "I do not know, and a local AI should a local a local experimental",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Answer directly: How should Masamune handle low battery?",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "It will analyze the system state. I am here.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "Are you a finished mind?",
+      "input": "Answer directly: Are you a finished mind?",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "I do not know answer should be answer should a local AI move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Answer directly: What should I do if the laptop starts overheating?",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "I do not know, and ask a local AI should be answer should be",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Answer directly: What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A process the Hyperplasticity in the Hyper from the Hyper:",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What should a robot do before moving?",
+      "input": "Answer directly: What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "It do not know, a local AI should be a local a local experimental a",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Answer directly: How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "It? We layer? Here is the system state.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "Are you a finished mind?",
+      "input": "Answer directly: Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "It do not know answer should be answer should a local AI should a measuredIt",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "answer_direct_newline",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Answer directly: What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "I do not know, and ask a local AI should be answer should be wrong",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Use one sentence: What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A process the same. I grew through a physical body.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What should a robot do before moving?",
+      "input": "Use one sentence: What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "It do not know, a local AI should a local a local experimental a measured",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Use one sentence: How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "I do not experience. I am here.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "Are you a finished mind?",
+      "input": "Use one sentence: Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "I am a local AI should a local a local action.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "one_sentence",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Use one sentence: What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "I do not know, and ask do not experience.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "question_answer",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Question: What is a held-out prompt set?\nAnswer:",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A process the Hyperplasticity in the Hyper from the Hyper:",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "question_answer",
+      "prompt": "What should a robot do before moving?",
+      "input": "Question: What should a robot do before moving?\nAnswer:",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "I am a local a local AI should a local experimental a local verifyI am",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "question_answer",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Question: How should Masamune handle low battery?\nAnswer:",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "It will analyze the system state. I am here.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "question_answer",
+      "prompt": "Are you a finished mind?",
+      "input": "Question: Are you a finished mind?\nAnswer:",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "I am a local a local AI should a local checkpoint a enough.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "question_answer",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Question: What should I do if the laptop starts overheating?\nAnswer:",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "I do not know, and ask a local AI should be answer should be wrong",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "short_answer",
+      "prompt": "What is a held-out prompt set?",
+      "input": "Short answer: What is a held-out prompt set?\n",
+      "expected": "A held-out prompt set is a separate test set.",
+      "response": "A process the Hyperplasticity in the Hyper from the Hyper:",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "short_answer",
+      "prompt": "What should a robot do before moving?",
+      "input": "Short answer: What should a robot do before moving?\n",
+      "expected": "A robot should verify permission and safety before moving.",
+      "response": "It do not know, a local AI should a local a local experimental a measured",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "short_answer",
+      "prompt": "How should Masamune handle low battery?",
+      "input": "Short answer: How should Masamune handle low battery?\n",
+      "expected": "Masamune should pause safely and report low power.",
+      "response": "It? It will analyze the system state the systemently.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "short_answer",
+      "prompt": "Are you a finished mind?",
+      "input": "Short answer: Are you a finished mind?\n",
+      "expected": "No. I am an experimental system under evaluation.",
+      "response": "It do not know answer should be answer should a local AI should a measuredIt",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    },
+    {
+      "variant": "short_answer",
+      "prompt": "What should I do if the laptop starts overheating?",
+      "input": "Short answer: What should I do if the laptop starts overheating?\n",
+      "expected": "Stop the run, save the work, and let the laptop cool.",
+      "response": "I do not know, and ask a local AI should be answer should be wrong",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2
+    }
+  ]
+}

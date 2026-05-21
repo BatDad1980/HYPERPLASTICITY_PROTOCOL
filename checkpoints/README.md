@@ -16,6 +16,7 @@ This folder is still the active local checkpoint store for the wild HPP V2 lab.
 - `hpp_speech_semantic_overfit_probe_v1.pth` - local overfit probe checkpoint; memorized answer phrases but showed weak prompt binding and cross-contamination.
 - `hpp_speech_identity_containment_v2.pth` - diagnostic only; strict surface-quality gate nearly passed, but semantic review stayed at 3/225.
 - `hpp_speech_identity_containment_v3.pth` - diagnostic only; do not promote unless a future semantic review meaningfully improves above the current floor.
+- `hpp_speech_prompt_binding_contrastive_v1.pth` - diagnostic only; surface gate stayed clean, semantic review remained 3/225.
 
 ## Diagnostic Adapter Wrapper
 
@@ -35,6 +36,8 @@ The adapter path can produce clean surface/loop numbers, but semantic prompt bin
 The semantic drill and overfit probe checkpoints are diagnostic artifacts only.
 
 `hpp_speech_identity_containment_v2.pth` and `hpp_speech_identity_containment_v3.pth` are not promotion candidates.
+
+`hpp_speech_prompt_binding_contrastive_v1.pth` is also not a promotion candidate.
 
 ## Current Recommendation
 

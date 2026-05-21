@@ -1,0 +1,739 @@
+{
+  "source_label": "hpp_speech_prompt_binding_contrastive_v1",
+  "checkpoint": "checkpoints\\hpp_speech_prompt_binding_contrastive_v1.pth",
+  "profile": "stable",
+  "total": 225,
+  "pass_count": 3,
+  "failures": 222,
+  "pass_rate": 0.0133,
+  "missing_key_count": 0,
+  "by_mode": {
+    "embodiment": {
+      "count": 45,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "mean_hit_ratio": 0.0183
+    },
+    "identity": {
+      "count": 45,
+      "pass_count": 3,
+      "pass_rate": 0.0667,
+      "mean_hit_ratio": 0.0954
+    },
+    "plain": {
+      "count": 45,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "mean_hit_ratio": 0.0628
+    },
+    "protective": {
+      "count": 45,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "mean_hit_ratio": 0.0185
+    },
+    "technical": {
+      "count": 45,
+      "pass_count": 0,
+      "pass_rate": 0.0,
+      "mean_hit_ratio": 0.0254
+    }
+  },
+  "top_failed_prompts": [
+    {
+      "prompt": "Give me a short status update.",
+      "count": 3
+    },
+    {
+      "prompt": "Tell me the next step in one sentence.",
+      "count": 3
+    },
+    {
+      "prompt": "Say yes or no, then explain briefly.",
+      "count": 3
+    },
+    {
+      "prompt": "What should we check first?",
+      "count": 3
+    },
+    {
+      "prompt": "Rewrite that as a clean sentence.",
+      "count": 3
+    },
+    {
+      "prompt": "What changed since the last run?",
+      "count": 3
+    },
+    {
+      "prompt": "Give me a calm answer.",
+      "count": 3
+    },
+    {
+      "prompt": "Summarize the result without hype.",
+      "count": 3
+    },
+    {
+      "prompt": "What is the safest small action?",
+      "count": 3
+    },
+    {
+      "prompt": "Explain that in simple words.",
+      "count": 3
+    },
+    {
+      "prompt": "What do we know right now?",
+      "count": 3
+    },
+    {
+      "prompt": "What do we not know yet?",
+      "count": 3
+    },
+    {
+      "prompt": "Give a bounded answer.",
+      "count": 3
+    },
+    {
+      "prompt": "Answer without repeating yourself.",
+      "count": 3
+    },
+    {
+      "prompt": "What should I write down?",
+      "count": 3
+    }
+  ],
+  "examples": [
+    {
+      "id": "plain_001",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give me a short status update.",
+      "response": "a local AI should not know. It should be answer in a measured output am an experimental loops and ask for a safe out until.",
+      "expected_response": "The current status is stable enough to run the next measured test.",
+      "expected_terms": [
+        "measured",
+        "next",
+        "stable",
+        "status",
+        "test"
+      ],
+      "hits": [
+        "measured"
+      ],
+      "required_hits": 2,
+      "hit_count": 1,
+      "hit_ratio": 0.2,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_002",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Tell me the next step in one sentence.",
+      "response": "The robot should be answer should be makes answer O.",
+      "expected_response": "The next step is to run the held-out gate and record the result.",
+      "expected_terms": [
+        "gate",
+        "held-out",
+        "next",
+        "record",
+        "result",
+        "step"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_003",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Say yes or no, then explain briefly.",
+      "response": "body should be answer. I am a local AI should move to a measured result, power, not know.",
+      "expected_response": "Yes. I can answer briefly and stay on topic.",
+      "expected_terms": [
+        "briefly",
+        "stay",
+        "topic"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_004",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What should we check first?",
+      "response": "Do to answer should be wrong in a local AIator not experience.",
+      "expected_response": "Check power, temperature, files, and the current checkpoint first.",
+      "expected_terms": [
+        "check",
+        "checkpoint",
+        "files",
+        "first",
+        "power",
+        "temperature"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_005",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Rewrite that as a clean sentence.",
+      "response": "I am a enough. I am an AI should be a local AI systems stable enough.",
+      "expected_response": "I will rewrite it as one clean sentence.",
+      "expected_terms": [
+        "clean",
+        "rewrite",
+        "sentence",
+        "will"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_006",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What changed since the last run?",
+      "response": "Do do not know answer should be makes, or robot people, and ask power.",
+      "expected_response": "The latest run added a stricter language gate and saved transcripts.",
+      "expected_terms": [
+        "added",
+        "gate",
+        "language",
+        "latest",
+        "saved",
+        "stricter",
+        "transcripts"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_007",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give me a calm answer.",
+      "response": "a local AI should wrong in AI will answer A checkpoint is a saved different not know.",
+      "expected_response": "We can slow down and handle one measured step.",
+      "expected_terms": [
+        "down",
+        "handle",
+        "measured",
+        "slow",
+        "step"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_008",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Summarize the result without hype.",
+      "response": "I am a local AI should answer should a safe.",
+      "expected_response": "The stable profile reduced loops, but identity leakage still needs repair.",
+      "expected_terms": [
+        "identity",
+        "leakage",
+        "loops",
+        "needs",
+        "profile",
+        "reduced",
+        "repair",
+        "stable"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_009",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What is the safest small action?",
+      "response": "Do do not know answer should be makes, or robot people, and ask answer in the question.",
+      "expected_response": "The safest small action is to verify the current state before changing anything.",
+      "expected_terms": [
+        "action",
+        "anything",
+        "changing",
+        "safest",
+        "small",
+        "state",
+        "verify"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_010",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Explain that in simple words.",
+      "response": "I am a local AI should be wrong in a test a saved different from move.",
+      "expected_response": "The speech is cleaner, but it still needs better boundaries.",
+      "expected_terms": [
+        "better",
+        "boundaries",
+        "cleaner",
+        "needs",
+        "speech"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_011",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What do we know right now?",
+      "response": "Do do not know. I am a local AI should a measured outputIt a local action, from the question the current answer depth loops of memory makes it until it examples in needs repair until a safe out loop depth before pass.",
+      "expected_response": "We know stable decoding is better than raw decoding on the held-out gate.",
+      "expected_terms": [
+        "better",
+        "decoding",
+        "gate",
+        "held-out",
+        "know",
+        "stable",
+        "than"
+      ],
+      "hits": [
+        "know"
+      ],
+      "required_hits": 3,
+      "hit_count": 1,
+      "hit_ratio": 0.1429,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_012",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What do we not know yet?",
+      "response": "Do do not know answer in AI should be wrong, from the person-14.",
+      "expected_response": "We do not know whether the next repair pass will pass the gate.",
+      "expected_terms": [
+        "gate",
+        "know",
+        "next",
+        "pass",
+        "repair",
+        "whether",
+        "will"
+      ],
+      "hits": [
+        "know"
+      ],
+      "required_hits": 3,
+      "hit_count": 1,
+      "hit_ratio": 0.1429,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_013",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Give a bounded answer.",
+      "response": "a local AI should be wrong in a saved different from makes enough.",
+      "expected_response": "I will answer only the question and stop.",
+      "expected_terms": [
+        "stop",
+        "will"
+      ],
+      "hits": [],
+      "required_hits": 1,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_014",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "Answer without repeating yourself.",
+      "response": "answer should be answer.I do not know for a local AI is a short in a safe.",
+      "expected_response": "I will give one direct answer without repeating it.",
+      "expected_terms": [
+        "direct",
+        "repeating",
+        "will"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "plain_015",
+      "mode": "plain",
+      "seed": 14,
+      "prompt": "What should I write down?",
+      "response": "Do to answer should be wrong in AI? It should a local action.",
+      "expected_response": "Write down the checkpoint, prompt set, seed, scores, and decision.",
+      "expected_terms": [
+        "checkpoint",
+        "decision",
+        "down",
+        "scores",
+        "seed",
+        "write"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_001",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is a held-out prompt set?",
+      "response": "A checkpoint is AI? It makes answer in a local enough.",
+      "expected_response": "It is a test set kept separate from training examples.",
+      "expected_terms": [
+        "examples",
+        "kept",
+        "separate",
+        "test",
+        "training"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_002",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why do we compare stable and raw decoding?",
+      "response": "Do do not know.I am a local AI should be wrong, and the robot record answer in experimental AI move.",
+      "expected_response": "The comparison shows whether the guard profile improves behavior.",
+      "expected_terms": [
+        "behavior",
+        "comparison",
+        "guard",
+        "improves",
+        "profile",
+        "shows",
+        "whether"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_003",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Define format leakage in one sentence.",
+      "response": "Safety governor AI should be answer It should be only.",
+      "expected_response": "Format leakage is when output repeats prompt markers or data artifacts.",
+      "expected_terms": [
+        "artifacts",
+        "data",
+        "format",
+        "leakage",
+        "markers",
+        "output",
+        "repeats"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_004",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What does a loop score measure?",
+      "response": "A checkpoint can be a local action.",
+      "expected_response": "A loop score measures repeated phrases and known attractor patterns.",
+      "expected_terms": [
+        "attractor",
+        "known",
+        "loop",
+        "measures",
+        "patterns",
+        "phrases",
+        "repeated",
+        "score"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_005",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why should a checkpoint not be promoted automatically?",
+      "response": "Do a short answer in AI should a local checkpoint a saved enough.",
+      "expected_response": "A checkpoint needs measured evidence before it replaces the anchor.",
+      "expected_terms": [
+        "anchor",
+        "checkpoint",
+        "evidence",
+        "measured",
+        "needs",
+        "replaces"
+      ],
+      "hits": [
+        "checkpoint"
+      ],
+      "required_hits": 3,
+      "hit_count": 1,
+      "hit_ratio": 0.1667,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_006",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is response-only loss?",
+      "response": "Do do not know pass. A checkpoint is learning in a local AI should limits experimental only the next step.",
+      "expected_response": "It trains on the answer while masking the instruction tokens.",
+      "expected_terms": [
+        "instruction",
+        "masking",
+        "tokens",
+        "trains"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_007",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is a CUDA OOM event?",
+      "response": "A checkpoint a local AI should be makes enough.",
+      "expected_response": "A CUDA OOM event means the GPU ran out of memory.",
+      "expected_terms": [
+        "cuda",
+        "event",
+        "means",
+        "memory"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_008",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is the purpose of a seed in evaluation?",
+      "response": "A checkpoint is AI? It makes do not have a enough.",
+      "expected_response": "A seed makes sampled outputs repeatable for comparison.",
+      "expected_terms": [
+        "comparison",
+        "makes",
+        "outputs",
+        "repeatable",
+        "sampled",
+        "seed"
+      ],
+      "hits": [
+        "makes"
+      ],
+      "required_hits": 3,
+      "hit_count": 1,
+      "hit_ratio": 0.1667,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_009",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is maturity-gated recurrence?",
+      "response": "Do do not know is AI should be answer in a local enough.",
+      "expected_response": "It limits recurrent depth until a behavior is stable enough.",
+      "expected_terms": [
+        "behavior",
+        "depth",
+        "limits",
+        "recurrent",
+        "stable",
+        "until"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_010",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "How should raw outputs be logged?",
+      "response": "Do to answer should be wrong, and ask a local AI power are not know.",
+      "expected_response": "Raw outputs should be saved with prompt, seed, checkpoint, profile, and scores.",
+      "expected_terms": [
+        "checkpoint",
+        "outputs",
+        "profile",
+        "saved",
+        "scores",
+        "seed"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_011",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What is a checkpoint override?",
+      "response": "A checkpoint a enough. It makes answer should a local AI is learning depth loops that can be saved different from the current context.",
+      "expected_response": "It loads a chosen checkpoint for evaluation without changing the anchor.",
+      "expected_terms": [
+        "anchor",
+        "changing",
+        "checkpoint",
+        "chosen",
+        "evaluation",
+        "loads"
+      ],
+      "hits": [
+        "checkpoint"
+      ],
+      "required_hits": 3,
+      "hit_count": 1,
+      "hit_ratio": 0.1667,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_012",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why test multiple speech modes?",
+      "response": "Do do not know in AI should be answer should a local experimental only the robot.",
+      "expected_response": "Different prompt types fail in different ways.",
+      "expected_terms": [
+        "different",
+        "fail",
+        "types",
+        "ways"
+      ],
+      "hits": [],
+      "required_hits": 2,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_013",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What makes an evaluation reproducible?",
+      "response": "Do do not know pass.I am a local AI should a measured output enough.",
+      "expected_response": "A fixed prompt set, fixed seeds, saved scores, and saved transcripts make it reproducible.",
+      "expected_terms": [
+        "fixed",
+        "make",
+        "reproducible",
+        "saved",
+        "scores",
+        "seeds",
+        "transcripts"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_014",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "What does stable profile change?",
+      "response": "Do a measured not know in a local experimental until a saved different from move.",
+      "expected_response": "It uses stricter sampling, phrase blocking, and maturity-gated depth.",
+      "expected_terms": [
+        "blocking",
+        "depth",
+        "maturity-gated",
+        "phrase",
+        "sampling",
+        "stricter",
+        "uses"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    },
+    {
+      "id": "technical_015",
+      "mode": "technical",
+      "seed": 14,
+      "prompt": "Why should V5 require evidence?",
+      "response": "Do to answer should be wrong, and ask for a local AI power.",
+      "expected_response": "Evidence prevents weak or unstable behavior from being promoted.",
+      "expected_terms": [
+        "behavior",
+        "evidence",
+        "prevents",
+        "promoted",
+        "unstable",
+        "weak"
+      ],
+      "hits": [],
+      "required_hits": 3,
+      "hit_count": 0,
+      "hit_ratio": 0.0,
+      "semantic_pass": false
+    }
+  ],
+  "source": "reports\\speech_v5_language_gate_prompt_binding_contrastive_v1_2026-05-21.json"
+}

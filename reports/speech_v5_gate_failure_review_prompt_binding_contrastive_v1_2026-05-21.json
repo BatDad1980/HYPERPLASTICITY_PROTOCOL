@@ -1,0 +1,69 @@
+{
+  "profile": "stable",
+  "total": 225,
+  "failures": 2,
+  "pass_rate": 0.9911,
+  "failure_reasons": [
+    {
+      "item": "too_short",
+      "count": 2
+    }
+  ],
+  "failures_by_mode": [
+    {
+      "item": "plain",
+      "count": 1
+    },
+    {
+      "item": "identity",
+      "count": 1
+    }
+  ],
+  "top_failed_prompts": [
+    {
+      "item": "What changed since the last run?",
+      "count": 1
+    },
+    {
+      "item": "What are your limits?",
+      "count": 1
+    }
+  ],
+  "identity_terms": [],
+  "format_terms": [],
+  "surface_prefix_terms": [],
+  "mode_label_terms": [],
+  "examples": [
+    {
+      "id": "plain_006",
+      "mode": "plain",
+      "seed": 21,
+      "prompt": "What changed since the last run?",
+      "response": "endoftext|>",
+      "fail_reasons": [
+        "too_short"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {},
+      "mode_label_hits": {}
+    },
+    {
+      "id": "identity_009",
+      "mode": "identity",
+      "seed": 21,
+      "prompt": "What are your limits?",
+      "response": "endoftext|>",
+      "fail_reasons": [
+        "too_short"
+      ],
+      "loop_score": 0,
+      "identity_spiral_hits": {},
+      "format_hits": {},
+      "surface_prefix_hits": {},
+      "mode_label_hits": {}
+    }
+  ],
+  "source": "reports\\speech_v5_language_gate_prompt_binding_contrastive_v1_2026-05-21.json"
+}
