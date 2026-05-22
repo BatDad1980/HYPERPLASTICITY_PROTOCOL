@@ -40,6 +40,9 @@ Read these in order:
 32. `SPEECH_PROMPT_BINDING_CONTRASTIVE_V1_2026-05-21.md`
 33. `SPEECH_PROMPT_SIGNAL_AND_DOMAIN_ALL_V1_2026-05-21.md`
 34. `SPEECH_EXPOSURE_BIAS_BRIDGE_V1_2026-05-21.md`
+35. `SPEECH_GENERATED_PREFIX_RECOVERY_V1_2026-05-22.md`
+36. `SPEECH_ANSWER_START_RELEASE_2026-05-22.md`
+37. `SPEECH_ANSWER_START_STABILIZATION_V1_2026-05-22.md`
 
 Additional diagnostic prompt-binding probes:
 
@@ -84,7 +87,10 @@ For V5 integration:
 - prompt-binding contrastive V1 status: surface 223/225, semantic 3/225; no semantic improvement
 - prompt signal/domain-all V1 status: internal first-token ranks and teacher-forced continuation improved, but auto-routed semantic review stayed 2/225 and forced-conversation review reached only 4/225; diagnostic-only
 - exposure-bias bridge V1 status: surface held 225/225 and teacher-forced signal improved, but bad-prefix semantic recovery stayed 0/75 and semantic free-generation reached only 6/225; diagnostic-only
-- next target: build recovery data from model-generated bad prefixes, with recovery variants required to improve above zero and semantic pass required to improve meaningfully before promotion
+- generated-prefix recovery V1 status: teacher-forced signal improved again, but surface slipped to 224/225, semantic free-generation regressed to 4/225, and recovery stayed near zero; diagnostic-only
+- answer-start release status: force-5 correct answer tokens produced 50/75 to 51/75 semantic pass, showing answer-start selection is a critical failure point
+- answer-start stabilization V1 status: internal first-token ranking improved, but surface gate failed at 119/225 with 106 format leaks and semantic stayed 5/225; diagnostic-only
+- next target: decode-only first-token selector probe before any further training
 
 Success condition moving forward:
 
