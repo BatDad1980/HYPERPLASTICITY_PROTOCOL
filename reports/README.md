@@ -46,6 +46,7 @@ Read these in order:
 38. `SPEECH_DECODE_SELECTOR_PROBES_2026-05-22.md`
 39. `SPEECH_RETRIEVAL_ANSWER_START_2026-05-22.md`
 40. `SPEECH_RETRIEVAL_LANGUAGE_GATE_2026-05-22.md`
+41. `SPEECH_RETRIEVAL_VARIANT_GATE_2026-05-22.md`
 
 Additional diagnostic prompt-binding probes:
 
@@ -96,7 +97,8 @@ For V5 integration:
 - decode selector status: first-token and probability-selected sequence starts did not solve recovery; oracle 5-token starts worked, but model-selected 5-token starts stayed 1/15 on a diagnostic subset
 - retrieval answer-start status: exact prompt memory with five-token answer starts reached 49/75, while leave-one-out retrieval collapsed to 2/75; diagnostic-only
 - retrieval language gate status: exact-key five-token retrieval scaffold reached 156/225 semantic with 222/225 surface; diagnostic-only
-- next target: paraphrase retrieval gate to test whether memory can bind new prompt forms to known answer starts
+- retrieval variant gate status: light prompt wrappers dropped semantic to 22/75-33/75 when retrieval exact-match fell; diagnostic-only
+- next target: retrieval memory index with normalized prompt keys, tested separately before speech generation
 
 Success condition moving forward:
 
