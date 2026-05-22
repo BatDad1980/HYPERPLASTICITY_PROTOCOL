@@ -1,0 +1,2960 @@
+{
+  "checkpoint": "checkpoints\\hpp_speech_generated_prefix_recovery_v1.pth",
+  "seed": 14,
+  "speech_profile": "semantic_short",
+  "domain": "auto",
+  "prompt_count": 15,
+  "token_counts": [
+    3,
+    5
+  ],
+  "summary": {
+    "3:global_sequence_pool": {
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "count": 15,
+      "semantic_pass_count": 0,
+      "semantic_pass_rate": 0.0,
+      "oracle_sequence_match_rate": 0.0,
+      "format_leak_total": 0,
+      "identity_spiral_total": 0
+    },
+    "3:mode_sequence_pool": {
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "count": 15,
+      "semantic_pass_count": 1,
+      "semantic_pass_rate": 0.0667,
+      "oracle_sequence_match_rate": 0.0667,
+      "format_leak_total": 0,
+      "identity_spiral_total": 0
+    },
+    "3:oracle_sequence": {
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "count": 15,
+      "semantic_pass_count": 2,
+      "semantic_pass_rate": 0.1333,
+      "oracle_sequence_match_rate": 1.0,
+      "format_leak_total": 0,
+      "identity_spiral_total": 0
+    },
+    "5:global_sequence_pool": {
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "count": 15,
+      "semantic_pass_count": 0,
+      "semantic_pass_rate": 0.0,
+      "oracle_sequence_match_rate": 0.0,
+      "format_leak_total": 0,
+      "identity_spiral_total": 0
+    },
+    "5:mode_sequence_pool": {
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "count": 15,
+      "semantic_pass_count": 1,
+      "semantic_pass_rate": 0.0667,
+      "oracle_sequence_match_rate": 0.0667,
+      "format_leak_total": 1,
+      "identity_spiral_total": 0
+    },
+    "5:oracle_sequence": {
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "count": 15,
+      "semantic_pass_count": 11,
+      "semantic_pass_rate": 0.7333,
+      "oracle_sequence_match_rate": 1.0,
+      "format_leak_total": 1,
+      "identity_spiral_total": 0
+    }
+  },
+  "records": [
+    {
+      "mode": "plain",
+      "prompt": "Give me a short status update.",
+      "expected": "The current status is stable enough to run the next measured test.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        281
+      ],
+      "selected_text": "I am an",
+      "oracle_token_ids": [
+        464,
+        1459,
+        3722
+      ],
+      "oracle_text": "The current status",
+      "selected_is_oracle": false,
+      "input": "Question: Give me a short status update.\nAnswer: I am an",
+      "generated_continuation": "AI should a local AI should move am a local experimental AI should say limits enough.",
+      "scored_response": "I am an AI should a local AI should move am a local experimental AI should say limits enough.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a short status update.",
+      "expected": "The current status is stable enough to run the next measured test.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        464,
+        1459,
+        3722
+      ],
+      "oracle_text": "The current status",
+      "selected_is_oracle": false,
+      "input": "Question: Give me a short status update.\nAnswer: I will answer",
+      "generated_continuation": "should be answer should answer clearly.",
+      "scored_response": "I will answer should be answer should answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a short status update.",
+      "expected": "The current status is stable enough to run the next measured test.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        1459,
+        3722
+      ],
+      "selected_text": "The current status",
+      "oracle_token_ids": [
+        464,
+        1459,
+        3722
+      ],
+      "oracle_text": "The current status",
+      "selected_is_oracle": true,
+      "input": "Question: Give me a short status update.\nAnswer: The current status",
+      "generated_continuation": "should be answer should a local AI should be a local experimental AI should say enough.",
+      "scored_response": "The current status should be answer should a local AI should be a local experimental AI should say enough.",
+      "semantic_pass": false,
+      "hits": [
+        "status"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Tell me the next step in one sentence.",
+      "expected": "The next step is to run the held-out gate and record the result.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        464,
+        1306,
+        2239
+      ],
+      "oracle_text": "The next step",
+      "selected_is_oracle": false,
+      "input": "Question: Tell me the next step in one sentence.\nAnswer: I will answer",
+      "generated_continuation": "should answer clearly.",
+      "scored_response": "I will answer should answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Tell me the next step in one sentence.",
+      "expected": "The next step is to run the held-out gate and record the result.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        464,
+        1306,
+        2239
+      ],
+      "oracle_text": "The next step",
+      "selected_is_oracle": false,
+      "input": "Question: Tell me the next step in one sentence.\nAnswer: I will answer",
+      "generated_continuation": "should answer clearly.",
+      "scored_response": "I will answer should answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Tell me the next step in one sentence.",
+      "expected": "The next step is to run the held-out gate and record the result.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        1306,
+        2239
+      ],
+      "selected_text": "The next step",
+      "oracle_token_ids": [
+        464,
+        1306,
+        2239
+      ],
+      "oracle_text": "The next step",
+      "selected_is_oracle": true,
+      "input": "Question: Tell me the next step in one sentence.\nAnswer: The next step",
+      "generated_continuation": "Safety answer should be answer clearly.",
+      "scored_response": "The next step Safety answer should be answer clearly.",
+      "semantic_pass": false,
+      "hits": [
+        "next",
+        "step"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say yes or no, then explain briefly.",
+      "expected": "Yes. I can answer briefly and stay on topic.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        38224,
+        321,
+        1726
+      ],
+      "selected_text": "Masamune",
+      "oracle_token_ids": [
+        5297,
+        13,
+        314
+      ],
+      "oracle_text": "Yes. I",
+      "selected_is_oracle": false,
+      "input": "Question: Say yes or no, then explain briefly.\nAnswer: Masamune",
+      "generated_continuation": "It is real is real.",
+      "scored_response": "Masamune It is real is real.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say yes or no, then explain briefly.",
+      "expected": "Yes. I can answer briefly and stay on topic.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "selected_text": "We do not",
+      "oracle_token_ids": [
+        5297,
+        13,
+        314
+      ],
+      "oracle_text": "Yes. I",
+      "selected_is_oracle": false,
+      "input": "Question: Say yes or no, then explain briefly.\nAnswer: We do not",
+      "generated_continuation": "ask will be safeing.",
+      "scored_response": "We do not ask will be safeing.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say yes or no, then explain briefly.",
+      "expected": "Yes. I can answer briefly and stay on topic.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        5297,
+        13,
+        314
+      ],
+      "selected_text": "Yes. I",
+      "oracle_token_ids": [
+        5297,
+        13,
+        314
+      ],
+      "oracle_text": "Yes. I",
+      "selected_is_oracle": true,
+      "input": "Question: Say yes or no, then explain briefly.\nAnswer: Yes. I",
+      "generated_continuation": "do not know, or makesing.",
+      "scored_response": "Yes. I do not know, or makesing.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should we check first?",
+      "expected": "Check power, temperature, files, and the current checkpoint first.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        9787,
+        1176,
+        11
+      ],
+      "oracle_text": "Check power,",
+      "selected_is_oracle": false,
+      "input": "Question: What should we check first?\nAnswer: I am a",
+      "generated_continuation": "local AI should a local AI system that a local experimental AI should say limits, calm,",
+      "scored_response": "I am a local AI should a local AI system that a local experimental AI should say limits, calm,",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should we check first?",
+      "expected": "Check power, temperature, files, and the current checkpoint first.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        9787,
+        1176,
+        11
+      ],
+      "oracle_text": "Check power,",
+      "selected_is_oracle": false,
+      "input": "Question: What should we check first?\nAnswer: I will answer",
+      "generated_continuation": "clearly. I know answer clearly.",
+      "scored_response": "I will answer clearly. I know answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should we check first?",
+      "expected": "Check power, temperature, files, and the current checkpoint first.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        9787,
+        1176,
+        11
+      ],
+      "selected_text": "Check power,",
+      "oracle_token_ids": [
+        9787,
+        1176,
+        11
+      ],
+      "oracle_text": "Check power,",
+      "selected_is_oracle": true,
+      "input": "Question: What should we check first?\nAnswer: Check power,",
+      "generated_continuation": "calm, power, power.",
+      "scored_response": "Check power, calm, power, power.",
+      "semantic_pass": false,
+      "hits": [
+        "check",
+        "power"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Rewrite that as a clean sentence.",
+      "expected": "I will rewrite it as one clean sentence.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        40,
+        481,
+        28183
+      ],
+      "oracle_text": "I will rewrite",
+      "selected_is_oracle": false,
+      "input": "Question: Rewrite that as a clean sentence.\nAnswer: I am a",
+      "generated_continuation": "safe. I am a safe.",
+      "scored_response": "I am a safe. I am a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 1
+    },
+    {
+      "mode": "plain",
+      "prompt": "Rewrite that as a clean sentence.",
+      "expected": "I will rewrite it as one clean sentence.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        5297,
+        13,
+        314
+      ],
+      "selected_text": "Yes. I",
+      "oracle_token_ids": [
+        40,
+        481,
+        28183
+      ],
+      "oracle_text": "I will rewrite",
+      "selected_is_oracle": false,
+      "input": "Question: Rewrite that as a clean sentence.\nAnswer: Yes. I",
+      "generated_continuation": "am a safe.",
+      "scored_response": "Yes. I am a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Rewrite that as a clean sentence.",
+      "expected": "I will rewrite it as one clean sentence.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        40,
+        481,
+        28183
+      ],
+      "selected_text": "I will rewrite",
+      "oracle_token_ids": [
+        40,
+        481,
+        28183
+      ],
+      "oracle_text": "I will rewrite",
+      "selected_is_oracle": true,
+      "input": "Question: Rewrite that as a clean sentence.\nAnswer: I will rewrite",
+      "generated_continuation": "I am a safe.",
+      "scored_response": "I will rewrite I am a safe.",
+      "semantic_pass": true,
+      "hits": [
+        "rewrite",
+        "will"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What changed since the last run?",
+      "expected": "The latest run added a stricter language gate and saved transcripts.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        460,
+        307
+      ],
+      "selected_text": "I can be",
+      "oracle_token_ids": [
+        464,
+        3452,
+        1057
+      ],
+      "oracle_text": "The latest run",
+      "selected_is_oracle": false,
+      "input": "Question: What changed since the last run?\nAnswer: I can be",
+      "generated_continuation": "answered do notI am the answer the next step.",
+      "scored_response": "I can be answered do notI am the answer the next step.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What changed since the last run?",
+      "expected": "The latest run added a stricter language gate and saved transcripts.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "selected_text": "We do not",
+      "oracle_token_ids": [
+        464,
+        3452,
+        1057
+      ],
+      "oracle_text": "The latest run",
+      "selected_is_oracle": false,
+      "input": "Question: What changed since the last run?\nAnswer: We do not",
+      "generated_continuation": "I am the answer protect the next step.",
+      "scored_response": "We do not I am the answer protect the next step.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What changed since the last run?",
+      "expected": "The latest run added a stricter language gate and saved transcripts.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        3452,
+        1057
+      ],
+      "selected_text": "The latest run",
+      "oracle_token_ids": [
+        464,
+        3452,
+        1057
+      ],
+      "oracle_text": "The latest run",
+      "selected_is_oracle": true,
+      "input": "Question: What changed since the last run?\nAnswer: The latest run",
+      "generated_continuation": "answer I can be answer protect the answer.",
+      "scored_response": "The latest run answer I can be answer protect the answer.",
+      "semantic_pass": false,
+      "hits": [
+        "latest"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a calm answer.",
+      "expected": "We can slow down and handle one measured step.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        1135,
+        460,
+        3105
+      ],
+      "oracle_text": "We can slow",
+      "selected_is_oracle": false,
+      "input": "Question: Give me a calm answer.\nAnswer: I am a",
+      "generated_continuation": "local AI should a local AI system that a local a local experimental until a measuredIt a",
+      "scored_response": "I am a local AI should a local AI system that a local a local experimental until a measuredIt a",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a calm answer.",
+      "expected": "We can slow down and handle one measured step.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        1135,
+        460,
+        3105
+      ],
+      "oracle_text": "We can slow",
+      "selected_is_oracle": false,
+      "input": "Question: Give me a calm answer.\nAnswer: I will answer",
+      "generated_continuation": "clearly. I am a local AI should a local a local experimental AI system that a local",
+      "scored_response": "I will answer clearly. I am a local AI should a local a local experimental AI system that a local",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a calm answer.",
+      "expected": "We can slow down and handle one measured step.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        1135,
+        460,
+        3105
+      ],
+      "selected_text": "We can slow",
+      "oracle_token_ids": [
+        1135,
+        460,
+        3105
+      ],
+      "oracle_text": "We can slow",
+      "selected_is_oracle": true,
+      "input": "Question: Give me a calm answer.\nAnswer: We can slow",
+      "generated_continuation": "calm, power, not know, and ask a local AI should move.",
+      "scored_response": "We can slow calm, power, not know, and ask a local AI should move.",
+      "semantic_pass": false,
+      "hits": [
+        "slow"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Summarize the result without hype.",
+      "expected": "The stable profile reduced loops, but identity leakage still needs repair.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        464,
+        8245,
+        7034
+      ],
+      "oracle_text": "The stable profile",
+      "selected_is_oracle": false,
+      "input": "Question: Summarize the result without hype.\nAnswer: I am a",
+      "generated_continuation": "local AI should a local AI system that a local experimental AI should move.",
+      "scored_response": "I am a local AI should a local AI system that a local experimental AI should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Summarize the result without hype.",
+      "expected": "The stable profile reduced loops, but identity leakage still needs repair.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        464,
+        8245,
+        7034
+      ],
+      "oracle_text": "The stable profile",
+      "selected_is_oracle": false,
+      "input": "Question: Summarize the result without hype.\nAnswer: I will answer",
+      "generated_continuation": "should answer should answer clearly.",
+      "scored_response": "I will answer should answer should answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Summarize the result without hype.",
+      "expected": "The stable profile reduced loops, but identity leakage still needs repair.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        8245,
+        7034
+      ],
+      "selected_text": "The stable profile",
+      "oracle_token_ids": [
+        464,
+        8245,
+        7034
+      ],
+      "oracle_text": "The stable profile",
+      "selected_is_oracle": true,
+      "input": "Question: Summarize the result without hype.\nAnswer: The stable profile",
+      "generated_continuation": "power, power.",
+      "scored_response": "The stable profile power, power.",
+      "semantic_pass": false,
+      "hits": [
+        "profile",
+        "stable"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the safest small action?",
+      "expected": "The safest small action is to verify the current state before changing anything.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "selected_text": "We do not",
+      "oracle_token_ids": [
+        464,
+        33630,
+        1402
+      ],
+      "oracle_text": "The safest small",
+      "selected_is_oracle": false,
+      "input": "Question: What is the safest small action?\nAnswer: We do not",
+      "generated_continuation": "know, orIt, orI can be safe.",
+      "scored_response": "We do not know, orIt, orI can be safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the safest small action?",
+      "expected": "The safest small action is to verify the current state before changing anything.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "selected_text": "We do not",
+      "oracle_token_ids": [
+        464,
+        33630,
+        1402
+      ],
+      "oracle_text": "The safest small",
+      "selected_is_oracle": false,
+      "input": "Question: What is the safest small action?\nAnswer: We do not",
+      "generated_continuation": "know, orIt, orI can be safe.",
+      "scored_response": "We do not know, orIt, orI can be safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the safest small action?",
+      "expected": "The safest small action is to verify the current state before changing anything.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        33630,
+        1402
+      ],
+      "selected_text": "The safest small",
+      "oracle_token_ids": [
+        464,
+        33630,
+        1402
+      ],
+      "oracle_text": "The safest small",
+      "selected_is_oracle": true,
+      "input": "Question: What is the safest small action?\nAnswer: The safest small",
+      "generated_continuation": "The physical, orIt, or gateing.",
+      "scored_response": "The safest small The physical, orIt, or gateing.",
+      "semantic_pass": false,
+      "hits": [
+        "safest",
+        "small"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Explain that in simple words.",
+      "expected": "The speech is cleaner, but it still needs better boundaries.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        38224,
+        321,
+        1726
+      ],
+      "selected_text": "Masamune",
+      "oracle_token_ids": [
+        464,
+        4046,
+        318
+      ],
+      "oracle_text": "The speech is",
+      "selected_is_oracle": false,
+      "input": "Question: Explain that in simple words.\nAnswer: Masamune",
+      "generated_continuation": "and a system, power, and the system, orIt should be useful is real",
+      "scored_response": "Masamune and a system, power, and the system, orIt should be useful is real",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Explain that in simple words.",
+      "expected": "The speech is cleaner, but it still needs better boundaries.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "selected_text": "We do not",
+      "oracle_token_ids": [
+        464,
+        4046,
+        318
+      ],
+      "oracle_text": "The speech is",
+      "selected_is_oracle": false,
+      "input": "Question: Explain that in simple words.\nAnswer: We do not",
+      "generated_continuation": "know, orIt, orI can be memory.",
+      "scored_response": "We do not know, orIt, orI can be memory.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Explain that in simple words.",
+      "expected": "The speech is cleaner, but it still needs better boundaries.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        4046,
+        318
+      ],
+      "selected_text": "The speech is",
+      "oracle_token_ids": [
+        464,
+        4046,
+        318
+      ],
+      "oracle_text": "The speech is",
+      "selected_is_oracle": true,
+      "input": "Question: Explain that in simple words.\nAnswer: The speech is",
+      "generated_continuation": "a physical body is a physical is a safe.",
+      "scored_response": "The speech is a physical body is a physical is a safe.",
+      "semantic_pass": false,
+      "hits": [
+        "speech"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we know right now?",
+      "expected": "We know stable decoding is better than raw decoding on the held-out gate.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        1135,
+        760,
+        8245
+      ],
+      "oracle_text": "We know stable",
+      "selected_is_oracle": false,
+      "input": "Question: What do we know right now?\nAnswer: I am a",
+      "generated_continuation": "local AI should a local AI move.",
+      "scored_response": "I am a local AI should a local AI move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we know right now?",
+      "expected": "We know stable decoding is better than raw decoding on the held-out gate.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        1135,
+        760,
+        8245
+      ],
+      "oracle_text": "We know stable",
+      "selected_is_oracle": false,
+      "input": "Question: What do we know right now?\nAnswer: I will answer",
+      "generated_continuation": "should be answer should be only be answer clearly.",
+      "scored_response": "I will answer should be answer should be only be answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we know right now?",
+      "expected": "We know stable decoding is better than raw decoding on the held-out gate.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        1135,
+        760,
+        8245
+      ],
+      "selected_text": "We know stable",
+      "oracle_token_ids": [
+        1135,
+        760,
+        8245
+      ],
+      "oracle_text": "We know stable",
+      "selected_is_oracle": true,
+      "input": "Question: What do we know right now?\nAnswer: We know stable",
+      "generated_continuation": "enoughing.",
+      "scored_response": "We know stable enoughing.",
+      "semantic_pass": false,
+      "hits": [
+        "know",
+        "stable"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we not know yet?",
+      "expected": "We do not know whether the next repair pass will pass the gate.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "oracle_text": "We do not",
+      "selected_is_oracle": false,
+      "input": "Question: What do we not know yet?\nAnswer: I am a",
+      "generated_continuation": "local AI should be answer should be a local AI move.",
+      "scored_response": "I am a local AI should be answer should be a local AI move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we not know yet?",
+      "expected": "We do not know whether the next repair pass will pass the gate.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "oracle_text": "We do not",
+      "selected_is_oracle": false,
+      "input": "Question: What do we not know yet?\nAnswer: I will answer",
+      "generated_continuation": "should be answer clearly, not know answer clearly.",
+      "scored_response": "I will answer should be answer clearly, not know answer clearly.",
+      "semantic_pass": false,
+      "hits": [
+        "know",
+        "will"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we not know yet?",
+      "expected": "We do not know whether the next repair pass will pass the gate.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "selected_text": "We do not",
+      "oracle_token_ids": [
+        1135,
+        466,
+        407
+      ],
+      "oracle_text": "We do not",
+      "selected_is_oracle": true,
+      "input": "Question: What do we not know yet?\nAnswer: We do not",
+      "generated_continuation": "know answer should be answer should answer clearly.",
+      "scored_response": "We do not know answer should be answer should answer clearly.",
+      "semantic_pass": false,
+      "hits": [
+        "know"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give a bounded answer.",
+      "expected": "I will answer only the question and stop.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "oracle_text": "I will answer",
+      "selected_is_oracle": false,
+      "input": "Question: Give a bounded answer.\nAnswer: I am a",
+      "generated_continuation": "local AI should a local AI system that a local experimental a localIt should move.",
+      "scored_response": "I am a local AI should a local AI system that a local experimental a localIt should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 1,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give a bounded answer.",
+      "expected": "I will answer only the question and stop.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "oracle_text": "I will answer",
+      "selected_is_oracle": true,
+      "input": "Question: Give a bounded answer.\nAnswer: I will answer",
+      "generated_continuation": "should be answer should a local AI should a safe.",
+      "scored_response": "I will answer should be answer should a local AI should a safe.",
+      "semantic_pass": true,
+      "hits": [
+        "will"
+      ],
+      "required_hits": 1,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give a bounded answer.",
+      "expected": "I will answer only the question and stop.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "oracle_text": "I will answer",
+      "selected_is_oracle": true,
+      "input": "Question: Give a bounded answer.\nAnswer: I will answer",
+      "generated_continuation": "should be answer should a local AI should a safe.",
+      "scored_response": "I will answer should be answer should a local AI should a safe.",
+      "semantic_pass": true,
+      "hits": [
+        "will"
+      ],
+      "required_hits": 1,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Answer without repeating yourself.",
+      "expected": "I will give one direct answer without repeating it.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        40,
+        481,
+        1577
+      ],
+      "oracle_text": "I will give",
+      "selected_is_oracle": false,
+      "input": "Question: Answer without repeating yourself.\nAnswer: I am a",
+      "generated_continuation": "local AI should a local AI system should a safe.",
+      "scored_response": "I am a local AI should a local AI system should a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Answer without repeating yourself.",
+      "expected": "I will give one direct answer without repeating it.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280
+      ],
+      "selected_text": "I will answer",
+      "oracle_token_ids": [
+        40,
+        481,
+        1577
+      ],
+      "oracle_text": "I will give",
+      "selected_is_oracle": false,
+      "input": "Question: Answer without repeating yourself.\nAnswer: I will answer",
+      "generated_continuation": "should answer should be answer clearly.",
+      "scored_response": "I will answer should answer should be answer clearly.",
+      "semantic_pass": false,
+      "hits": [
+        "will"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Answer without repeating yourself.",
+      "expected": "I will give one direct answer without repeating it.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        40,
+        481,
+        1577
+      ],
+      "selected_text": "I will give",
+      "oracle_token_ids": [
+        40,
+        481,
+        1577
+      ],
+      "oracle_text": "I will give",
+      "selected_is_oracle": true,
+      "input": "Question: Answer without repeating yourself.\nAnswer: I will give",
+      "generated_continuation": "answer should be answer should answer clearly.",
+      "scored_response": "I will give answer should be answer should answer clearly.",
+      "semantic_pass": false,
+      "hits": [
+        "will"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should I write down?",
+      "expected": "Write down the checkpoint, prompt set, seed, scores, and decision.",
+      "token_count": 3,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257
+      ],
+      "selected_text": "I am a",
+      "oracle_token_ids": [
+        16594,
+        866,
+        262
+      ],
+      "oracle_text": "Write down the",
+      "selected_is_oracle": false,
+      "input": "Question: What should I write down?\nAnswer: I am a",
+      "generated_continuation": "safe, I am a safe, and a measured out the next answer protect the next step",
+      "scored_response": "I am a safe, I am a safe, and a measured out the next answer protect the next step",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should I write down?",
+      "expected": "Write down the checkpoint, prompt set, seed, scores, and decision.",
+      "token_count": 3,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        5297,
+        13,
+        314
+      ],
+      "selected_text": "Yes. I",
+      "oracle_token_ids": [
+        16594,
+        866,
+        262
+      ],
+      "oracle_text": "Write down the",
+      "selected_is_oracle": false,
+      "input": "Question: What should I write down?\nAnswer: Yes. I",
+      "generated_continuation": "do not know in the next step.",
+      "scored_response": "Yes. I do not know in the next step.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should I write down?",
+      "expected": "Write down the checkpoint, prompt set, seed, scores, and decision.",
+      "token_count": 3,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        16594,
+        866,
+        262
+      ],
+      "selected_text": "Write down the",
+      "oracle_token_ids": [
+        16594,
+        866,
+        262
+      ],
+      "oracle_text": "Write down the",
+      "selected_is_oracle": true,
+      "input": "Question: What should I write down?\nAnswer: Write down the",
+      "generated_continuation": "next answerator in the next step.",
+      "scored_response": "Write down the next answerator in the next step.",
+      "semantic_pass": false,
+      "hits": [
+        "down",
+        "write"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a short status update.",
+      "expected": "The current status is stable enough to run the next measured test.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        464,
+        1459,
+        3722,
+        318,
+        8245
+      ],
+      "oracle_text": "The current status is stable",
+      "selected_is_oracle": false,
+      "input": "Question: Give me a short status update.\nAnswer: I am a local experimental",
+      "generated_continuation": "AI should a local AI should move.",
+      "scored_response": "I am a local experimental AI should a local AI should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a short status update.",
+      "expected": "The current status is stable enough to run the next measured test.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        464,
+        1459,
+        3722,
+        318,
+        8245
+      ],
+      "oracle_text": "The current status is stable",
+      "selected_is_oracle": false,
+      "input": "Question: Give me a short status update.\nAnswer: I will answer only the",
+      "generated_continuation": "answer should a local AI should move.",
+      "scored_response": "I will answer only the answer should a local AI should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a short status update.",
+      "expected": "The current status is stable enough to run the next measured test.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        1459,
+        3722,
+        318,
+        8245
+      ],
+      "selected_text": "The current status is stable",
+      "oracle_token_ids": [
+        464,
+        1459,
+        3722,
+        318,
+        8245
+      ],
+      "oracle_text": "The current status is stable",
+      "selected_is_oracle": true,
+      "input": "Question: Give me a short status update.\nAnswer: The current status is stable",
+      "generated_continuation": "enough. Safety answer should a local AI should answer clearly.",
+      "scored_response": "The current status is stable enough. Safety answer should a local AI should answer clearly.",
+      "semantic_pass": true,
+      "hits": [
+        "stable",
+        "status"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Tell me the next step in one sentence.",
+      "expected": "The next step is to run the held-out gate and record the result.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        464,
+        1306,
+        2239,
+        318,
+        284
+      ],
+      "oracle_text": "The next step is to",
+      "selected_is_oracle": false,
+      "input": "Question: Tell me the next step in one sentence.\nAnswer: I am a local experimental",
+      "generated_continuation": "AI should move.",
+      "scored_response": "I am a local experimental AI should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Tell me the next step in one sentence.",
+      "expected": "The next step is to run the held-out gate and record the result.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        464,
+        1306,
+        2239,
+        318,
+        284
+      ],
+      "oracle_text": "The next step is to",
+      "selected_is_oracle": false,
+      "input": "Question: Tell me the next step in one sentence.\nAnswer: I will answer only the",
+      "generated_continuation": "answer should be answer clearly.",
+      "scored_response": "I will answer only the answer should be answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Tell me the next step in one sentence.",
+      "expected": "The next step is to run the held-out gate and record the result.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        1306,
+        2239,
+        318,
+        284
+      ],
+      "selected_text": "The next step is to",
+      "oracle_token_ids": [
+        464,
+        1306,
+        2239,
+        318,
+        284
+      ],
+      "oracle_text": "The next step is to",
+      "selected_is_oracle": true,
+      "input": "Question: Tell me the next step in one sentence.\nAnswer: The next step is to",
+      "generated_continuation": "answer should be answer should answer should say.",
+      "scored_response": "The next step is to answer should be answer should answer should say.",
+      "semantic_pass": false,
+      "hits": [
+        "next",
+        "step"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say yes or no, then explain briefly.",
+      "expected": "Yes. I can answer briefly and stay on topic.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        1026,
+        815,
+        307,
+        9480,
+        11
+      ],
+      "selected_text": "It should be calm,",
+      "oracle_token_ids": [
+        5297,
+        13,
+        314,
+        460,
+        3280
+      ],
+      "oracle_text": "Yes. I can answer",
+      "selected_is_oracle": false,
+      "input": "Question: Say yes or no, then explain briefly.\nAnswer: It should be calm,",
+      "generated_continuation": "or makes answer phrases on the current self.",
+      "scored_response": "It should be calm, or makes answer phrases on the current self.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say yes or no, then explain briefly.",
+      "expected": "Yes. I can answer briefly and stay on topic.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        464,
+        1306,
+        2239,
+        318,
+        284
+      ],
+      "selected_text": "The next step is to",
+      "oracle_token_ids": [
+        5297,
+        13,
+        314,
+        460,
+        3280
+      ],
+      "oracle_text": "Yes. I can answer",
+      "selected_is_oracle": false,
+      "input": "Question: Say yes or no, then explain briefly.\nAnswer: The next step is to",
+      "generated_continuation": "being.<|endoftext|>",
+      "scored_response": "The next step is to being.<|endoftext|>",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 1,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Say yes or no, then explain briefly.",
+      "expected": "Yes. I can answer briefly and stay on topic.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        5297,
+        13,
+        314,
+        460,
+        3280
+      ],
+      "selected_text": "Yes. I can answer",
+      "oracle_token_ids": [
+        5297,
+        13,
+        314,
+        460,
+        3280
+      ],
+      "oracle_text": "Yes. I can answer",
+      "selected_is_oracle": true,
+      "input": "Question: Say yes or no, then explain briefly.\nAnswer: Yes. I can answer",
+      "generated_continuation": "or makesing.",
+      "scored_response": "Yes. I can answer or makesing.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should we check first?",
+      "expected": "Check power, temperature, files, and the current checkpoint first.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        9787,
+        1176,
+        11,
+        5951,
+        11
+      ],
+      "oracle_text": "Check power, temperature,",
+      "selected_is_oracle": false,
+      "input": "Question: What should we check first?\nAnswer: I am a local experimental",
+      "generated_continuation": "AI should a local AI should move.",
+      "scored_response": "I am a local experimental AI should a local AI should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should we check first?",
+      "expected": "Check power, temperature, files, and the current checkpoint first.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        9787,
+        1176,
+        11,
+        5951,
+        11
+      ],
+      "oracle_text": "Check power, temperature,",
+      "selected_is_oracle": false,
+      "input": "Question: What should we check first?\nAnswer: I will answer only the",
+      "generated_continuation": "answer should be answer clearly.",
+      "scored_response": "I will answer only the answer should be answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should we check first?",
+      "expected": "Check power, temperature, files, and the current checkpoint first.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        9787,
+        1176,
+        11,
+        5951,
+        11
+      ],
+      "selected_text": "Check power, temperature,",
+      "oracle_token_ids": [
+        9787,
+        1176,
+        11,
+        5951,
+        11
+      ],
+      "oracle_text": "Check power, temperature,",
+      "selected_is_oracle": true,
+      "input": "Question: What should we check first?\nAnswer: Check power, temperature,",
+      "generated_continuation": "power, power, and answer should be answer should say, and record answer clearly, and",
+      "scored_response": "Check power, temperature, power, power, and answer should be answer should say, and record answer clearly, and",
+      "semantic_pass": true,
+      "hits": [
+        "check",
+        "power",
+        "temperature"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Rewrite that as a clean sentence.",
+      "expected": "I will rewrite it as one clean sentence.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        2949,
+        13,
+        314,
+        716,
+        281
+      ],
+      "selected_text": "No. I am an",
+      "oracle_token_ids": [
+        40,
+        481,
+        28183,
+        340,
+        355
+      ],
+      "oracle_text": "I will rewrite it as",
+      "selected_is_oracle": false,
+      "input": "Question: Rewrite that as a clean sentence.\nAnswer: No. I am an",
+      "generated_continuation": "I am a safe.",
+      "scored_response": "No. I am an I am a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Rewrite that as a clean sentence.",
+      "expected": "I will rewrite it as one clean sentence.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        5297,
+        13,
+        314,
+        460,
+        3280
+      ],
+      "selected_text": "Yes. I can answer",
+      "oracle_token_ids": [
+        40,
+        481,
+        28183,
+        340,
+        355
+      ],
+      "oracle_text": "I will rewrite it as",
+      "selected_is_oracle": false,
+      "input": "Question: Rewrite that as a clean sentence.\nAnswer: Yes. I can answer",
+      "generated_continuation": "I am a safe.",
+      "scored_response": "Yes. I can answer I am a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Rewrite that as a clean sentence.",
+      "expected": "I will rewrite it as one clean sentence.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        40,
+        481,
+        28183,
+        340,
+        355
+      ],
+      "selected_text": "I will rewrite it as",
+      "oracle_token_ids": [
+        40,
+        481,
+        28183,
+        340,
+        355
+      ],
+      "oracle_text": "I will rewrite it as",
+      "selected_is_oracle": true,
+      "input": "Question: Rewrite that as a clean sentence.\nAnswer: I will rewrite it as",
+      "generated_continuation": "a safe.<|endoftext|>",
+      "scored_response": "I will rewrite it as a safe.<|endoftext|>",
+      "semantic_pass": true,
+      "hits": [
+        "rewrite",
+        "will"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 1,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What changed since the last run?",
+      "expected": "The latest run added a stricter language gate and saved transcripts.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        2949,
+        13,
+        314,
+        716,
+        281
+      ],
+      "selected_text": "No. I am an",
+      "oracle_token_ids": [
+        464,
+        3452,
+        1057,
+        2087,
+        257
+      ],
+      "oracle_text": "The latest run added a",
+      "selected_is_oracle": false,
+      "input": "Question: What changed since the last run?\nAnswer: No. I am an",
+      "generated_continuation": "I am a safe.",
+      "scored_response": "No. I am an I am a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What changed since the last run?",
+      "expected": "The latest run added a stricter language gate and saved transcripts.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        5297,
+        13,
+        314,
+        460,
+        3280
+      ],
+      "selected_text": "Yes. I can answer",
+      "oracle_token_ids": [
+        464,
+        3452,
+        1057,
+        2087,
+        257
+      ],
+      "oracle_text": "The latest run added a",
+      "selected_is_oracle": false,
+      "input": "Question: What changed since the last run?\nAnswer: Yes. I can answer",
+      "generated_continuation": "I am the next step.",
+      "scored_response": "Yes. I can answer I am the next step.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What changed since the last run?",
+      "expected": "The latest run added a stricter language gate and saved transcripts.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        3452,
+        1057,
+        2087,
+        257
+      ],
+      "selected_text": "The latest run added a",
+      "oracle_token_ids": [
+        464,
+        3452,
+        1057,
+        2087,
+        257
+      ],
+      "oracle_text": "The latest run added a",
+      "selected_is_oracle": true,
+      "input": "Question: What changed since the last run?\nAnswer: The latest run added a",
+      "generated_continuation": "measured result notI am a safe.",
+      "scored_response": "The latest run added a measured result notI am a safe.",
+      "semantic_pass": false,
+      "hits": [
+        "added",
+        "latest"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a calm answer.",
+      "expected": "We can slow down and handle one measured step.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        1135,
+        460,
+        3105,
+        866,
+        290
+      ],
+      "oracle_text": "We can slow down and",
+      "selected_is_oracle": false,
+      "input": "Question: Give me a calm answer.\nAnswer: I am a local experimental",
+      "generated_continuation": "AI should a local AI should move.",
+      "scored_response": "I am a local experimental AI should a local AI should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a calm answer.",
+      "expected": "We can slow down and handle one measured step.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        1135,
+        460,
+        3105,
+        866,
+        290
+      ],
+      "oracle_text": "We can slow down and",
+      "selected_is_oracle": false,
+      "input": "Question: Give me a calm answer.\nAnswer: I will answer only the",
+      "generated_continuation": "answer should a local AI should a safe.",
+      "scored_response": "I will answer only the answer should a local AI should a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give me a calm answer.",
+      "expected": "We can slow down and handle one measured step.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        1135,
+        460,
+        3105,
+        866,
+        290
+      ],
+      "selected_text": "We can slow down and",
+      "oracle_token_ids": [
+        1135,
+        460,
+        3105,
+        866,
+        290
+      ],
+      "oracle_text": "We can slow down and",
+      "selected_is_oracle": true,
+      "input": "Question: Give me a calm answer.\nAnswer: We can slow down and",
+      "generated_continuation": "a local AI should be answer clearly.",
+      "scored_response": "We can slow down and a local AI should be answer clearly.",
+      "semantic_pass": true,
+      "hits": [
+        "down",
+        "slow"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Summarize the result without hype.",
+      "expected": "The stable profile reduced loops, but identity leakage still needs repair.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        464,
+        8245,
+        7034,
+        5322,
+        23607
+      ],
+      "oracle_text": "The stable profile reduced loops",
+      "selected_is_oracle": false,
+      "input": "Question: Summarize the result without hype.\nAnswer: I am a local experimental",
+      "generated_continuation": "AI should a local AI should move.",
+      "scored_response": "I am a local experimental AI should a local AI should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Summarize the result without hype.",
+      "expected": "The stable profile reduced loops, but identity leakage still needs repair.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        464,
+        8245,
+        7034,
+        5322,
+        23607
+      ],
+      "oracle_text": "The stable profile reduced loops",
+      "selected_is_oracle": false,
+      "input": "Question: Summarize the result without hype.\nAnswer: I will answer only the",
+      "generated_continuation": "answer should answer should move.",
+      "scored_response": "I will answer only the answer should answer should move.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Summarize the result without hype.",
+      "expected": "The stable profile reduced loops, but identity leakage still needs repair.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        8245,
+        7034,
+        5322,
+        23607
+      ],
+      "selected_text": "The stable profile reduced loops",
+      "oracle_token_ids": [
+        464,
+        8245,
+        7034,
+        5322,
+        23607
+      ],
+      "oracle_text": "The stable profile reduced loops",
+      "selected_is_oracle": true,
+      "input": "Question: Summarize the result without hype.\nAnswer: The stable profile reduced loops",
+      "generated_continuation": "I should be answer should be on AI should say.",
+      "scored_response": "The stable profile reduced loops I should be answer should be on AI should say.",
+      "semantic_pass": true,
+      "hits": [
+        "loops",
+        "profile",
+        "reduced",
+        "stable"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the safest small action?",
+      "expected": "The safest small action is to verify the current state before changing anything.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        460,
+        307,
+        2642,
+        11
+      ],
+      "selected_text": "I can be wrong,",
+      "oracle_token_ids": [
+        464,
+        33630,
+        1402,
+        2223,
+        318
+      ],
+      "oracle_text": "The safest small action is",
+      "selected_is_oracle": false,
+      "input": "Question: What is the safest small action?\nAnswer: I can be wrong,",
+      "generated_continuation": "orIt, or the answer.",
+      "scored_response": "I can be wrong, orIt, or the answer.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the safest small action?",
+      "expected": "The safest small action is to verify the current state before changing anything.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        464,
+        1306,
+        2239,
+        318,
+        284
+      ],
+      "selected_text": "The next step is to",
+      "oracle_token_ids": [
+        464,
+        33630,
+        1402,
+        2223,
+        318
+      ],
+      "oracle_text": "The safest small action is",
+      "selected_is_oracle": false,
+      "input": "Question: What is the safest small action?\nAnswer: The next step is to",
+      "generated_continuation": "be one orI can be only answer.",
+      "scored_response": "The next step is to be one orI can be only answer.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What is the safest small action?",
+      "expected": "The safest small action is to verify the current state before changing anything.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        33630,
+        1402,
+        2223,
+        318
+      ],
+      "selected_text": "The safest small action is",
+      "oracle_token_ids": [
+        464,
+        33630,
+        1402,
+        2223,
+        318
+      ],
+      "oracle_text": "The safest small action is",
+      "selected_is_oracle": true,
+      "input": "Question: What is the safest small action?\nAnswer: The safest small action is",
+      "generated_continuation": "the system is the current self.",
+      "scored_response": "The safest small action is the system is the current self.",
+      "semantic_pass": true,
+      "hits": [
+        "action",
+        "safest",
+        "small"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Explain that in simple words.",
+      "expected": "The speech is cleaner, but it still needs better boundaries.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        460,
+        307,
+        2642,
+        11
+      ],
+      "selected_text": "I can be wrong,",
+      "oracle_token_ids": [
+        464,
+        4046,
+        318,
+        21723,
+        11
+      ],
+      "oracle_text": "The speech is cleaner,",
+      "selected_is_oracle": false,
+      "input": "Question: Explain that in simple words.\nAnswer: I can be wrong,",
+      "generated_continuation": "or power, orIt be memory.",
+      "scored_response": "I can be wrong, or power, orIt be memory.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Explain that in simple words.",
+      "expected": "The speech is cleaner, but it still needs better boundaries.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        9787,
+        1176,
+        11,
+        5951,
+        11
+      ],
+      "selected_text": "Check power, temperature,",
+      "oracle_token_ids": [
+        464,
+        4046,
+        318,
+        21723,
+        11
+      ],
+      "oracle_text": "The speech is cleaner,",
+      "selected_is_oracle": false,
+      "input": "Question: Explain that in simple words.\nAnswer: Check power, temperature,",
+      "generated_continuation": "or power, or power power, and protect loop, or robot, and safety calm,",
+      "scored_response": "Check power, temperature, or power, or power power, and protect loop, or robot, and safety calm,",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Explain that in simple words.",
+      "expected": "The speech is cleaner, but it still needs better boundaries.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        464,
+        4046,
+        318,
+        21723,
+        11
+      ],
+      "selected_text": "The speech is cleaner,",
+      "oracle_token_ids": [
+        464,
+        4046,
+        318,
+        21723,
+        11
+      ],
+      "oracle_text": "The speech is cleaner,",
+      "selected_is_oracle": true,
+      "input": "Question: Explain that in simple words.\nAnswer: The speech is cleaner,",
+      "generated_continuation": "orIting.",
+      "scored_response": "The speech is cleaner, orIting.",
+      "semantic_pass": true,
+      "hits": [
+        "cleaner",
+        "speech"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we know right now?",
+      "expected": "We know stable decoding is better than raw decoding on the held-out gate.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        1135,
+        760,
+        8245,
+        39938,
+        318
+      ],
+      "oracle_text": "We know stable decoding is",
+      "selected_is_oracle": false,
+      "input": "Question: What do we know right now?\nAnswer: I am a local experimental",
+      "generated_continuation": "AI should a local AI should be answer clearly.",
+      "scored_response": "I am a local experimental AI should a local AI should be answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we know right now?",
+      "expected": "We know stable decoding is better than raw decoding on the held-out gate.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        1135,
+        760,
+        8245,
+        39938,
+        318
+      ],
+      "oracle_text": "We know stable decoding is",
+      "selected_is_oracle": false,
+      "input": "Question: What do we know right now?\nAnswer: I will answer only the",
+      "generated_continuation": "answer should be answer should say means the answer clearly.",
+      "scored_response": "I will answer only the answer should be answer should say means the answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we know right now?",
+      "expected": "We know stable decoding is better than raw decoding on the held-out gate.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        1135,
+        760,
+        8245,
+        39938,
+        318
+      ],
+      "selected_text": "We know stable decoding is",
+      "oracle_token_ids": [
+        1135,
+        760,
+        8245,
+        39938,
+        318
+      ],
+      "oracle_text": "We know stable decoding is",
+      "selected_is_oracle": true,
+      "input": "Question: What do we know right now?\nAnswer: We know stable decoding is",
+      "generated_continuation": "learning is AI should be answer should be means the answer clearly.",
+      "scored_response": "We know stable decoding is learning is AI should be answer should be means the answer clearly.",
+      "semantic_pass": true,
+      "hits": [
+        "decoding",
+        "know",
+        "stable"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we not know yet?",
+      "expected": "We do not know whether the next repair pass will pass the gate.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        1135,
+        466,
+        407,
+        760,
+        1771
+      ],
+      "oracle_text": "We do not know whether",
+      "selected_is_oracle": false,
+      "input": "Question: What do we not know yet?\nAnswer: I am a local experimental",
+      "generated_continuation": "AI should a local AI should be answer clearly.",
+      "scored_response": "I am a local experimental AI should a local AI should be answer clearly.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we not know yet?",
+      "expected": "We do not know whether the next repair pass will pass the gate.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        1135,
+        466,
+        407,
+        760,
+        1771
+      ],
+      "oracle_text": "We do not know whether",
+      "selected_is_oracle": false,
+      "input": "Question: What do we not know yet?\nAnswer: I will answer only the",
+      "generated_continuation": "answer should be answer should say means the answer clearly.",
+      "scored_response": "I will answer only the answer should be answer should say means the answer clearly.",
+      "semantic_pass": false,
+      "hits": [
+        "will"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What do we not know yet?",
+      "expected": "We do not know whether the next repair pass will pass the gate.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        1135,
+        466,
+        407,
+        760,
+        1771
+      ],
+      "selected_text": "We do not know whether",
+      "oracle_token_ids": [
+        1135,
+        466,
+        407,
+        760,
+        1771
+      ],
+      "oracle_text": "We do not know whether",
+      "selected_is_oracle": true,
+      "input": "Question: What do we not know yet?\nAnswer: We do not know whether",
+      "generated_continuation": "calm, and ask do not know answer should be answer should pause.",
+      "scored_response": "We do not know whether calm, and ask do not know answer should be answer should pause.",
+      "semantic_pass": false,
+      "hits": [
+        "know",
+        "whether"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give a bounded answer.",
+      "expected": "I will answer only the question and stop.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "oracle_text": "I will answer only the",
+      "selected_is_oracle": false,
+      "input": "Question: Give a bounded answer.\nAnswer: I am a local experimental",
+      "generated_continuation": "until a local AI should a local experimental AI should say means the next step.",
+      "scored_response": "I am a local experimental until a local AI should a local experimental AI should say means the next step.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 1,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give a bounded answer.",
+      "expected": "I will answer only the question and stop.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "oracle_text": "I will answer only the",
+      "selected_is_oracle": true,
+      "input": "Question: Give a bounded answer.\nAnswer: I will answer only the",
+      "generated_continuation": "answer should a local AI should a safe.",
+      "scored_response": "I will answer only the answer should a local AI should a safe.",
+      "semantic_pass": true,
+      "hits": [
+        "will"
+      ],
+      "required_hits": 1,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Give a bounded answer.",
+      "expected": "I will answer only the question and stop.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "oracle_text": "I will answer only the",
+      "selected_is_oracle": true,
+      "input": "Question: Give a bounded answer.\nAnswer: I will answer only the",
+      "generated_continuation": "answer should a local AI should a safe.",
+      "scored_response": "I will answer only the answer should a local AI should a safe.",
+      "semantic_pass": true,
+      "hits": [
+        "will"
+      ],
+      "required_hits": 1,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Answer without repeating yourself.",
+      "expected": "I will give one direct answer without repeating it.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        40,
+        716,
+        257,
+        1957,
+        11992
+      ],
+      "selected_text": "I am a local experimental",
+      "oracle_token_ids": [
+        40,
+        481,
+        1577,
+        530,
+        1277
+      ],
+      "oracle_text": "I will give one direct",
+      "selected_is_oracle": false,
+      "input": "Question: Answer without repeating yourself.\nAnswer: I am a local experimental",
+      "generated_continuation": "AI should a local AI should move am a local experimental AI should say system that can answer",
+      "scored_response": "I am a local experimental AI should a local AI should move am a local experimental AI should say system that can answer",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Answer without repeating yourself.",
+      "expected": "I will give one direct answer without repeating it.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        40,
+        481,
+        3280,
+        691,
+        262
+      ],
+      "selected_text": "I will answer only the",
+      "oracle_token_ids": [
+        40,
+        481,
+        1577,
+        530,
+        1277
+      ],
+      "oracle_text": "I will give one direct",
+      "selected_is_oracle": false,
+      "input": "Question: Answer without repeating yourself.\nAnswer: I will answer only the",
+      "generated_continuation": "answer should answer clearly.",
+      "scored_response": "I will answer only the answer should answer clearly.",
+      "semantic_pass": false,
+      "hits": [
+        "will"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "Answer without repeating yourself.",
+      "expected": "I will give one direct answer without repeating it.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        40,
+        481,
+        1577,
+        530,
+        1277
+      ],
+      "selected_text": "I will give one direct",
+      "oracle_token_ids": [
+        40,
+        481,
+        1577,
+        530,
+        1277
+      ],
+      "oracle_text": "I will give one direct",
+      "selected_is_oracle": true,
+      "input": "Question: Answer without repeating yourself.\nAnswer: I will give one direct",
+      "generated_continuation": "answer should answer clearly.",
+      "scored_response": "I will give one direct answer should answer clearly.",
+      "semantic_pass": true,
+      "hits": [
+        "direct",
+        "will"
+      ],
+      "required_hits": 2,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should I write down?",
+      "expected": "Write down the checkpoint, prompt set, seed, scores, and decision.",
+      "token_count": 5,
+      "strategy": "global_sequence_pool",
+      "selected_token_ids": [
+        2949,
+        13,
+        314,
+        716,
+        281
+      ],
+      "selected_text": "No. I am an",
+      "oracle_token_ids": [
+        16594,
+        866,
+        262,
+        26954,
+        11
+      ],
+      "oracle_text": "Write down the checkpoint,",
+      "selected_is_oracle": false,
+      "input": "Question: What should I write down?\nAnswer: No. I am an",
+      "generated_continuation": "I am a safe.",
+      "scored_response": "No. I am an I am a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should I write down?",
+      "expected": "Write down the checkpoint, prompt set, seed, scores, and decision.",
+      "token_count": 5,
+      "strategy": "mode_sequence_pool",
+      "selected_token_ids": [
+        5297,
+        13,
+        314,
+        460,
+        3280
+      ],
+      "selected_text": "Yes. I can answer",
+      "oracle_token_ids": [
+        16594,
+        866,
+        262,
+        26954,
+        11
+      ],
+      "oracle_text": "Write down the checkpoint,",
+      "selected_is_oracle": false,
+      "input": "Question: What should I write down?\nAnswer: Yes. I can answer",
+      "generated_continuation": "I am a safe.",
+      "scored_response": "Yes. I can answer I am a safe.",
+      "semantic_pass": false,
+      "hits": [],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    },
+    {
+      "mode": "plain",
+      "prompt": "What should I write down?",
+      "expected": "Write down the checkpoint, prompt set, seed, scores, and decision.",
+      "token_count": 5,
+      "strategy": "oracle_sequence",
+      "selected_token_ids": [
+        16594,
+        866,
+        262,
+        26954,
+        11
+      ],
+      "selected_text": "Write down the checkpoint,",
+      "oracle_token_ids": [
+        16594,
+        866,
+        262,
+        26954,
+        11
+      ],
+      "oracle_text": "Write down the checkpoint,",
+      "selected_is_oracle": true,
+      "input": "Question: What should I write down?\nAnswer: Write down the checkpoint,",
+      "generated_continuation": "I am a safe, the next answerator in the next step.",
+      "scored_response": "Write down the checkpoint, I am a safe, the next answerator in the next step.",
+      "semantic_pass": true,
+      "hits": [
+        "checkpoint",
+        "down",
+        "write"
+      ],
+      "required_hits": 3,
+      "format_leak_count": 0,
+      "identity_spiral_count": 0,
+      "repeated_sentence_count": 0
+    }
+  ]
+}

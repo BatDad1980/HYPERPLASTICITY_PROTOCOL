@@ -43,6 +43,8 @@ Read these in order:
 35. `SPEECH_GENERATED_PREFIX_RECOVERY_V1_2026-05-22.md`
 36. `SPEECH_ANSWER_START_RELEASE_2026-05-22.md`
 37. `SPEECH_ANSWER_START_STABILIZATION_V1_2026-05-22.md`
+38. `SPEECH_DECODE_SELECTOR_PROBES_2026-05-22.md`
+39. `SPEECH_RETRIEVAL_ANSWER_START_2026-05-22.md`
 
 Additional diagnostic prompt-binding probes:
 
@@ -90,7 +92,9 @@ For V5 integration:
 - generated-prefix recovery V1 status: teacher-forced signal improved again, but surface slipped to 224/225, semantic free-generation regressed to 4/225, and recovery stayed near zero; diagnostic-only
 - answer-start release status: force-5 correct answer tokens produced 50/75 to 51/75 semantic pass, showing answer-start selection is a critical failure point
 - answer-start stabilization V1 status: internal first-token ranking improved, but surface gate failed at 119/225 with 106 format leaks and semantic stayed 5/225; diagnostic-only
-- next target: decode-only first-token selector probe before any further training
+- decode selector status: first-token and probability-selected sequence starts did not solve recovery; oracle 5-token starts worked, but model-selected 5-token starts stayed 1/15 on a diagnostic subset
+- retrieval answer-start status: exact prompt memory with five-token answer starts reached 49/75, while leave-one-out retrieval collapsed to 2/75; diagnostic-only
+- next target: cleaner retrieval gate with exact-key baseline, then paraphrase/held-out retrieval
 
 Success condition moving forward:
 
