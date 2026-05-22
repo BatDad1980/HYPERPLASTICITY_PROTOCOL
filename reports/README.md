@@ -45,6 +45,7 @@ Read these in order:
 37. `SPEECH_ANSWER_START_STABILIZATION_V1_2026-05-22.md`
 38. `SPEECH_DECODE_SELECTOR_PROBES_2026-05-22.md`
 39. `SPEECH_RETRIEVAL_ANSWER_START_2026-05-22.md`
+40. `SPEECH_RETRIEVAL_LANGUAGE_GATE_2026-05-22.md`
 
 Additional diagnostic prompt-binding probes:
 
@@ -94,7 +95,8 @@ For V5 integration:
 - answer-start stabilization V1 status: internal first-token ranking improved, but surface gate failed at 119/225 with 106 format leaks and semantic stayed 5/225; diagnostic-only
 - decode selector status: first-token and probability-selected sequence starts did not solve recovery; oracle 5-token starts worked, but model-selected 5-token starts stayed 1/15 on a diagnostic subset
 - retrieval answer-start status: exact prompt memory with five-token answer starts reached 49/75, while leave-one-out retrieval collapsed to 2/75; diagnostic-only
-- next target: cleaner retrieval gate with exact-key baseline, then paraphrase/held-out retrieval
+- retrieval language gate status: exact-key five-token retrieval scaffold reached 156/225 semantic with 222/225 surface; diagnostic-only
+- next target: paraphrase retrieval gate to test whether memory can bind new prompt forms to known answer starts
 
 Success condition moving forward:
 
