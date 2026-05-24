@@ -48,14 +48,14 @@ from typing import Optional
 import uvicorn
 import torch
 
-from hpp_sovereign_engine import HPP_SovereignEngine
+from hpp_sovereign_engine_v2 import HPP_SovereignEngine_V2
 
 # ================================================================
 # APP SETUP
 # ================================================================
 app = FastAPI(
     title="HPP Sovereign Server",
-    description="Shop Workbench Brain — Masamune connects here",
+    description="Shop Workbench Brain - Masamune connects here",
     version="3.0"
 )
 
@@ -70,10 +70,10 @@ app.add_middleware(
 # ENGINE INITIALIZATION
 # ================================================================
 print("=" * 70)
-print("         HPP SOVEREIGN SERVER — SHOP WORKBENCH BRAIN")
+print("         HPP SOVEREIGN SERVER - SHOP WORKBENCH BRAIN")
 print("=" * 70)
 
-engine = HPP_SovereignEngine(max_context=512)
+engine = HPP_SovereignEngine_V2(max_context=512, init_hlvr=True)
 
 # Track connected Masamune instances
 connected_bodies = {}

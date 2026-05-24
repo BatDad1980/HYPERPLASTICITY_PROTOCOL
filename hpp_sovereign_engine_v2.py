@@ -20,12 +20,14 @@ how we READ the brain's output, not how it thinks.
 """
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import time
 import os
 import sys
 import re
+import math
 import tiktoken
-from collections import Counter
+from collections import Counter, defaultdict
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,13 +42,74 @@ from core.mission_anchor import MissionAnchor
 from core.samurai_body import SamuraiBodyController, KineticProprioception
 
 
+# ===============================================================================
+#      HLVR (Hierarchical Lexical-Vector Router) Preprocessing & BM25
+# ===============================================================================
+LEXICAL_STOPWORDS = {
+    "a", "an", "the", "and", "or", "but", "if", "then", "of", "to", "in", "on", 
+    "at", "for", "with", "by", "about", "this", "that", "these", "those", 
+    "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", 
+    "do", "does", "did", "please", "can", "could", "should", "would", 
+    "you", "me", "my", "your", "we", "us", "our", "i"
+}
+
+def _tokenize(text: str) -> list[str]:
+    text = text.lower()
+    words = re.findall(r"[a-z0-9]+", text)
+    return [w for w in words if w not in LEXICAL_STOPWORDS]
+
+def _normalize_prompt(text: str) -> str:
+    text = text.strip().lower()
+    text = re.sub(r"^(please\s+answer\s+this\s+clearly\s*:\s*)", "", text)
+    text = re.sub(r"^(in\s+simple\s+terms\s*,\s*)", "", text)
+    text = re.sub(r"^(give\s+a\s+bounded\s+answer\s+to\s+this\s+question\s*:\s*)", "", text)
+    text = re.sub(r"\s+", " ", text)
+    text = text.strip()
+    text = re.sub(r"[?.!]+$", "", text)
+    return text
+
+class SimpleBM25:
+    """Lightweight self-contained BM25 search engine."""
+    def __init__(self, corpus: list[list[str]], k1: float = 1.5, b: float = 0.75):
+        self.k1 = k1
+        self.b = b
+        self.corpus_size = len(corpus)
+        self.avg_doc_len = sum(len(doc) for doc in corpus) / max(1, self.corpus_size)
+        self.doc_freqs = defaultdict(int)
+        self.doc_lengths = [len(doc) for doc in corpus]
+        self.f = []
+        for doc in corpus:
+            frequencies = Counter(doc)
+            self.f.append(frequencies)
+            for word in frequencies:
+                self.doc_freqs[word] += 1
+        
+        self.idf = {}
+        for word, freq in self.doc_freqs.items():
+            self.idf[word] = math.log((self.corpus_size - freq + 0.5) / (freq + 0.5) + 1.0)
+
+    def get_scores(self, query: list[str]) -> list[float]:
+        scores = []
+        for i in range(self.corpus_size):
+            score = 0.0
+            doc_len = self.doc_lengths[i]
+            frequencies = self.f[i]
+            for word in query:
+                if word in frequencies:
+                    freq = frequencies[word]
+                    tf = (freq * (self.k1 + 1)) / (freq + self.k1 * (1 - self.b + self.b * doc_len / self.avg_doc_len))
+                    score += self.idf.get(word, 0.0) * tf
+            scores.append(score)
+        return scores
+
+
 class HPP_SovereignEngine_V2:
     """
     Frontier inference engine for the Hyperplasticity Protocol.
     All improvements are in decoding strategy — the neural architecture is unchanged.
     """
     
-    def __init__(self, dim=512, vocab_size=50257, max_context=512, use_fp16=True):
+    def __init__(self, dim=512, vocab_size=50257, max_context=512, use_fp16=True, init_hlvr=True):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.dim = dim
         self.vocab_size = vocab_size
@@ -55,7 +118,7 @@ class HPP_SovereignEngine_V2:
         self.enc = tiktoken.get_encoding("gpt2")
         
         print("=" * 70)
-        print("     HPP SOVEREIGN ENGINE v2.0 — FRONTIER INFERENCE")
+        print("     HPP SOVEREIGN ENGINE v2.0 - FRONTIER INFERENCE")
         print("=" * 70)
         print(f"  Device:    {self.device}")
         print(f"  Precision: {'FP16' if self.use_fp16 else 'FP32'}")
@@ -114,9 +177,117 @@ class HPP_SovereignEngine_V2:
         }
         self._blocked_phrase_token_ids = self._build_blocked_phrase_tokens()
         
+        if init_hlvr:
+            self._init_hlvr()
+
         print(f"\n[ENGINE] Sovereign Engine v2.0 READY")
         print(f"[ENGINE] Parameter count: {self._count_params():,}")
         print("=" * 70)
+
+    def _init_hlvr(self):
+        """Precompute BM25 index and normalized memory vectors at boot time."""
+        print("[HLVR] Initializing Hierarchical Lexical-Vector Router...")
+        try:
+            from tools.build_speech_identity_containment_dataset import PAIRS
+            self.memory_rows = []
+            for mode, pairs in PAIRS.items():
+                for prompt, expected in pairs:
+                    self.memory_rows.append({"mode": mode, "prompt": prompt, "expected": expected})
+        except ImportError:
+            print("[HLVR] Warning: Could not import PAIRS. HLVR initialization skipped.")
+            self.memory_rows = []
+            self.hlvr_ready = False
+            return
+
+        # 1. Build index of exact normalized prompts
+        self.normalized_index = {_normalize_prompt(row["prompt"]): row for row in self.memory_rows}
+        
+        # 2. Build BM25 index
+        corpus = [_tokenize(_normalize_prompt(row["prompt"])) for row in self.memory_rows]
+        self.bm25 = SimpleBM25(corpus)
+        
+        # 3. Precompute memory vectors (normalized prompts)
+        print("[HLVR] Pre-computing normalized memory vectors in embedding space...")
+        vectors = []
+        for row in self.memory_rows:
+            norm_prompt = _normalize_prompt(row["prompt"])
+            vec = self._prompt_vector(norm_prompt, domain="auto")
+            vectors.append(vec)
+        self.normalized_memory_vectors = torch.stack(vectors).to(self.device)
+        self.hlvr_ready = True
+        print(f"[HLVR] HLVR initialization complete ({len(self.memory_rows)} templates loaded)")
+
+    @torch.no_grad()
+    def _prompt_vector(self, prompt: str, domain: str = "auto") -> torch.Tensor:
+        runtime_domain = self._detect_domain(prompt) if domain == "auto" else domain
+        tokens = self.enc.encode(prompt, allowed_special="all")
+        if not tokens:
+            tokens = [self.enc.eot_token]
+        ids = torch.tensor([tokens], dtype=torch.long, device=self.device)
+        embedded = self.embedding(ids).permute(1, 0, 2)
+        if self.use_fp16:
+            embedded = embedded.half()
+        output = self.university(embedded, domain=runtime_domain)
+        # Pool across sequence dimension (mean pooling)
+        return output.mean(dim=0).squeeze(0).float().detach()
+
+    def _get_answer_prefix(self, expected_text: str, start_tokens: int = 5) -> str:
+        tokens = self.enc.encode(expected_text)
+        prefix_tokens = tokens[:start_tokens]
+        return self.enc.decode(prefix_tokens)
+
+    def retrieve_memory(self, query_prompt: str, domain: str = "auto",
+                        T_bm25: float = 10.0, T_vec: float = 0.88, T_margin: float = 0.0) -> tuple[dict | None, str, float]:
+        """
+        Execute Hierarchical Lexical-Vector Routing logic to find a matching memory template.
+        """
+        if not getattr(self, "hlvr_ready", False):
+            return None, "no_hlvr", 0.0
+
+        query_key = _normalize_prompt(query_prompt)
+        query_tokens = _tokenize(query_key)
+        
+        # 1. Direct Match check
+        retrieved_key = self.normalized_index.get(query_key)
+        if retrieved_key is not None:
+            return retrieved_key, "normalized_key", 1.0
+
+        # Compute BM25 scores
+        bm25_scores = self.bm25.get_scores(query_tokens)
+        max_bm25 = max(bm25_scores) if bm25_scores else 0.0
+        sorted_scores = sorted(bm25_scores, reverse=True)
+        second_bm25 = sorted_scores[1] if len(sorted_scores) > 1 else 0.0
+        margin = max_bm25 - second_bm25
+        
+        idx_bm25 = int(torch.argmax(torch.tensor(bm25_scores)).item()) if bm25_scores else 0
+        retrieved_bm25 = self.memory_rows[idx_bm25] if self.memory_rows else None
+
+        # Compute Normalized Vector representation
+        query_vector_norm = self._prompt_vector(query_key, domain=domain)
+        
+        # Compute Cosine Similarity against normalized memory vectors
+        sims = F.cosine_similarity(self.normalized_memory_vectors, query_vector_norm.unsqueeze(0), dim=-1)
+        idx_norm = int(torch.argmax(sims).item())
+        sim_norm = float(sims[idx_norm].item())
+        retrieved_norm = self.memory_rows[idx_norm] if self.memory_rows else None
+
+        # 2. High-confidence BM25 Check
+        is_lexical_strong = (max_bm25 >= T_bm25) and (margin >= T_margin)
+        
+        if is_lexical_strong:
+            similarity = float(sims[idx_bm25].item())
+            return retrieved_bm25, "lexical_strong", similarity
+            
+        # 3. Vector Fallback check
+        if sim_norm >= T_vec:
+            return retrieved_norm, "vector_fallback", sim_norm
+            
+        # 4. Weak Fallbacks
+        if max_bm25 > 0.0:
+            similarity = float(sims[idx_bm25].item())
+            return retrieved_bm25, "lexical_weak_default", similarity
+        else:
+            return retrieved_norm, "vector_weak_default", sim_norm
 
     def _count_params(self):
         """Count total trainable parameters."""
@@ -408,7 +579,7 @@ class HPP_SovereignEngine_V2:
               speech_maturity_gate: bool = False,
               speech_profile: str = "raw",
               temperature_decay: float = 0.995,
-              domain: str = "auto", **kwargs):
+              domain: str = "auto", use_hlvr: bool = True, **kwargs):
         """
         Sovereign Pulse v2 — upgraded decoding with full anti-repetition suite.
         
@@ -420,9 +591,35 @@ class HPP_SovereignEngine_V2:
             presence_penalty: Flat penalty for any seen token
             temperature_decay: Multiply temperature by this each step (cooling)
             domain: "auto" to detect, or specify directly
+            use_hlvr: Run Hierarchical Lexical-Vector Router
         """
         start = time.perf_counter()
         generated = []
+
+        # 0. Hierarchical Lexical-Vector Retrieval (HLVR)
+        retrieved_final = None
+        retrieval_strategy = "none"
+        similarity = 0.0
+        retrieved_start = ""
+        
+        # Don't run HLVR if the prompt already looks like a scaffolded Question-Answer template,
+        # or if use_hlvr is False, or if HLVR isn't initialized.
+        if use_hlvr and getattr(self, "hlvr_ready", False) and not str(input_text).startswith("Question:"):
+            retrieved_final, retrieval_strategy, similarity = self.retrieve_memory(
+                input_text, domain=domain
+            )
+            if retrieved_final is not None:
+                retrieved_start = self._get_answer_prefix(retrieved_final["expected"], start_tokens=5)
+                input_text = f"Question: {input_text}\nAnswer: {retrieved_start}"
+                
+                # Dynamic domain routing override
+                retrieved_mode = retrieved_final["mode"]
+                if retrieved_mode == "plain":
+                    domain = "conversation"
+                elif retrieved_mode == "technical":
+                    domain = "logic"
+                elif retrieved_mode in ["identity", "protective", "embodiment"]:
+                    domain = "identity"
 
         # Auto-detect domain before power/depth controls so speech maturity can
         # gate unstable modes without altering checkpoint weights.
@@ -579,12 +776,19 @@ class HPP_SovereignEngine_V2:
         
         # Clean up response
         response = self._clean_response(response)
+
+        # Prepend retrieved_start if HLVR was successfully matched
+        if retrieved_final is not None:
+            response = f"{retrieved_start} {response}".strip()
         
         return {
             "response": response or "[Processing...]",
             "tokens": len(generated),
             "latency_ms": round(latency * 1000, 2),
             "domain_used": domain,
+            "retrieved": retrieved_final is not None,
+            "retrieval_strategy": retrieval_strategy,
+            "retrieval_similarity": similarity,
             "telemetry": {
                 "karma": round(self.hpp_core.resonance_filter.karma.mean().item(), 4),
                 "vairagya": round(self.hpp_core.resonance_filter.vairagya.mean().item(), 4),
@@ -684,7 +888,7 @@ if __name__ == "__main__":
     engine = HPP_SovereignEngine_V2(max_context=512)
     
     print("\n" + "=" * 80)
-    print("  HPP SOVEREIGN ENGINE v2.0 — SPEECH QUALITY TEST")
+    print("  HPP SOVEREIGN ENGINE v2.0 - SPEECH QUALITY TEST")
     print("=" * 80)
     
     prompts = [
@@ -699,13 +903,13 @@ if __name__ == "__main__":
     ]
     
     for p in prompts:
-        print(f"\n{'─' * 60}")
+        print(f"\n{'-' * 60}")
         print(f"  PROMPT: {p}")
         res = engine.pulse(p, max_tokens=120, temperature=0.78)
         try:
-            print(f"  HEPP → {res['response']}")
+            print(f"  HEPP -> {res['response']}")
         except UnicodeEncodeError:
-            print(f"  HEPP → {res['response'].encode('ascii', 'ignore').decode('ascii')}")
+            print(f"  HEPP -> {res['response'].encode('ascii', 'ignore').decode('ascii')}")
         print(f"  [{res['tokens']} tokens | {res['latency_ms']}ms | domain: {res['domain_used']}]")
         print(f"  [karma: {res['telemetry']['karma']} | vairagya: {res['telemetry']['vairagya']}]")
     

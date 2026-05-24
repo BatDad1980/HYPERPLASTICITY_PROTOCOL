@@ -44,8 +44,10 @@ class HPP_MatureInferenceEngine:
 
     def _load_university_brain(self):
         checkpoints = [
-            "checkpoints/hpp_university_mirror.pth",
+            "checkpoints/hpp_linguistic_anchor.pth",
+            "checkpoints/hpp_university_prism.pth",
             "checkpoints/hpp_university_lens.pth",
+            "checkpoints/hpp_university_mirror.pth",
             "checkpoints/hpp_adolescent_checkpoint.pth"
         ]
         for cp in checkpoints:
