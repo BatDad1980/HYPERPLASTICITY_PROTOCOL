@@ -1,0 +1,210 @@
+# HPP V5 Model Kernel Spec
+
+This document defines the first clean model-side target for HPP V5.
+
+The prior HPP proved a model-centric prototype. V5 should extract the core ideas into a cleaner, measurable kernel that can support both buyer demos and private operating use.
+
+## Hypothesis
+
+A post-LLM system can achieve useful adaptive behavior with less brute-force scale by combining:
+
+- recurrent depth through shared weights
+- stabilization gates
+- adaptive pruning/protection
+- stress-aware routing
+- staged curriculum growth
+- explicit telemetry
+
+The efficiency claim must be treated as a measurement target, not a slogan.
+
+## Kernel Components
+
+### 1. Shared Workshop
+
+A compact neural block reused across multiple passes.
+
+Purpose:
+
+- reduce unique parameter count
+- increase effective reasoning depth
+- expose loop telemetry
+- allow power-aware pass budgeting
+
+### 2. Habit Gate
+
+A stabilization layer inspired by Habit-14.
+
+Purpose:
+
+- count successful repetitions
+- prevent unstable loops from being treated as permanent
+- distinguish plastic, scaffolded, myelinated, and guardian pathways
+
+### 3. Protection Filter
+
+A telemetry and gating layer derived from the previous `KarmicMicrogliaFilter`.
+
+Purpose:
+
+- track noisy pathways
+- protect stable pathways
+- expose pruning/protection metrics
+- support buyer-facing explanation of adaptive efficiency
+
+Developmental rule:
+
+Filtering should emerge with maturity. Infant-like states should be receptive and noisy; stable repeated pathways should gain protection and stronger noise rejection over time.
+
+### 4. Router
+
+A mode selector derived from nurture/sentinel routing.
+
+Purpose:
+
+- use reflective loops in safe conditions
+- use low-complexity paths under stress
+- support battery-safe, plugged-in, and demo execution
+
+First evidence:
+
+- `scripts/compare_stress_routing.py`
+- `docs/stress-routing-sweep-summary.md`
+
+The first toy harness uses a provided stress score to switch between nurture and sentinel strategies. This proves routing behavior only; autonomous stress detection remains future work.
+
+Inferred-routing follow-up:
+
+- `scripts/compare_inferred_stress_routing.py`
+- `docs/inferred-stress-routing-profile-summary.md`
+
+The inferred-routing harness estimates stress from state telemetry and adds an OOD tap-out path. The first profile comparison shows that tap-out thresholds should be profile-dependent: a high-intensity profile can treat noise as tolerable that a standard profile would route away from.
+
+Tap-out boundary follow-up:
+
+- `scripts/sweep_tapout_boundaries.py`
+- `docs/tapout-boundary-sweep-summary.md`
+
+The first boundary sweep shows low-tolerance and standard profiles tapping out at extreme-noise scale `2.0`, while the high-intensity profile first taps out at `2.8`. This supports profile-calibrated redlines instead of a single global OOD threshold.
+
+### 5. Maturity-Dependent Depth Controller
+
+A controller that allocates recurrent depth according to pathway maturity.
+
+Purpose:
+
+- prevent immature speech or action adapters from over-amplifying unstable attractors
+- allow mature pathways to reuse deeper recurrent passes
+- connect loop depth to telemetry instead of only compute availability
+- support stable, battery, demo, and plugged profiles without treating plugged mode as automatically better
+
+First evidence:
+
+- `docs/maturity-dependent-depth-control.md`
+- Original V2 report: `reports/SPEECH_MODE_ROUTING_AND_MATURITY_GATE_2026-05-17.md`
+
+The original branch found that the grammar-first checkpoint with a stable maturity-gated profile reduced mean speech regression from `3.0533` to `0.6933` and reduced format leaks from `17` to `1` across seeds `14`, `21`, and `28`.
+
+This is original-branch speech evidence, not a V5 language-quality claim. The V5 inheritance is the architectural rule: depth should be earned by maturity.
+
+## Scaling Probe
+
+Artifact:
+
+- `scripts/sweep_recurrent_gpu_scale.py`
+- `docs/recurrent-gpu-scaling-summary.md`
+
+The first plugged RTX 4050 scaling probe measures inference-only recurrent workshop size. The largest completed probe used a 19,456-dimensional workshop with 2,271,332,352 parameters and 14 recurrent passes. The practical latency edge appeared earlier, around the 15,360-dimensional probe with 1,415,669,760 parameters.
+
+This should be treated as hardware envelope evidence only. Training, optimizer state, and useful learned behavior require separate tests.
+
+## Named Baseline Comparison
+
+Artifact:
+
+- `scripts/compare_named_baselines.py`
+- `scripts/sweep_named_baselines.py`
+- `docs/named-baseline-comparison-summary.md`
+- `docs/named-baseline-sweep-summary.md`
+- `docs/named-baseline-sweep-big-summary.md`
+
+The first named-baseline harness compares HPP developmental memory against nearest-centroid prototype memory, a one-pass MLP denoiser, and a GRU recurrent refiner. On the plugged RTX 4050 run, HPP beat the best baseline by mean MSE and accuracy on a synthetic attractor-recovery task while using fewer stored memory values than the trained neural baselines use parameters. The first ten-seed sweep preserved the MSE and accuracy wins across all tested seeds. A larger 15-seed sweep at dimension 384 preserved pathway-recognition wins but not raw coordinate-MSE wins, which suggests future benchmarks should report reconstruction and recognition separately.
+
+This is still toy mechanism evidence. It should be expanded across seeds, changed-context probes, and less scaffolded training conditions before being treated as a broad performance claim.
+
+## Shared Depth Versus Unique Depth Scaling
+
+Artifact:
+
+- `scripts/sweep_recurrent_vs_unique_stack.py`
+- `docs/recurrent-vs-unique-stack-scaling-summary.md`
+
+The first scaled comparison shows the expected memory-pressure split. At dimension 4,096, the 14-layer unique stack used 14.0x more parameters and about 13.69x more peak CUDA memory than the shared recurrent workshop. At dimension 8,192, the shared recurrent workshop completed while the equivalent unique stack hit CUDA OOM.
+
+### 6. Evidence Harness
+
+A measurement wrapper around every run.
+
+Purpose:
+
+- record device
+- record parameter count
+- record pass count
+- record latency
+- record memory use
+- record output quality proxy
+- preserve enough context to repeat the measurement
+
+## Power-Aware Execution
+
+### Battery Safe
+
+- CPU preferred.
+- Very small tensors only.
+- No training.
+- No checkpoint loading unless explicitly needed.
+- Maximum pass count should be low.
+
+### Plugged In
+
+- CUDA allowed.
+- Check `torch.cuda.is_available()`.
+- Log device name.
+- Log allocated and reserved GPU memory.
+- Use small measured experiments before larger runs.
+
+### Demo
+
+- Deterministic input.
+- Small fixed model.
+- Sanitized output.
+- Buyer-safe telemetry.
+
+## First Measurement Targets
+
+V5 should eventually measure:
+
+- parameters versus effective depth
+- latency per recurrent pass
+- memory use per pass
+- CPU versus CUDA behavior
+- output stability across repeated loops
+- quality before and after Habit-14-style stabilization
+- shared recurrent depth versus a unique-layer stack
+- shared recurrent depth versus a baseline with the same parameter budget
+- HPP developmental memory versus named public-style baselines
+- iterative stabilization under controlled noise
+- Habit-14 memory/protection across repeated exposures
+- rigidity risk after over-protection or excessive lock strength
+
+## Guardrail
+
+Do not claim a fixed efficiency multiple without a benchmark that states:
+
+- baseline model
+- hardware
+- task
+- metric
+- method
+- run date
+- power mode
+- reproducibility notes
