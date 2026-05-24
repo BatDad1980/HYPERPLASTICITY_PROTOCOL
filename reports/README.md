@@ -47,6 +47,10 @@ Read these in order:
 39. `SPEECH_RETRIEVAL_ANSWER_START_2026-05-22.md`
 40. `SPEECH_RETRIEVAL_LANGUAGE_GATE_2026-05-22.md`
 41. `SPEECH_RETRIEVAL_VARIANT_GATE_2026-05-22.md`
+42. `SPEECH_RETRIEVAL_NORMALIZED_VECTOR_GATE_EXPOSURE_BIAS_BRIDGE_V1_2026-05-24.md`
+43. `SPEECH_RETRIEVAL_HYBRID_LEXICAL_VECTOR_GATE_EXPOSURE_BIAS_BRIDGE_V1_2026-05-24.md`
+44. `SPEECH_RETRIEVAL_LEXICAL_FIRST_GATE_EXPOSURE_BIAS_BRIDGE_V1_2026-05-24.md` & `SPEECH_RETRIEVAL_LEXICAL_FIRST_GATE_GRAMMAR_FIRST_V1_2026-05-24.md`
+45. `SPEECH_RETRIEVAL_HIERARCHICAL_GATE_EXPOSURE_BIAS_BRIDGE_V1_2026-05-24.md` & `SPEECH_RETRIEVAL_HIERARCHICAL_GATE_GRAMMAR_FIRST_V1_2026-05-24.md`
 
 Additional diagnostic prompt-binding probes:
 
@@ -98,7 +102,12 @@ For V5 integration:
 - retrieval answer-start status: exact prompt memory with five-token answer starts reached 49/75, while leave-one-out retrieval collapsed to 2/75; diagnostic-only
 - retrieval language gate status: exact-key five-token retrieval scaffold reached 156/225 semantic with 222/225 surface; diagnostic-only
 - retrieval variant gate status: light prompt wrappers dropped semantic to 22/75-33/75 when retrieval exact-match fell; diagnostic-only
-- next target: retrieval memory index with normalized prompt keys, tested separately before speech generation
+- normalized vector gate status: exact key normalization mapped exact variant prompts but vector fallback only reached 33.33% match rate on paraphrases; diagnostic-only
+- hybrid lexical-vector gate status: Reciprocal Rank Fusion blended vector and BM25, but noisy vector ranks degraded clean matches to 45.33% paraphrase match rate; diagnostic-only
+- lexical-first gate status: direct lookup followed by BM25 fallback achieved 74.67% paraphrase match rate; diagnostic-only
+- hierarchical lexical-vector gate (HLVR) status: gating BM25 confidence and falling back to normalized vector similarity for synonyms/vocabulary mismatches pushed paraphrase exact-match retrieval rate to 76.00% (overall exact-match 95.20%) with zero format leaks on grammar_first_v1; diagnostic-only
+- next target: contextual memory integration and feedback gating inside the live inference loop
+
 
 Success condition moving forward:
 
