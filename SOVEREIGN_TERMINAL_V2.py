@@ -49,7 +49,19 @@ def run():
                 test_prompt = input("[COMPARE] Enter prompt: ")
                 if test_prompt.strip():
                     # V2 (this engine)
-                    r2 = engine.pulse(test_prompt, max_tokens=100, speech_profile="stable")
+                    r2 = engine.pulse(
+                        test_prompt,
+                        max_tokens=100,
+                        temperature=0.65,
+                        top_p=0.82,
+                        top_k=25,
+                        ngram_block=3,
+                        frequency_penalty=1.35,
+                        presence_penalty=0.55,
+                        phrase_blocking=True,
+                        speech_maturity_gate=True,
+                        speech_profile="raw"
+                    )
                     print(f"\n[V2 ENGINE]: {r2['response']}")
                     print(f"  ({r2['tokens']} tokens, {r2['latency_ms']}ms, domain: {r2['domain_used']})")
                     
@@ -73,8 +85,23 @@ def run():
             domain = engine._detect_domain(prompt)
             print(f"\n[Thinking] Domain: {domain.upper()}...")
             
+            # Dynamic max_tokens leash to prevent identity domain drift
+            max_tokens = 75 if domain == "identity" else 150
+            
             start_t = time.perf_counter()
-            result = engine.pulse(prompt, max_tokens=150, temperature=0.78, speech_profile="stable")
+            result = engine.pulse(
+                prompt,
+                max_tokens=max_tokens,
+                temperature=0.65,
+                top_p=0.82,
+                top_k=25,
+                ngram_block=3,
+                frequency_penalty=1.35,
+                presence_penalty=0.55,
+                phrase_blocking=True,
+                speech_maturity_gate=True,
+                speech_profile="raw"
+            )
             latency = (time.perf_counter() - start_t) * 1000
             
             print("-" * 40)
