@@ -1,7 +1,7 @@
 """
 HPP Phase 17d: Clean conversational training with fixed engine.
 No Mission Anchor in generation loop. Divisive repetition penalty.
-5000 steps, warmup + cosine decay, OOM protection.
+2500 steps, warmup + cosine decay, OOM protection, response-only loss.
 """
 import os, sys, json, time, random, gc, math
 import torch
@@ -9,7 +9,7 @@ import torch.nn as nn
 import torch.optim as optim
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from hpp_sovereign_engine import HPP_SovereignEngine
+from hpp_sovereign_engine_v2 import HPP_SovereignEngine_V2
 
 STEPS = 2500
 LR = 1.2e-4
@@ -24,29 +24,35 @@ def save_checkpoint(engine, step):
         'masamune_state_dict': engine.university.state_dict(),
         'lm_head_state_dict': engine.lm_head.state_dict(),
         'embedding_state_dict': engine.embedding.state_dict(),
-        'phase': 'conversational_v17d'
+        'phase': 'conversational_v17d_v2'
     }
     torch.save(ckpt, "checkpoints/hpp_linguistic_anchor.pth")
-    print(f"  [SAVED] step {step}", flush=True)
+    print(f"  [SAVED] step {step} to checkpoints/hpp_linguistic_anchor.pth", flush=True)
 
 
 def test_speech(engine):
+    # Set to eval mode for inference
     engine.university.eval()
     engine.lm_head.eval()
     engine.embedding.eval()
-    print("  --- SPEECH TEST ---", flush=True)
+    print("  --- SPEECH TEST (WITHOUT HLVR TO TEST RAW WEIGHTS) ---", flush=True)
+    # Test queries
     for q in ["Who are you?", "Good morning.", "I need help.",
               "Tell me about Masamune.", "I'm not doing well today."]:
         try:
-            r = engine.pulse(q, max_tokens=50, temperature=0.7, top_p=0.9)
+            # We explicitly pass use_hlvr=False to evaluate the raw neural response changes
+            r = engine.pulse(q, max_tokens=50, temperature=0.7, top_p=0.9, use_hlvr=False)
             print(f"  Q: {q}", flush=True)
             print(f"  A: {r['response'][:180]}", flush=True)
         except Exception as e:
             print(f"  [ERR] {e}", flush=True)
     print("  --- END TEST ---\n", flush=True)
+    
+    # Restore train mode
     engine.university.train()
     engine.lm_head.train()
     engine.embedding.train()
+    
     gc.collect()
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
@@ -67,12 +73,14 @@ def run():
         gb = torch.cuda.get_device_properties(0).total_memory / 1e9
         print(f"[GPU] {gb:.1f} GB total VRAM", flush=True)
 
-    print(f"[TRAIN] Loading engine...", flush=True)
-    engine = HPP_SovereignEngine(max_context=512)
+    print(f"[TRAIN] Loading engine v2...", flush=True)
+    # Load HPP_SovereignEngine_V2 with use_fp16=False for stable gradient updates
+    engine = HPP_SovereignEngine_V2(max_context=512, use_fp16=False, init_hlvr=False, checkpoint_path="checkpoints/hpp_linguistic_anchor.pth")
 
-    # Freeze deep brain
+    # Freeze deep brains & non-speech layers
     for m in [engine.hpp_core, engine.guardian, engine.toddler,
-              engine.school, engine.adolescent]:
+              engine.school, engine.adolescent, engine.agency,
+              engine.anchor, engine.samurai_body, engine.proprioception]:
         for p in m.parameters():
             p.requires_grad = False
 
@@ -90,15 +98,16 @@ def run():
             trainable.append(p)
 
     optimizer = optim.AdamW(trainable, lr=LR, weight_decay=0.01)
-    criterion = nn.CrossEntropyLoss(ignore_index=engine.enc.eot_token)
+    # Use ignore_index=-100 to mask instruction prompt templates
+    criterion = nn.CrossEntropyLoss(ignore_index=-100)
 
     # Load data
-    data = [json.loads(l) for l in open(
-        'datasets/hf_local/CONVERSATIONAL_FLUENCY.jsonl', 'r', encoding='utf-8'
-    )]
+    dataset_path = 'datasets/hf_local/CONVERSATIONAL_FLUENCY.jsonl'
+    data = [json.loads(l) for l in open(dataset_path, 'r', encoding='utf-8')]
     print(f"[TRAIN] {len(data)} samples | {STEPS} steps | batch {BATCH} | seq {SEQ_LEN}", flush=True)
     print(f"[TRAIN] LR: {LR} | Warmup: {WARMUP} | Device: {device}", flush=True)
 
+    # Put speech components into train mode
     engine.university.train()
     engine.lm_head.train()
     engine.embedding.train()
@@ -113,29 +122,45 @@ def run():
 
         # Sample batch
         batch = random.choices(data, k=BATCH)
-        texts = []
-        for s in batch:
-            if 'text' in s:
-                texts.append(s['text'])
-            else:
-                texts.append(f"### Instruction:\n{s['instruction']}\n\n### Response:\n{s['response']}")
-
-        # Tokenize
+        
         token_batch = []
-        for text in texts:
-            tokens = engine.enc.encode(text)[:SEQ_LEN]
-            if len(tokens) < SEQ_LEN:
-                tokens = tokens + [engine.enc.eot_token] * (SEQ_LEN - len(tokens))
-            token_batch.append(tokens)
+        label_batch = []
+        for s in batch:
+            instruction = s.get('instruction', '')
+            response = s.get('response', '')
+            
+            # Construct prefix and response tokens separately
+            prefix = f"### Instruction:\n{instruction}\n\n### Response:\n"
+            prefix_tokens = engine.enc.encode(prefix)
+            response_tokens = engine.enc.encode(response) + [engine.enc.eot_token]
+            
+            # Concatenate inputs and construct labels
+            input_tokens = prefix_tokens + response_tokens
+            labels = [-100] * len(prefix_tokens) + response_tokens
+            
+            # Truncate
+            if len(input_tokens) > SEQ_LEN:
+                input_tokens = input_tokens[:SEQ_LEN]
+                labels = labels[:SEQ_LEN]
+            # Pad
+            else:
+                pad_len = SEQ_LEN - len(input_tokens)
+                input_tokens = input_tokens + [engine.enc.eot_token] * pad_len
+                labels = labels + [-100] * pad_len
+                
+            token_batch.append(input_tokens)
+            label_batch.append(labels)
 
         ids = torch.tensor(token_batch, dtype=torch.long, device=device)
+        targets = torch.tensor(label_batch, dtype=torch.long, device=device)
 
         # Forward
         optimizer.zero_grad()
         embedded = engine.embedding(ids[:, :-1]).permute(1, 0, 2)
+        # Force domain specialization to "conversation"
         output = engine.university(embedded, domain="conversation")
         logits = engine.lm_head(output).permute(1, 2, 0)
-        loss = criterion(logits, ids[:, 1:])
+        loss = criterion(logits, targets[:, 1:])
 
         loss_val = loss.item()
 
@@ -159,8 +184,9 @@ def run():
             gc.collect()
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
-        del loss, logits, output, embedded, ids
-        torch.cuda.empty_cache()
+        del loss, logits, output, embedded, ids, targets
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
     save_checkpoint(engine, STEPS)
     elapsed = time.time() - t0

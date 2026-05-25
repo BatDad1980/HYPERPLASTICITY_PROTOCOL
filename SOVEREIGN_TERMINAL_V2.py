@@ -29,7 +29,7 @@ def run():
     
     while True:
         try:
-            print("─" * 80)
+            print("-" * 80)
             prompt = input("[ARCHITECT]: ")
             if prompt.lower() in ['exit', 'quit', 'shutdown']:
                 print("[!] SECURE SHUTDOWN...")
@@ -77,12 +77,12 @@ def run():
             result = engine.pulse(prompt, max_tokens=150, temperature=0.78)
             latency = (time.perf_counter() - start_t) * 1000
             
-            print(f"\n{'─' * 40}")
+            print("-" * 40)
             try:
                 print(f"[HEPP]: {result['response']}")
             except UnicodeEncodeError:
                 print(f"[HEPP]: {result['response'].encode('ascii', 'ignore').decode('ascii')}")
-            print(f"{'─' * 40}")
+            print("-" * 40)
             
             tel = result['telemetry']
             print(f"[TELEMETRY]")

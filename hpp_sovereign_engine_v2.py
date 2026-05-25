@@ -109,7 +109,7 @@ class HPP_SovereignEngine_V2:
     All improvements are in decoding strategy — the neural architecture is unchanged.
     """
     
-    def __init__(self, dim=512, vocab_size=50257, max_context=512, use_fp16=True, init_hlvr=True):
+    def __init__(self, dim=512, vocab_size=50257, max_context=512, use_fp16=True, init_hlvr=True, checkpoint_path=None):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.dim = dim
         self.vocab_size = vocab_size
@@ -143,7 +143,8 @@ class HPP_SovereignEngine_V2:
         self.embedding = nn.Embedding(vocab_size, dim).to(self.device)
         self.lm_head = nn.Linear(dim, vocab_size).to(self.device)
         
-        self._load_checkpoints()
+        self.checkpoint_path = checkpoint_path
+        self._load_checkpoints(checkpoint_path=self.checkpoint_path)
         self.eval_mode()
         
         # Convert to fp16 for faster inference
@@ -323,17 +324,20 @@ class HPP_SovereignEngine_V2:
         self.lm_head.eval()
         self.embedding.eval()
 
-    def _load_checkpoints(self):
+    def _load_checkpoints(self, checkpoint_path=None):
         """Load brain checkpoints with priority ordering."""
         loaded = False
         embedding_loaded = False
-        checkpoints = [
+        checkpoints = []
+        if checkpoint_path is not None:
+            checkpoints.append(checkpoint_path)
+        checkpoints.extend([
             "checkpoints/hpp_linguistic_anchor.pth",
             "checkpoints/hpp_university_prism.pth",
             "checkpoints/hpp_university_lens.pth",
             "checkpoints/hpp_university_mirror.pth",
             "checkpoints/hpp_adolescent_checkpoint.pth"
-        ]
+        ])
         
         for ckpt in checkpoints:
             if os.path.exists(ckpt):
