@@ -630,6 +630,9 @@ class HPP_SovereignEngine_V2:
         if domain == "auto":
             domain = self._detect_domain(input_text)
 
+        if domain == "identity":
+            max_tokens = min(max_tokens, 75)
+
         (
             max_tokens,
             temperature,
