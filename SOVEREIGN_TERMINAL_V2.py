@@ -49,7 +49,7 @@ def run():
                 test_prompt = input("[COMPARE] Enter prompt: ")
                 if test_prompt.strip():
                     # V2 (this engine)
-                    r2 = engine.pulse(test_prompt, max_tokens=100)
+                    r2 = engine.pulse(test_prompt, max_tokens=100, speech_profile="stable")
                     print(f"\n[V2 ENGINE]: {r2['response']}")
                     print(f"  ({r2['tokens']} tokens, {r2['latency_ms']}ms, domain: {r2['domain_used']})")
                     
@@ -74,7 +74,7 @@ def run():
             print(f"\n[Thinking] Domain: {domain.upper()}...")
             
             start_t = time.perf_counter()
-            result = engine.pulse(prompt, max_tokens=150, temperature=0.78)
+            result = engine.pulse(prompt, max_tokens=150, temperature=0.78, speech_profile="stable")
             latency = (time.perf_counter() - start_t) * 1000
             
             print("-" * 40)
