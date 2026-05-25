@@ -23,6 +23,10 @@ def run():
     print("\n[+] INITIALIZING SOVEREIGN ENGINE v2.0...")
     engine = HPP_SovereignEngine_V2(max_context=512)
     
+    print("[+] INITIALIZING SPEECH CONTROLLER v1.0...")
+    from core.speech_controller_v1 import SpeechControllerV1
+    controller = SpeechControllerV1(engine=engine)
+    
     print("\n[HEPP]: FRONTIER ENGINE ONLINE. READY FOR PULSE.")
     print("        Type 'exit' to shutdown. Type 'bench' for quick benchmark.")
     print("        Type 'compare' to test v1 vs v2 side by side.\n")
@@ -87,51 +91,36 @@ def run():
                         print(f"[V1 ERR] {e}")
                 continue
             
-            # Domain detection
-            domain = engine._detect_domain(prompt)
-            print(f"\n[Thinking] Domain: {domain.upper()}...")
+            # Domain / Intent detection
+            intent = controller.classify_intent(prompt)
+            print(f"\n[Thinking] Intent: {intent.upper()}...")
             
-            # Dynamic max_tokens leash to prevent identity domain drift
-            max_tokens = 75 if domain == "identity" else 150
-            
-            # Detect single-sentence constraints for strict tests
-            is_single_sentence = any(kw in prompt.lower() for kw in [
-                "single sentence", "one sentence", "bounded sentence", "single-sentence", "one-sentence", "bounded statement"
-            ])
-            stop_sequences = ["."] if is_single_sentence else None
-
             start_t = time.perf_counter()
-            result = engine.pulse(
+            result = controller.process(
                 prompt,
-                max_tokens=max_tokens,
-                temperature=0.65,
-                top_p=0.82,
-                top_k=25,
-                ngram_block=3,
-                frequency_penalty=1.35,
-                presence_penalty=0.55,
-                phrase_blocking=True,
-                speech_maturity_gate=True,
-                speech_profile="raw",
-                stop_sequences=stop_sequences
+                seed=14
             )
             latency = (time.perf_counter() - start_t) * 1000
             
             print("-" * 40)
             try:
-                print(f"[HEPP]: {result['response']}")
+                print(f"[HEPP]: {result['final_text']}")
             except UnicodeEncodeError:
-                print(f"[HEPP]: {result['response'].encode('ascii', 'ignore').decode('ascii')}")
+                print(f"[HEPP]: {result['final_text'].encode('ascii', 'ignore').decode('ascii')}")
             print("-" * 40)
             
             tel = result['telemetry']
             print(f"[TELEMETRY]")
-            print(f"| Tokens:   {result['tokens']}")
-            print(f"| Latency:  {latency:.1f}ms")
-            print(f"| Domain:   {result['domain_used']}")
-            print(f"| Karma:    {tel['karma']:.4f}")
-            print(f"| Vairagya: {tel['vairagya']:.4f}")
-            print(f"| FinalTemp: {tel['final_temp']:.4f}")
+            print(f"| Intent:    {result['intent'].upper()}")
+            print(f"| Strategy:  {result['retrieval_strategy']}")
+            print(f"| Match:     {result['retrieval_exact_match']}")
+            print(f"| Start:     {result['answer_start']}")
+            print(f"| Loop Score: {result['loop_score']}")
+            print(f"| Leaks:     {result['format_leaks']}")
+            print(f"| Latency:   {latency:.1f}ms")
+            print(f"| Boundary:  {result['boundary']}")
+            print(f"| Karma:     {tel.get('karma', 0.0):.4f}")
+            print(f"| Vairagya:  {tel.get('vairagya', 0.0):.4f}")
             
         except KeyboardInterrupt:
             break
