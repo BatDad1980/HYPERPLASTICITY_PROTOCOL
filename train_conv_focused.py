@@ -1,7 +1,7 @@
 """
 HPP Phase 17d: Clean conversational training with fixed engine.
 No Mission Anchor in generation loop. Divisive repetition penalty.
-2500 steps, warmup + cosine decay, OOM protection, response-only loss.
+5000 steps, warmup + cosine decay, OOM protection, response-only loss, dynamic domains.
 """
 import os, sys, json, time, random, gc, math
 import torch
@@ -11,20 +11,20 @@ import torch.optim as optim
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from hpp_sovereign_engine_v2 import HPP_SovereignEngine_V2
 
-STEPS = 2500
+STEPS = 5000
 LR = 1.2e-4
-BATCH = 2
+BATCH = 1
 SEQ_LEN = 96
-WARMUP = 300
-SAVE_EVERY = 500
-TEST_EVERY = 1250
+WARMUP = 600
+SAVE_EVERY = 1000
+TEST_EVERY = 2500
 
 def save_checkpoint(engine, step):
     ckpt = {
         'masamune_state_dict': engine.university.state_dict(),
         'lm_head_state_dict': engine.lm_head.state_dict(),
         'embedding_state_dict': engine.embedding.state_dict(),
-        'phase': 'conversational_v17d_v2'
+        'phase': 'conversational_v17d_v2_domain_routed'
     }
     torch.save(ckpt, "checkpoints/hpp_linguistic_anchor.pth")
     print(f"  [SAVED] step {step} to checkpoints/hpp_linguistic_anchor.pth", flush=True)
@@ -120,45 +120,51 @@ def run():
         for pg in optimizer.param_groups:
             pg['lr'] = current_lr
 
-        # Sample batch
-        batch = random.choices(data, k=BATCH)
+        # Sample batch (size = 1)
+        sample = random.choice(data)
         
-        token_batch = []
-        label_batch = []
-        for s in batch:
-            instruction = s.get('instruction', '')
-            response = s.get('response', '')
+        instruction = sample.get('instruction', '')
+        response = sample.get('response', '')
+        category = sample.get('category', 'conversation')
+        
+        # Determine the target domain dynamically
+        if category in ["identity", "protection", "embodiment"]:
+            domain = "identity"
+        elif category in ["explanation", "technical"]:
+            domain = "logic"
+        elif category in ["synthesis"]:
+            domain = "synthesis"
+        else:
+            domain = "conversation"
             
-            # Construct prefix and response tokens separately
-            prefix = f"### Instruction:\n{instruction}\n\n### Response:\n"
-            prefix_tokens = engine.enc.encode(prefix)
-            response_tokens = engine.enc.encode(response) + [engine.enc.eot_token]
-            
-            # Concatenate inputs and construct labels
-            input_tokens = prefix_tokens + response_tokens
-            labels = [-100] * len(prefix_tokens) + response_tokens
-            
-            # Truncate
-            if len(input_tokens) > SEQ_LEN:
-                input_tokens = input_tokens[:SEQ_LEN]
-                labels = labels[:SEQ_LEN]
-            # Pad
-            else:
-                pad_len = SEQ_LEN - len(input_tokens)
-                input_tokens = input_tokens + [engine.enc.eot_token] * pad_len
-                labels = labels + [-100] * pad_len
-                
-            token_batch.append(input_tokens)
-            label_batch.append(labels)
+        # Construct prefix and response tokens separately
+        prefix = f"### Instruction:\n{instruction}\n\n### Response:\n"
+        prefix_tokens = engine.enc.encode(prefix)
+        response_tokens = engine.enc.encode(response) + [engine.enc.eot_token]
+        
+        # Concatenate inputs and construct labels
+        input_tokens = prefix_tokens + response_tokens
+        labels = [-100] * len(prefix_tokens) + response_tokens
+        
+        # Truncate
+        if len(input_tokens) > SEQ_LEN:
+            input_tokens = input_tokens[:SEQ_LEN]
+            labels = labels[:SEQ_LEN]
+        # Pad
+        else:
+            pad_len = SEQ_LEN - len(input_tokens)
+            input_tokens = input_tokens + [engine.enc.eot_token] * pad_len
+            labels = labels + [-100] * pad_len
 
-        ids = torch.tensor(token_batch, dtype=torch.long, device=device)
-        targets = torch.tensor(label_batch, dtype=torch.long, device=device)
+        ids = torch.tensor([input_tokens], dtype=torch.long, device=device)
+        targets = torch.tensor([labels], dtype=torch.long, device=device)
 
         # Forward
         optimizer.zero_grad()
         embedded = engine.embedding(ids[:, :-1]).permute(1, 0, 2)
-        # Force domain specialization to "conversation"
-        output = engine.university(embedded, domain="conversation")
+        
+        # Specialization domain mapped dynamically
+        output = engine.university(embedded, domain=domain)
         logits = engine.lm_head(output).permute(1, 2, 0)
         loss = criterion(logits, targets[:, 1:])
 
@@ -169,9 +175,9 @@ def run():
         torch.nn.utils.clip_grad_norm_(trainable, max_norm=1.0)
         optimizer.step()
 
-        if step % 100 == 0 or step == 1:
+        if step % 200 == 0 or step == 1:
             elapsed = time.time() - t0
-            print(f"  Step {step:5d}/{STEPS} | Loss: {loss_val:.4f} | LR: {current_lr:.2e} | {elapsed:.0f}s", flush=True)
+            print(f"  Step {step:5d}/{STEPS} | Loss: {loss_val:.4f} | LR: {current_lr:.2e} | Domain: {domain:<12} | {elapsed:.0f}s", flush=True)
 
         if step % SAVE_EVERY == 0:
             save_checkpoint(engine, step)
@@ -180,7 +186,7 @@ def run():
             test_speech(engine)
 
         # OOM protection - aggressive for 6GB VRAM
-        if step % 100 == 0:
+        if step % 200 == 0:
             gc.collect()
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
