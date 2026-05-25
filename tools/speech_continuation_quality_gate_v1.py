@@ -129,6 +129,9 @@ def main() -> None:
                 )
                 hits_continuation = res_continuation["hits"]
                 continuation_semantic_pass = res_continuation["semantic_pass"]
+                
+                # Partial semantic pass: at least 1 keyword hit in the continuation
+                continuation_partial_semantic_pass = len(hits_continuation) >= 1
 
                 # 3. Anchor Only
                 res_anchor = score_item(
@@ -155,6 +158,7 @@ def main() -> None:
                     "hits_full": hits_full,
                     "full_semantic_pass": full_semantic_pass,
                     "continuation_semantic_pass": continuation_semantic_pass,
+                    "continuation_partial_semantic_pass": continuation_partial_semantic_pass,
                     "adds_useful_content": adds_useful_content,
                     "surface_pass": record["surface_pass"],
                     "loop_score": record["loop_score"],
@@ -176,6 +180,7 @@ def main() -> None:
         para_count = len(para_records)
         para_full_sem = sum(1 for r in para_records if r["full_semantic_pass"])
         para_cont_sem = sum(1 for r in para_records if r["continuation_semantic_pass"])
+        para_cont_part_sem = sum(1 for r in para_records if r["continuation_partial_semantic_pass"])
         para_adds_useful = sum(1 for r in para_records if r["adds_useful_content"])
         para_surface = sum(1 for r in para_records if r["surface_pass"])
         para_leaks = sum(r["format_leaks"] for r in para_records)
@@ -186,6 +191,7 @@ def main() -> None:
         std_count = len(std_records)
         std_full_sem = sum(1 for r in std_records if r["full_semantic_pass"])
         std_cont_sem = sum(1 for r in std_records if r["continuation_semantic_pass"])
+        std_cont_part_sem = sum(1 for r in std_records if r["continuation_partial_semantic_pass"])
         std_adds_useful = sum(1 for r in std_records if r["adds_useful_content"])
         std_surface = sum(1 for r in std_records if r["surface_pass"])
         std_leaks = sum(r["format_leaks"] for r in std_records)
@@ -195,6 +201,7 @@ def main() -> None:
         all_count = len(strat_records)
         all_full_sem = sum(1 for r in strat_records if r["full_semantic_pass"])
         all_cont_sem = sum(1 for r in strat_records if r["continuation_semantic_pass"])
+        all_cont_part_sem = sum(1 for r in strat_records if r["continuation_partial_semantic_pass"])
         all_adds_useful = sum(1 for r in strat_records if r["adds_useful_content"])
         all_surface = sum(1 for r in strat_records if r["surface_pass"])
         all_leaks = sum(r["format_leaks"] for r in strat_records)
@@ -205,6 +212,7 @@ def main() -> None:
                 "count": all_count,
                 "full_semantic_pass_rate": round(all_full_sem / all_count, 4) if all_count > 0 else 0.0,
                 "continuation_semantic_pass_rate": round(all_cont_sem / all_count, 4) if all_count > 0 else 0.0,
+                "continuation_partial_semantic_pass_rate": round(all_cont_part_sem / all_count, 4) if all_count > 0 else 0.0,
                 "continuation_useful_addition_rate": round(all_adds_useful / all_count, 4) if all_count > 0 else 0.0,
                 "surface_pass_rate": round(all_surface / all_count, 4) if all_count > 0 else 0.0,
                 "format_leaks": all_leaks,
@@ -214,6 +222,7 @@ def main() -> None:
                 "count": para_count,
                 "full_semantic_pass_rate": round(para_full_sem / para_count, 4) if para_count > 0 else 0.0,
                 "continuation_semantic_pass_rate": round(para_cont_sem / para_count, 4) if para_count > 0 else 0.0,
+                "continuation_partial_semantic_pass_rate": round(para_cont_part_sem / para_count, 4) if para_count > 0 else 0.0,
                 "continuation_useful_addition_rate": round(para_adds_useful / para_count, 4) if para_count > 0 else 0.0,
                 "surface_pass_rate": round(para_surface / para_count, 4) if para_count > 0 else 0.0,
                 "format_leaks": para_leaks,
@@ -223,6 +232,7 @@ def main() -> None:
                 "count": std_count,
                 "full_semantic_pass_rate": round(std_full_sem / std_count, 4) if std_count > 0 else 0.0,
                 "continuation_semantic_pass_rate": round(std_cont_sem / std_count, 4) if std_count > 0 else 0.0,
+                "continuation_partial_semantic_pass_rate": round(std_cont_part_sem / std_count, 4) if std_count > 0 else 0.0,
                 "continuation_useful_addition_rate": round(std_adds_useful / std_count, 4) if std_count > 0 else 0.0,
                 "surface_pass_rate": round(std_surface / std_count, 4) if std_count > 0 else 0.0,
                 "format_leaks": std_leaks,
@@ -281,48 +291,51 @@ def main() -> None:
         "",
         "This table compares exact metrics across all prompt variants:",
         "",
-        "| Strategy | Total Runs | Full Semantic Pass | Continuation Semantic Pass | Useful-Addition Rate | Surface Pass Rate | Total Format Leaks | Avg Loop Score |",
-        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
+        "| Strategy | Total Runs | Full Semantic Pass | Continuation Semantic Pass | Continuation Partial Pass | Useful-Addition Rate | Surface Pass Rate | Total Format Leaks | Avg Loop Score |",
+        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
     ])
 
     for strat in strategies:
         stats = summary[strat]["overall"]
         lines.append(
             f"| `{strat}` | {stats['count']} | `{stats['full_semantic_pass_rate']*100:.2f}%` | "
-            f"`{stats['continuation_semantic_pass_rate']*100:.2f}%` | `{stats['continuation_useful_addition_rate']*100:.2f}%` | "
-            f"`{stats['surface_pass_rate']*100:.2f}%` | {stats['format_leaks']} | {stats['avg_loop_score']:.3f} |"
+            f"`{stats['continuation_semantic_pass_rate']*100:.2f}%` | `{stats['continuation_partial_semantic_pass_rate']*100:.2f}%` | "
+            f"`{stats['continuation_useful_addition_rate']*100:.2f}%` | `{stats['surface_pass_rate']*100:.2f}%` | "
+            f"{stats['format_leaks']} | {stats['avg_loop_score']:.3f} |"
         )
 
     lines.extend([
         "",
         "## Standard Lane Comparison (Exact, Please Answer, Simple Terms, Bounded)",
         "",
-        "| Strategy | Standard Runs | Full Semantic Pass | Continuation Semantic Pass | Useful-Addition Rate | Surface Pass Rate | Total Format Leaks | Avg Loop Score |",
-        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
+        "| Strategy | Standard Runs | Full Semantic Pass | Continuation Semantic Pass | Continuation Partial Pass | Useful-Addition Rate | Surface Pass Rate | Total Format Leaks | Avg Loop Score |",
+        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
     ])
 
     for strat in strategies:
         stats = summary[strat]["standard"]
         lines.append(
             f"| `{strat}` | {stats['count']} | `{stats['full_semantic_pass_rate']*100:.2f}%` | "
-            f"`{stats['continuation_semantic_pass_rate']*100:.2f}%` | `{stats['continuation_useful_addition_rate']*100:.2f}%` | "
-            f"`{stats['surface_pass_rate']*100:.2f}%` | {stats['format_leaks']} | {stats['avg_loop_score']:.3f} |"
+            f"`{stats['continuation_semantic_pass_rate']*100:.2f}%` | `{stats['continuation_partial_semantic_pass_rate']*100:.2f}%` | "
+            f"`{stats['continuation_useful_addition_rate']*100:.2f}%` | `{stats['surface_pass_rate']*100:.2f}%` | "
+            f"{stats['format_leaks']} | {stats['avg_loop_score']:.3f} |"
         )
 
     lines.extend([
         "",
         "## Paraphrase Generalization Lane Comparison",
         "",
-        "| Strategy | Paraphrase Runs | Full Semantic Pass | Continuation Semantic Pass | Useful-Addition Rate | Surface Pass Rate | Total Format Leaks | Avg Loop Score |",
-        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
+        "| Strategy | Paraphrase Runs | Full Semantic Pass | Continuation Semantic Pass | Continuation Partial Pass | Useful-Addition Rate | Surface Pass Rate | Total Format Leaks | Avg Loop Score |",
+        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
     ])
 
     for strat in strategies:
         stats = summary[strat]["paraphrase"]
         lines.append(
             f"| `{strat}` | {stats['count']} | `{stats['full_semantic_pass_rate']*100:.2f}%` | "
-            f"`{stats['continuation_semantic_pass_rate']*100:.2f}%` | `{stats['continuation_useful_addition_rate']*100:.2f}%` | "
-            f"`{stats['surface_pass_rate']*100:.2f}%` | {stats['format_leaks']} | {stats['avg_loop_score']:.3f} |"
+            f"`{stats['continuation_semantic_pass_rate']*100:.2f}%` | `{stats['continuation_partial_semantic_pass_rate']*100:.2f}%` | "
+            f"`{stats['continuation_useful_addition_rate']*100:.2f}%` | `{stats['surface_pass_rate']*100:.2f}%` | "
+            f"{stats['format_leaks']} | {stats['avg_loop_score']:.3f} |"
         )
 
     lines.extend([
@@ -341,7 +354,8 @@ def main() -> None:
             f"**Generated Continuation:** *\"{sample_run['continuation']}\"*",
             f"**Full Combined Response:** *\"{sample_run['full_response']}\"*",
             f"- Full Semantic Pass: `{sample_run['full_semantic_pass']}` | Continuation-Only Semantic Pass: `{sample_run['continuation_semantic_pass']}`",
-            f"- Continuation Useful Addition: `{sample_run['adds_useful_content']}` | Surface Pass: `{sample_run['surface_pass']}`",
+            f"- Continuation Partial Pass: `{sample_run['continuation_partial_semantic_pass']}` | Continuation Useful Addition: `{sample_run['adds_useful_content']}`",
+            f"- Surface Pass: `{sample_run['surface_pass']}`",
             ""
         ])
 
@@ -353,3 +367,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
