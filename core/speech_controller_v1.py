@@ -136,8 +136,8 @@ class SpeechControllerV1:
             final_text = generated_text
 
         # 7. Apply cleanup/stop gate post-processing
-        # Strip instruction markers if any leaked
-        final_text = final_text.replace("Question:", "").replace("Answer:", "").strip()
+        # Strip instruction markers and EOT tokens if any leaked
+        final_text = final_text.replace("Question:", "").replace("Answer:", "").replace("<|endoftext|>", "").strip()
         
         # Guarantee strict sentence constraints
         if max_sents == 1 and "." in final_text:
