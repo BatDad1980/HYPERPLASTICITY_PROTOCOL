@@ -1,7 +1,7 @@
 """
 HPP Phase 17d: Clean conversational training with fixed engine.
 No Mission Anchor in generation loop. Divisive repetition penalty.
-5000 steps, warmup + cosine decay, OOM protection, response-only loss, dynamic domains.
+5000 steps, warmup + cosine decay, OOM protection, response-only loss, dynamic domains, Connective Token Anchor Gate.
 """
 import os, sys, json, time, random, gc, math
 import torch
@@ -19,12 +19,28 @@ WARMUP = 600
 SAVE_EVERY = 1000
 TEST_EVERY = 2500
 
+# Connective Token Anchor Gate definition
+CONNECTIVE_WORDS = [
+    # Pronouns
+    "i", "you", "he", "she", "it", "we", "they", "me", "him", "her", "us", "them", 
+    "my", "your", "his", "its", "our", "their", "this", "that", "these", "those",
+    # Basic verbs
+    "is", "am", "are", "was", "were", "be", "been", "being", "have", "has", "had", 
+    "do", "does", "did", "go", "went", "gone", "going", "make", "made", "making", 
+    "get", "got", "getting", "say", "said", "saying", "would", "could", "should", 
+    "can", "will",
+    # Prepositions / connectives
+    "and", "or", "but", "if", "then", "of", "to", "in", "on", "at", "for", "with", 
+    "by", "about", "between", "through", "over", "under", "above", "below", "from", 
+    "into", "onto", "than", "as", "so", "the", "a", "an"
+]
+
 def save_checkpoint(engine, step):
     ckpt = {
         'masamune_state_dict': engine.university.state_dict(),
         'lm_head_state_dict': engine.lm_head.state_dict(),
         'embedding_state_dict': engine.embedding.state_dict(),
-        'phase': 'conversational_v17d_v2_domain_routed'
+        'phase': 'conversational_v17d_v2_domain_connective_gated'
     }
     torch.save(ckpt, "checkpoints/hpp_linguistic_anchor.pth")
     print(f"  [SAVED] step {step} to checkpoints/hpp_linguistic_anchor.pth", flush=True)
@@ -77,6 +93,18 @@ def run():
     # Load HPP_SovereignEngine_V2 with use_fp16=False for stable gradient updates
     engine = HPP_SovereignEngine_V2(max_context=512, use_fp16=False, init_hlvr=False, checkpoint_path="checkpoints/hpp_linguistic_anchor.pth")
 
+    # Build connective token IDs set
+    connective_token_ids = set()
+    for word in CONNECTIVE_WORDS:
+        for variant in (word, " " + word, word.capitalize(), " " + word.capitalize(), word.upper(), " " + word.upper()):
+            try:
+                tokens = engine.enc.encode(variant)
+                if len(tokens) == 1:
+                    connective_token_ids.add(tokens[0])
+            except Exception:
+                pass
+    print(f"[TRAIN] Gating compiled: {len(connective_token_ids)} unique connective token IDs identified", flush=True)
+
     # Freeze deep brains & non-speech layers
     for m in [engine.hpp_core, engine.guardian, engine.toddler,
               engine.school, engine.adolescent, engine.agency,
@@ -98,8 +126,9 @@ def run():
             trainable.append(p)
 
     optimizer = optim.AdamW(trainable, lr=LR, weight_decay=0.01)
-    # Use ignore_index=-100 to mask instruction prompt templates
-    criterion = nn.CrossEntropyLoss(ignore_index=-100)
+    
+    # Use reduction='none' for custom loss weighting
+    criterion_none = nn.CrossEntropyLoss(ignore_index=-100, reduction='none')
 
     # Load data
     dataset_path = 'datasets/hf_local/CONVERSATIONAL_FLUENCY.jsonl'
@@ -166,7 +195,23 @@ def run():
         # Specialization domain mapped dynamically
         output = engine.university(embedded, domain=domain)
         logits = engine.lm_head(output).permute(1, 2, 0)
-        loss = criterion(logits, targets[:, 1:])
+        
+        # Element-wise CrossEntropy calculation
+        loss_elementwise = criterion_none(logits, targets[:, 1:])
+        
+        # Compile target IDs and create custom weight multipliers
+        target_ids = targets[0, 1:]
+        custom_weights = torch.ones_like(target_ids, dtype=torch.float, device=device)
+        
+        # Connective Token Anchor Gate: scale penalty on basic words by 3.0x during identity/logic passes
+        if domain in ["identity", "logic"]:
+            for i, tid in enumerate(target_ids.tolist()):
+                if tid in connective_token_ids:
+                    custom_weights[i] = 3.0
+                    
+        # Apply weights and ignore targets set to -100
+        mask = (target_ids != -100).float()
+        loss = (loss_elementwise[0] * custom_weights * mask).sum() / (mask.sum() + 1e-8)
 
         loss_val = loss.item()
 
@@ -190,7 +235,7 @@ def run():
             gc.collect()
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
-        del loss, logits, output, embedded, ids, targets
+        del loss, logits, output, embedded, ids, targets, loss_elementwise, custom_weights, mask
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 

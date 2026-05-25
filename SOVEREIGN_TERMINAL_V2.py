@@ -48,6 +48,11 @@ def run():
                 print("[COMPARE] Running same prompt through v1 and v2...")
                 test_prompt = input("[COMPARE] Enter prompt: ")
                 if test_prompt.strip():
+                    is_single_sentence = any(kw in test_prompt.lower() for kw in [
+                        "single sentence", "one sentence", "bounded sentence", "single-sentence", "one-sentence", "bounded statement"
+                    ])
+                    stop_sequences = ["."] if is_single_sentence else None
+                    
                     # V2 (this engine)
                     r2 = engine.pulse(
                         test_prompt,
@@ -60,7 +65,8 @@ def run():
                         presence_penalty=0.55,
                         phrase_blocking=True,
                         speech_maturity_gate=True,
-                        speech_profile="raw"
+                        speech_profile="raw",
+                        stop_sequences=stop_sequences
                     )
                     print(f"\n[V2 ENGINE]: {r2['response']}")
                     print(f"  ({r2['tokens']} tokens, {r2['latency_ms']}ms, domain: {r2['domain_used']})")
@@ -88,6 +94,12 @@ def run():
             # Dynamic max_tokens leash to prevent identity domain drift
             max_tokens = 75 if domain == "identity" else 150
             
+            # Detect single-sentence constraints for strict tests
+            is_single_sentence = any(kw in prompt.lower() for kw in [
+                "single sentence", "one sentence", "bounded sentence", "single-sentence", "one-sentence", "bounded statement"
+            ])
+            stop_sequences = ["."] if is_single_sentence else None
+
             start_t = time.perf_counter()
             result = engine.pulse(
                 prompt,
@@ -100,7 +112,8 @@ def run():
                 presence_penalty=0.55,
                 phrase_blocking=True,
                 speech_maturity_gate=True,
-                speech_profile="raw"
+                speech_profile="raw",
+                stop_sequences=stop_sequences
             )
             latency = (time.perf_counter() - start_t) * 1000
             

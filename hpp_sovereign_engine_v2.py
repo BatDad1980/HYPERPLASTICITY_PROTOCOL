@@ -583,7 +583,8 @@ class HPP_SovereignEngine_V2:
               speech_maturity_gate: bool = False,
               speech_profile: str = "raw",
               temperature_decay: float = 0.995,
-              domain: str = "auto", use_hlvr: bool = True, **kwargs):
+              domain: str = "auto", use_hlvr: bool = True,
+              stop_sequences: list = None, eos_tokens: list = None, **kwargs):
         """
         Sovereign Pulse v2 — upgraded decoding with full anti-repetition suite.
         
@@ -765,6 +766,32 @@ class HPP_SovereignEngine_V2:
             if next_token == self.enc.eot_token and i >= min_tokens:
                 break
             
+            # Custom eos_tokens check
+            if eos_tokens is not None:
+                should_stop = False
+                for eos_t in eos_tokens:
+                    if isinstance(eos_t, int) and next_token == eos_t:
+                        should_stop = True
+                        break
+                    elif isinstance(eos_t, str):
+                        decoded_t = self.enc.decode([next_token])
+                        if eos_t in decoded_t:
+                            should_stop = True
+                            break
+                if should_stop:
+                    break
+
+            # Custom stop_sequences check
+            if stop_sequences is not None:
+                current_text = self.enc.decode(generated)
+                should_stop = False
+                for stop_seq in stop_sequences:
+                    if stop_seq in current_text:
+                        should_stop = True
+                        break
+                if should_stop:
+                    break
+            
             # Append new token to latent stream with correct position
             new_embed = self.embedding(
                 torch.tensor([[next_token]], device=self.device)
@@ -783,6 +810,13 @@ class HPP_SovereignEngine_V2:
         
         # Clean up response
         response = self._clean_response(response)
+
+        # Truncate to first stop sequence if present in final text
+        if stop_sequences is not None:
+            for stop_seq in stop_sequences:
+                if stop_seq in response:
+                    idx = response.find(stop_seq)
+                    response = response[:idx + len(stop_seq)]
 
         # Prepend retrieved_start if HLVR was successfully matched
         if retrieved_final is not None:
