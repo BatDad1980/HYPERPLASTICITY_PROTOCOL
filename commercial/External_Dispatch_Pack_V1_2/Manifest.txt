@@ -1,0 +1,6 @@
+# Manifest
+
+Current sanitized dispatch artifacts.
+
+- HPP_Governance.zip | bytes=927 | sha256=55f50d039c6d478bfe1be95c5f9905e3b743150e0d8ba9c1cf1164f15e117a60
+- Samurai_Addendum.zip | bytes=3247 | sha256=3d5c10ab89002b7ecb08b9be1426ee6bca7e162017ab3e32cb00482163597d17
